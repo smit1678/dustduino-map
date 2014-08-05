@@ -21,7 +21,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="map-container">
+        <div class="map-container" id="haze">
             <div class="full" id="paulo-map"></div>
         </div>
 
@@ -59,7 +59,6 @@
             </div>
         </div>
 
-
         <div class="modal" id="initial-modal">
             <div class="in-modal">
                 <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>
@@ -83,6 +82,10 @@
         <script src="scripts/models/station.js"></script>
         <script src="scripts/routes/app.js"></script>
         <script src="scripts/views/map.js"></script>
+        <script src="scripts/views/modal.js"></script>
+        <script src="scripts/collections/stations.js"></script>
+        <script src="scripts/views/haze.js"></script>
+        <script src="scripts/views/score.js"></script>
         <!-- endbuild -->
 </body>
 </html>
