@@ -6,9 +6,10 @@
         <title>Air</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic'>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo:400,700,400italic">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/vendor/mapbox.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
@@ -20,21 +21,61 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <div class="map-container">
+            <div class="full" id="paulo-map"></div>
+        </div>
+
         <div class="header">
             <h1>São Paulo Air Project</h1>
             <h2>community air quality mapping</h2>
-            <div class="desktop right">
-                <a href=''>get involved</a>
-                <a href=''>who we are</a>
+            <div class="desktop right nav-links">
+                <h4><a href="">get involved</a></h4>
+                <h4><a href="">who we are</a></h4>
             </div>
         </div>
 
+        <div class="deck">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-12 col-lg-7">
+                        <div id="hourly-chart"></div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-2">
+                        <h3 class="explain">
+                            Score
+                            <span class="what">?</span>
+                        </h3>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3">
+                        <h3 class="gray">Local Time</h3>
+                        <div id="local-time">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal" id="initial-modal">
+            <div class="in-modal">
+                <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>
+                <span class="close">&#10006;</span>
+            </div>
+        </div>
 
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/d3/d3.js"></script>
+        <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
         <!-- endbuild -->
+
+        <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>

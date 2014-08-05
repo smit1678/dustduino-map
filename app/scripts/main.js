@@ -8,7 +8,8 @@ window.Air = {
     Routers: {},
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+        Air.router = new Air.Routers.App();
+        Backbone.history.start();
     }
 };
 

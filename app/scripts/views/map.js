@@ -7,22 +7,22 @@ Air.Views = Air.Views || {};
 
     Air.Views.Map = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/map.ejs'],
-
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
         events: {},
-
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+
+            //devseed.j586d1hp
+
+            //Air.map = Air.map || L.mapbox.map(this.id, 'devseed.j586d1hp')
+            Air.map = Air.map || L.mapbox.map(this.id, 'jue.hk00hb9l')
+                .setView([-23.611, -46.715], 10);
+
+
+            //app.map = app.map || L.mapbox.map('map', 'jue.hk00hb9l').setView([41.671, -88.899], 8);
+
+
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
         }
 
     });
