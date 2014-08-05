@@ -8,11 +8,11 @@ Air.Views = Air.Views || {};
     Air.Views.Haze = Backbone.View.extend({
         events: {},
         initialize: function () {
-            this.listenTo(this.collection, 'change', this.render);
+            var $el = this.$el;
+            window.setTimeout(function() {
+                $el.addClass('poor');
+            }, 600);
         },
-        render: function () {
-        }
-
     });
 
 })();
