@@ -6,20 +6,10 @@ Air.Models = Air.Models || {};
     'use strict';
 
     Air.Models.Station = Backbone.Model.extend({
-
-        url: '',
-
-        initialize: function() {
-        },
-
-        defaults: {
-        },
-
-        validate: function(attrs, options) {
-        },
-
-        parse: function(response, options)  {
-            return response;
+        defaults: {},
+        url: 'local/fake-stations.json',
+        parse: function(geoJson, options) {
+            return geoJson;
         }
     });
 
