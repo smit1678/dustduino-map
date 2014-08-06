@@ -23,14 +23,22 @@ Air.Routers = Air.Routers || {};
             // init station model
             var stations = new Air.Models.Station();
 
-            // init all views
-            new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
-            //new Air.Views.Haze({el: '#haze', id: 'haze', model: stations});
-            //new Air.Views.Score({el: '#scorecard', id: 'scorecard', model: stations});
+            // overall score
+            new Air.Views.Score({el: '#scorecard', id: 'scorecard', model: stations});
+
             //new Air.Views.Hourly({el: '#hourly-chart', id: 'hourly-chart', model: hourly});
 
-            // load station data
-            stations.fetch({reset:true});
+            // some views rely on the map being ready
+            Air.map.whenReady(function() {
+
+                // map station indicators
+                new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
+
+                // background pollution indicator
+                new Air.Views.Haze({model: stations});
+
+                stations.fetch({reset:true});
+            });
         },
 
     });

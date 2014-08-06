@@ -223,6 +223,14 @@ p {
 /****************************************************/
 /************** Map *********************************/
 
+.leaflet-top {
+    top: 65px;
+}
+
+.leaflet-layer {
+    opacity: 0.6;
+}
+
 .map-container {
     position: fixed;
     top: 0;
@@ -237,39 +245,39 @@ p {
     height: 100%;
 }
 
-#paulo-map {
-    -webkit-transition: opacity 0.4s ease-in;
-    -moz-transition: opacity 0.4s ease-in;
-    transition: opacity 0.4s ease-in;
-}
-
-#paulo-map {
-    opacity: 0.6
-}
-
 #haze {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
     background-color: #fff;
-    -webkit-transition: background-color 0.4s ease-in;
-    -moz-transition: background-color 0.4s ease-in;
-    transition: background-color 0.4s ease-in;
+    opacity: 0;
+    -webkit-transition: all 0.8s ease-in;
+    -moz-transition: all 0.8s ease-in;
+    transition: all 0.8s ease-in;
 }
 
 #haze.fair {
     background-color: #FFFBF0;
+    opacity: 0.2;
 }
 
 #haze.moderate {
     background-color: #FFE9A6;
+    opacity: 0.4;
 }
 
 #haze.poor {
     background-color: #FFDC73;
+    opacity: 0.5;
 }
 
 .station {
     fill: #7F7D78;
     stroke: #fefefe;
     opacity: 0.7;
+    cursor: pointer;
 }
 
 /****************************************************/

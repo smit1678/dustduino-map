@@ -22,19 +22,16 @@ Air.Views = Air.Views || {};
 
             this.path = d3.geo.path().projection(transform);
 
-            this.drag = d3.behavior.drag();
-
             this.svg = d3.select(Air.map.getPanes().overlayPane)
                 .append('svg:svg');
 
-            this.g = this.svg.append('svg:g').attr('class', 'leaflet-zoom-hide')
-                .call(this.drag);
+            this.g = this.svg.append('svg:g').attr('class', 'leaflet-zoom-hide');
 
             this.points = this.g.selectAll('.station')
                 .data(this.model.get('features'))
               .enter().append('circle')
                 .attr('class', 'station')
-                .attr('r', 15);
+                .attr('r', 0);
 
             this.resetSvg();
         },
@@ -59,6 +56,11 @@ Air.Views = Air.Views || {};
             this.g.attr("transform", "translate(" + (-topLeft[0]+50) + "," + (-topLeft[1]+50)+ ")");
 
             this.points.attr('transform', this.translatePoint);
+
+            this.points.transition()
+                .delay(function(d, i) { return 600 + i * 200 })
+                .duration(600)
+                .attr('r', 15);
         },
     });
 
