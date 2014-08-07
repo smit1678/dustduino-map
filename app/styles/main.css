@@ -382,9 +382,9 @@ p {
     text-align: right;
 }
 
-#hourly-max { top: 14px; }
-#hourly-mid { top: 62px; }
-#hourly-min { bottom: 15px; }
+#hourly-max { top: 25px; }
+#hourly-mid { top: 71px; }
+#hourly-min { bottom: 10px; }
 
 .d3-tip {
     line-height: 1;
@@ -395,6 +395,7 @@ p {
     color: #222;
     border-radius: 2px;
     pointer-events: none;
+    z-index: 1002;
 }
 
 .d3-tip > p {

@@ -82,7 +82,7 @@ Air.Views = Air.Views || {};
 
             this.xAxis
                 .attr('transform', function(d) {
-                    return 'translate(' + x(d.index) + ',12)'
+                    return 'translate(' + x(d.index) + ',14)'
                 })
 
             // calculate roughly where we were before
@@ -97,9 +97,9 @@ Air.Views = Air.Views || {};
 
             var hours = this.collection.length,
                 days = hours / 24,
-                margin = this.margin = [20, 15, 20, 15],
+                margin = this.margin = [5, 15, 20, 15],
                 width = this.width = this.$el.width() * days - margin[1] - margin[3],
-                height = 140 - margin[0] - margin[2];
+                height = 120 - margin[0] - margin[2];
 
 
 
@@ -161,7 +161,7 @@ Air.Views = Air.Views || {};
                 .attr('class', 'tick')
                 .attr('text-anchor', 'middle')
                 .attr('transform', function(d) {
-                    return 'translate(' + x(d.index) + ',12)'
+                    return 'translate(' + x(d.index) + ',14)'
                 })
                 .text(function(d) { return d.hour });
 
