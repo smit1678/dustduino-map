@@ -15,7 +15,7 @@ Air.Routers = Air.Routers || {};
 
             //************************** Map **************************//
             Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
-                .setView([-23.611, -46.715], 10);
+                .setView([-23.557, -46.656], 11);
 
             //************************** Data **************************//
             var stations = new Air.Models.Station();    // station locations

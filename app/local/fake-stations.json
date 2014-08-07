@@ -21,7 +21,7 @@
       "properties": {
         "name": "Jardim Europa",
         "pm_10": "5",
-        "pm_2.5": "10"
+        "pm_2.5": "40"
       },
       "geometry": {
         "type": "Point",
@@ -36,7 +36,7 @@
       "properties": {
         "name": "R. Salvador do Vale",
         "pm_10": "10",
-        "pm_2.5": "15"
+        "pm_2.5": "3"
       },
       "geometry": {
         "type": "Point",

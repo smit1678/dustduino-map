@@ -293,6 +293,29 @@ p {
     cursor: pointer;
 }
 
+.d3-map-tip {
+    line-height: 1;
+    padding: 12px;
+    background: #fff;
+    opacity: 0.8;
+    color: #333;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: 1005;
+}
+
+.d3-map-tip > p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+.map-pop { width: 240px; }
+.pop-image { width: 100%; }
+.pop-image > img { width: 100%; }
+
+.leaflet-popup-content { width: auto !important; }
+
 /****************************************************/
 /************** Modal *******************************/
 
@@ -516,10 +539,13 @@ p {
         line-height: 36px;
     }
 
-    .deck { height: 160px; }
-    .deck .mask { height: 160px; }
-    .deck-hat { padding-top: 12px; }
-    .modal { text-align: left; }
+    .deck                   { height: 160px; }
+    .deck .mask             { height: 160px; }
+    .deck-hat               { padding-top: 12px; }
+    .modal                  { text-align: left; }
+
+    .map-pop                { width: 700px; }
+    .pop-image              { width: 250px; }
 
     #initial-modal {
         left: 6%;
