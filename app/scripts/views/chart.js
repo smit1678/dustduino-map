@@ -30,15 +30,24 @@ Air.Views = Air.Views || {};
         },
 
         dragmove: function() {
-
             this.pos -= d3.event.dx;
             if (this.pos < this.limit || this.pos > 20) {
-                this.pos = this.lastpos;
-                return;
+                this.bounceBack = true;
             }
-            this.lastpos = this.pos;
-
+            else {
+                this.lastpos = this.pos;
+            }
             this.base.style('right', this.pos + 'px');
+        },
+
+        dragend: function() {
+            if (this.bounceBack) {
+                this.bounceBack = false;
+                this.pos = this.lastpos;
+                this.base.transition()
+                    .duration(200)
+                    .style('right', this.pos + 'px')
+            }
         },
 
         resize: function() {
@@ -98,8 +107,10 @@ Air.Views = Air.Views || {};
             this.nextpos = 0;
             this.limit = -width / days * (days - 1) - 50;
             var dragmove = $.proxy(this.dragmove, this),
+                dragend = $.proxy(this.dragend, this),
                 drag = d3.behavior.drag()
-                    .on('drag', dragmove);
+                    .on('drag', dragmove)
+                    .on('dragend', dragend);
 
 
             //*********** init **************
