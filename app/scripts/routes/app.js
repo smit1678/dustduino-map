@@ -14,8 +14,10 @@ Air.Routers = Air.Routers || {};
         fresh: function() {
 
             // init map
+            /*
             Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
                 .setView([-23.611, -46.715], 10);
+            */
 
             // init modals
             $('.modal').each(function() { new Air.Views.Modal({el: '#' + this.id}); });
@@ -23,12 +25,16 @@ Air.Routers = Air.Routers || {};
             // init station model
             var stations = new Air.Models.Station();
 
-            // overall score
-            new Air.Views.Score({el: '#scorecard', id: 'scorecard', model: stations});
+            // init hourly summary model
+            var hours = new Air.Collections.Hours();
 
-            //new Air.Views.Hourly({el: '#hourly-chart', id: 'hourly-chart', model: hourly});
+            // overall score
+            new Air.Views.Score({el: '#scorecard', id: 'scorecard', collection: hours});
+            // hourly chart
+            new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart', collection: hours});
 
             // some views rely on the map being ready
+            /*
             Air.map.whenReady(function() {
 
                 // map station indicators
@@ -39,6 +45,10 @@ Air.Routers = Air.Routers || {};
 
                 stations.fetch({reset:true});
             });
+            */
+
+            // testing only
+            stations.fetch({reset:true});
         },
 
     });
