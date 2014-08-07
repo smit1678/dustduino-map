@@ -155,6 +155,22 @@ Air.Views = Air.Views || {};
             $('#hourly-mid').html(Math.ceil(max / 2) + ' &ndash;');
             $('#hourly-min').html('0 &ndash;');
 
+            //*********** tips **************
+
+            var template = _.template('<h3><%= date %></h3><p>PM 2.5: <%= pm25 %><br />PM10: <%= pm10 %></p>');
+
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .html(function(d) {
+                    return template({
+                        date: ['August', d.get('day'), d.get('hour') + ':00'].join(' '),
+                        pm25: d.get('pm25'),
+                        pm10: d.get('pm10')
+                    });
+                });
+
+            svg.call(tip);
+
             //*********** bars **************
 
             var pm25 = svg.selectAll('.pm25')
@@ -164,7 +180,9 @@ Air.Views = Air.Views || {};
                 .attr('x', function(d, i) { return x(i) - barWidth })
                 .attr('y', height)
                 .attr('width', barWidth)
-                .attr('height', 0);
+                .attr('height', 0)
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
             var pm10 = svg.selectAll('.pm10')
                 .data(this.collection.models)
@@ -173,7 +191,9 @@ Air.Views = Air.Views || {};
                 .attr('x', function(d, i) { return x(i) })
                 .attr('y', height)
                 .attr('width', barWidth)
-                .attr('height', 0);
+                .attr('height', 0)
+                .on('mouseover', tip.show)
+                .on('mouseout', tip.hide);
 
             pm25.transition()
                 .duration(200)

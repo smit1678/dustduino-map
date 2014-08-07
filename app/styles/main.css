@@ -366,6 +366,22 @@ p {
 #hourly-mid { top: 58px; }
 #hourly-min { bottom: 12px; }
 
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 6px 6px 0;
+    background: #ddd;
+    opacity: 0.8;
+    color: #222;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.d3-tip > p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
 
 /****************************************************/
 /************** Media Queries ***********************/
