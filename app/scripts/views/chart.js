@@ -62,7 +62,9 @@ Air.Views = Air.Views || {};
 
             var x = this.x,
                 dblWidth = x(2) - x(1),
-                barWidth = dblWidth / 2 - 4;
+                barWidth = Math.floor(dblWidth / 2) - 4;
+
+            if (barWidth < 0) barWidth = 0;
 
             this.base//.transition()
                 //.delay(100)
@@ -137,8 +139,9 @@ Air.Views = Air.Views || {};
                 .domain([0, max]);
 
             var dblWidth = x(1) - x(0),
-                barWidth = Math.floor(dblWidth) / 2 - 4;
+                barWidth = Math.floor(dblWidth / 2) - 4;
 
+            if (barWidth < 0) barWidth = 0;
 
             //*********** axis **************
 

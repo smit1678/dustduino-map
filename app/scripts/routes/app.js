@@ -13,43 +13,27 @@ Air.Routers = Air.Routers || {};
 
         fresh: function() {
 
-            // init map
-            /*
+            //************************** Map **************************//
             Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
                 .setView([-23.611, -46.715], 10);
-            */
 
-            // init modals
+            //************************** Data **************************//
+            var stations = new Air.Models.Station();    // station locations
+            var hours = new Air.Collections.Hours();    // hourly data
+
+            //************************** Views **************************//
             $('.modal').each(function() { new Air.Views.Modal({el: '#' + this.id}); });
-
-            // init station model
-            var stations = new Air.Models.Station();
-
-            // init hourly summary model
-            var hours = new Air.Collections.Hours();
-
-            // overall score
             new Air.Views.Score({el: '#scorecard', id: 'scorecard', collection: hours});
-            // hourly chart
             new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart',
                                 collection: hours});
+            new Air.Views.Localtime({el: '#local-time', id:'local-time'});
 
-            // some views rely on the map being ready
-            /*
             Air.map.whenReady(function() {
-
-                // map station indicators
                 new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
-
-                // background pollution indicator
                 new Air.Views.Haze({model: stations});
-
                 stations.fetch({reset:true});
             });
-            */
 
-            // testing only
-            stations.fetch();
             hours.fetch({reset: true});
         },
 

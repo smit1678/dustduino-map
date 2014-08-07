@@ -50,6 +50,7 @@ h3 {
     line-height: 20px;
     font-weight: bold;
     color: #333;
+    display: inline-block;
 }
 
 h4 {
@@ -66,6 +67,11 @@ a:visited {
     color: #4889B2;
     cursor: pointer;
     text-decoration: none;
+}
+
+label {
+    font-size: 12px;
+    display: inline-block;
 }
 
 p {
@@ -114,14 +120,9 @@ p {
     cursor: pointer;
 }
 
-.orange {
-    color: #988838;
-}
-
-.gray {
-    color: #505050;
-}
-
+.orange             { color: #988838; }
+.gray               { color: #505050; }
+.black              { color: #000000; }
 
 
 /****************************************************/
@@ -313,12 +314,12 @@ p {
     left: 0;
     width: 100%;
     bottom: 0;
-    height: 64px;
-    padding-top: 18px;
+    height: 48px;
+    padding-top: 6px;
 }
 
 .deck .mask {
-    height: 64px;
+    height: 48px;
 }
 
 .mask {
@@ -339,8 +340,12 @@ p {
     cursor: grab;
 }
 
-.pm10 { fill: #E58E73; }
-.pm25 { fill: #8EB5D4; }
+
+/****************************************************/
+/************** Chart *******************************/
+
+.pm10 { fill: #EED99C; cursor: pointer; }
+.pm25 { fill: #9CEED9; cursor: pointer; }
 
 #hourly-yaxis > span,
 .tick {
@@ -383,6 +388,16 @@ p {
     margin-bottom: 6px;
 }
 
+
+/****************************************************/
+/************** Time ********************************/
+
+#local-time {
+    color: #988838;
+}
+
+
+
 /****************************************************/
 /************** Media Queries ***********************/
 
@@ -408,6 +423,14 @@ p {
     .col-md-11 { width: 91.66666666666666%;    }
     .col-md-12 { width: 100%;                  }
 
+    h3 { display: block; }
+
+    .local {
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: 4px;
+    }
+
     p {
         font-size: 16px;
         line-height: 24px;
@@ -424,11 +447,7 @@ p {
         left: 12%;
     }
 
-    .deck .mask {
-        height: 110px;
-    }
-
-
+    .deck .mask { height: 110px; }
 }
 
 @media only screen and (min-width: 960px) {
@@ -474,8 +493,14 @@ p {
         color: #333;
     }
 
+    .local {
+        font-size: 24px;
+        line-height: 36px;
+    }
+
     .deck {
         height: 160px;
+        padding-top: 18px;
     }
 
     .deck .mask {
