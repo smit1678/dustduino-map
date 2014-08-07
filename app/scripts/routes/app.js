@@ -31,7 +31,8 @@ Air.Routers = Air.Routers || {};
             // overall score
             new Air.Views.Score({el: '#scorecard', id: 'scorecard', collection: hours});
             // hourly chart
-            new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart', collection: hours});
+            new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart',
+                                collection: hours});
 
             // some views rely on the map being ready
             /*
@@ -48,7 +49,8 @@ Air.Routers = Air.Routers || {};
             */
 
             // testing only
-            stations.fetch({reset:true});
+            stations.fetch();
+            hours.fetch({reset: true});
         },
 
     });

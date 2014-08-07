@@ -317,6 +317,55 @@ p {
     padding-top: 18px;
 }
 
+.deck .mask {
+    height: 64px;
+}
+
+.mask {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.drag {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.pm10 { fill: #E58E73; }
+.pm25 { fill: #8EB5D4; }
+
+#hourly-yaxis > span,
+.tick {
+    stroke: #666;
+    color: #666;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#hourly-yaxis {
+    position: relative;
+    height: 140px;
+}
+
+#hourly-yaxis > span {
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+
+#hourly-max { top: 12px: }
+#hourly-mid { top: 58px; }
+#hourly-min { bottom: 12px; }
+
 
 /****************************************************/
 /************** Media Queries ***********************/
@@ -358,6 +407,11 @@ p {
         width: 76%;
         left: 12%;
     }
+
+    .deck .mask {
+        height: 110px;
+    }
+
 
 }
 
@@ -408,6 +462,9 @@ p {
         height: 160px;
     }
 
+    .deck .mask {
+        height: 160px;
+    }
 
     .modal {
         text-align: left;

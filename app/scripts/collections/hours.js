@@ -6,9 +6,10 @@ Air.Collections = Air.Collections || {};
     'use strict';
 
     Air.Collections.Hours = Backbone.Collection.extend({
-
-        model: Air.Models.Hours
-
+        model: Air.Models.Hour,
+        url: 'local/fake-hourly.json',
+        parse: function(response, options) {
+            return response
+        }
     });
-
 })();

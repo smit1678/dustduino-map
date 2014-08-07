@@ -8,10 +8,11 @@ Air.Views = Air.Views || {};
     Air.Views.Score = Backbone.View.extend({
         events: {},
         initialize: function () {
-            //this.listenTo(this.collection, 'change', this.render);
+            this.listenTo(this.collection, 'reset', this.render);
         },
 
         render: function () {
+            return;
         }
 
     });

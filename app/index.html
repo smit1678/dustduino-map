@@ -38,8 +38,16 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-sm-12 col-lg-7">
-                        <div id="hourly-chart"></div>
+                    <div class="col-sm-1 col-lg-1 desktop">
+                        <div id="hourly-yaxis">
+                            <span id="hourly-max"></span>
+                            <span id="hourly-mid"></span>
+                            <span id="hourly-min"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-lg-6 desktop">
+                        <div id="hourly-chart" class="mask"></div>
                     </div>
 
                     <div class="col-sm-6 col-lg-2">
@@ -85,6 +93,7 @@
         <script src="scripts/views/modal.js"></script>
         <script src="scripts/views/haze.js"></script>
         <script src="scripts/views/score.js"></script>
+        <script src="scripts/models/hour.js"></script>
         <script src="scripts/collections/hours.js"></script>
         <script src="scripts/views/chart.js"></script>
         <!-- endbuild -->
