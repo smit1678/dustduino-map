@@ -9,7 +9,6 @@ html {
 }
 
 body {
-    background: #fff;
     color: #333;
     height: 100%;
     font-family: Arvo, Georgia, serif;
@@ -20,6 +19,16 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+body,
+.close,
+.what,
+.header,
+.modal,
+.phosphorescent,
+.deck {
+    background-color: #fff;
 }
 
 /****************************************************/
@@ -50,7 +59,6 @@ h3 {
     line-height: 20px;
     font-weight: bold;
     color: #333;
-    display: inline-block;
 }
 
 h4 {
@@ -102,7 +110,6 @@ p {
 }
 
 .close, .what {
-    background: #fff;
     position: absolute;
     cursor: pointer;
     padding: 2px;
@@ -123,6 +130,12 @@ p {
 .orange             { color: #988838; }
 .gray               { color: #505050; }
 .black              { color: #000000; }
+
+.phosphorescent {
+    -webkit-transition: background-color 0.4s;
+    -moz-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+}
 
 
 /****************************************************/
@@ -194,7 +207,6 @@ p {
 .header,
 .modal,
 .deck {
-    background: #fff;
     -webkit-box-shadow: 0px 1px 3px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 1px 3px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 1px 3px 0px rgba(50, 50, 50, 0.75);
@@ -303,6 +315,7 @@ p {
     left: 1%;
     top: 80px;
     width: 98%;
+    z-index: 1001;
 }
 
 
@@ -315,12 +328,14 @@ p {
     width: 100%;
     bottom: 0;
     height: 48px;
-    padding-top: 6px;
+    z-index: 1000;
 }
 
 .deck .mask {
     height: 48px;
 }
+
+.deck-hat { padding-top: 4px; }
 
 .mask {
     position: relative;
@@ -367,9 +382,9 @@ p {
     text-align: right;
 }
 
-#hourly-max { top: 12px: }
-#hourly-mid { top: 58px; }
-#hourly-min { bottom: 12px; }
+#hourly-max { top: 14px; }
+#hourly-mid { top: 62px; }
+#hourly-min { bottom: 15px; }
 
 .d3-tip {
     line-height: 1;
@@ -390,13 +405,14 @@ p {
 
 
 /****************************************************/
-/************** Time ********************************/
+/************** Indicators **************************/
 
-#local-time {
-    color: #988838;
+#local-time { color: #988838; }
+#condition-now {
+    padding: 0 4px;
+    border-radius: 4px;
+    display: inline-block;
 }
-
-
 
 /****************************************************/
 /************** Media Queries ***********************/
@@ -442,12 +458,13 @@ p {
     }
 
     .deck {
-        height: 110px;
+        height: 80px;
         width: 76%;
         left: 12%;
     }
 
-    .deck .mask { height: 110px; }
+    .deck .mask { height: 80px; }
+    .deck-hat { padding-top: 6px; }
 }
 
 @media only screen and (min-width: 960px) {
@@ -498,22 +515,20 @@ p {
         line-height: 36px;
     }
 
-    .deck {
-        height: 160px;
-        padding-top: 18px;
-    }
-
-    .deck .mask {
-        height: 160px;
-    }
-
-    .modal {
-        text-align: left;
-    }
+    .deck { height: 160px; }
+    .deck .mask { height: 160px; }
+    .deck-hat { padding-top: 12px; }
+    .modal { text-align: left; }
 
     #initial-modal {
         left: 6%;
         top: 12%;
         width: 320px;
+    }
+
+    #condition-now {
+        padding: 2px 8px;
+        border-radius: 6px;
+        margin-top: 6px;
     }
 }

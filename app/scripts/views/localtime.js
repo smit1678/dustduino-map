@@ -36,16 +36,16 @@ Air.Views = Air.Views || {};
             var local = this.$('.local');
 
             window.setInterval(function() {
-                minutes += 1;
-                if (minutes === 61) {
+                minutes = parseInt(minutes, 10) + 1;
+                if (minutes > 59) {
                     minutes = '00';
-                    hours = hours === 23 ? 0 : hours + 1;
+                    hours = hours > 24 ? 0 : hours + 1;
                 }
                 else if (minutes < 10) {
                     minutes = '0' + minutes;
                 }
                 local.html(hours + ':' + minutes)
-            }, 6000);
+            }, 60000);
 
         }
 

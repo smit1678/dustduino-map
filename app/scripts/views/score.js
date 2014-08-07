@@ -8,11 +8,13 @@ Air.Views = Air.Views || {};
     Air.Views.Score = Backbone.View.extend({
         events: {},
         initialize: function () {
-            console.log('in init');
+            this.$now = this.$('#condition-now');
+            this.render();
         },
 
         render: function () {
-            return;
+            this.$now.css({'background-color': '#FFDC73'})
+                .text('Poor');
         }
 
     });
