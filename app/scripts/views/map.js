@@ -59,7 +59,8 @@ Air.Views = Air.Views || {};
             this.popup.setLatLng(coords).setContent(this.template({
 
                 place: d.properties.name,
-                src: 'images/fake-station.jpg'
+                src: 'images/fake-station.jpg',
+                score: '40 - poor'
 
             })).openOn(Air.map);
         },
