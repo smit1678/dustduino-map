@@ -266,9 +266,9 @@ p {
 
     background-color: #fff;
     opacity: 0;
-    -webkit-transition: all 0.8s ease-in;
-    -moz-transition: all 0.8s ease-in;
-    transition: all 0.8s ease-in;
+    -webkit-transition: all 1.5s ease-in;
+    -moz-transition: all 1.5s ease-in;
+    transition: all 1.5s ease-in;
 }
 
 #haze.fair {
@@ -311,7 +311,6 @@ p {
 }
 
 .map-pop { width: 240px; }
-.pop-image { width: 100%; }
 .pop-image > img { width: 100%; }
 
 .leaflet-popup-content { width: auto !important; }
@@ -487,6 +486,8 @@ p {
         left: 12%;
     }
 
+    .map-pop { width: 360px; }
+
     .deck .mask { height: 80px; }
     .deck-hat { padding-top: 6px; }
 }
@@ -545,7 +546,6 @@ p {
     .modal                  { text-align: left; }
 
     .map-pop                { width: 700px; }
-    .pop-image              { width: 250px; }
 
     #initial-modal {
         left: 6%;

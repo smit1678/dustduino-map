@@ -56,7 +56,6 @@ Air.Views = Air.Views || {};
 
         click: function(d) {
             var coords = Air.map.layerPointToLatLng([d.x, d.y]);
-            console.log(d);
             this.popup.setLatLng(coords).setContent(this.template({
 
                 place: d.properties.name,

@@ -19,7 +19,7 @@ Air.Views = Air.Views || {};
             var $el = this.$el;
             window.setTimeout(function() {
                 $el.addClass('poor');
-            }, 800);
+            }, 1500);
         },
     });
 

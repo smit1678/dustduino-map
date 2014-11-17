@@ -8,8 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Arvo:400,700,400italic">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/vendor/mapbox.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
         <!-- build:js scripts/vendor/modernizr.js -->
@@ -72,12 +73,22 @@
         </div>
 
         <div id="templates" style="display:none;">
-            <script id="popup-template">
-                <h3><%= place %></h3>
-                <div class="pop-image">
-                    <img src="<%= src %>" />
+            <script id="popup-template" type="text/template">
+                <div class="container">
+                    <div class="row">
+                        <h3 class="col-sm-12"><%= place %></h3>
+                        <div class="col-sm-12 col-lg-4 pop-image">
+                            <img src="<%= src %>" />
+                        </div>
+                        <div class="col-sm-12 col-lg-8 pop-chart">
+                            <div class="desktop">
+                                <p><strong>Somewhere out there</strong></p>
+                                <p><strong>Description</strong> Life was long, unless you died, and he didn’t intend to spend the next sixty years talking about the last twenty-two</p>
+                            </div>
+                            <div class="mask" id="pop-chart-container" style="height:120px;"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="pop-chart"></div>
             </script>
         </div>
 

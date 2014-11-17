@@ -5,28 +5,25 @@ Air.Views = Air.Views || {};
 (function () {
     'use strict';
 
-    // detect when window has finished resizing
-    $(window).resize(function() {
-        if (this.resizeTo) clearTimeout(this.resizeTo);
-        this.resizeTo = setTimeout(function() {
-            $(this).trigger('resizeEnd');
-        }, 300);
-    });
-
     Air.Views.Chart = Backbone.View.extend({
 
         events: {},
-        initialize: function () {
-            this.listenTo(this.collection, 'reset', this.render);
-            var resize = $.proxy(this.resize, this),
-                $el = this.$el;
+        initialize: function (options) {
+            $(window).bind('resizeEnd', $.proxy(this.resizeHandler, this));
 
-            $(window).bind('resizeEnd', function() {
-                $el.fadeOut(150, function() {
-                    resize();
-                    $el.fadeIn(250);
-                });
-            });
+            if (!options.wait && this.collection.length) {
+                this.render();
+            }
+            else {
+                this.listenTo(this.collection, 'reset', this.render);
+            }
+        },
+
+        resizeHandler: function() {
+            this.$el.fadeOut(150, function() {
+                this.resize();
+                this.$el.fadeIn(250);
+            }.bind(this));
         },
 
         dragmove: function() {
@@ -62,9 +59,9 @@ Air.Views = Air.Views || {};
 
             var x = this.x,
                 dblWidth = x(2) - x(1),
-                barWidth = Math.floor(dblWidth / 2) - 4;
+                barWidth = Math.floor(dblWidth / 2) - 2;
 
-            if (barWidth < 0) barWidth = 0;
+            if (barWidth < 0) barWidth = Math.floor(dblWidth / 2) || 1;
 
             this.base//.transition()
                 //.delay(100)
@@ -139,9 +136,9 @@ Air.Views = Air.Views || {};
                 .domain([0, max]);
 
             var dblWidth = x(1) - x(0),
-                barWidth = Math.floor(dblWidth / 2) - 4;
+                barWidth = Math.floor(dblWidth / 2) - 2;
 
-            if (barWidth < 0) barWidth = 0;
+            if (barWidth < 0) barWidth = Math.floor(dblWidth / 2) || 1;
 
             //*********** axis **************
 
