@@ -34,6 +34,36 @@
     {
       "type": "Point",
       "properties": {
+        "name": "Brás",
+        "pm_10": "5",
+        "pm_2.5": "15"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.61062,
+          -23.5381366
+        ]
+      }
+    },
+    {
+      "type": "Point",
+      "properties": {
+        "name": "Liberdade",
+        "pm_10": "1",
+        "pm_2.5": "10"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.6348457,
+          -23.5485428
+        ]
+      }
+    },
+    {
+      "type": "Point",
+      "properties": {
         "name": "R. Salvador do Vale",
         "pm_10": "10",
         "pm_2.5": "3"
