@@ -29,9 +29,10 @@ Air.Routers = Air.Routers || {};
             new Air.Views.Localtime({el: '#local-time', id:'local-time'});
 
             Air.map.whenReady(function() {
+
                 new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
-                new Air.Views.Haze({model: stations});
                 stations.fetch({reset:true});
+
             });
 
             var popupcharts = [];
