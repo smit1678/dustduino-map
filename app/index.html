@@ -22,74 +22,16 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="map-container">
-            <div class="full" id="paulo-map"></div>
-        </div>
+        <div id="air"></div>
 
         <div class="header">
             <h1>São Paulo Air Project</h1>
             <h2>community air quality mapping</h2>
-            <div class="desktop right nav-links">
-                <h4><a href="">get involved</a></h4>
-                <h4><a href="">who we are</a></h4>
+            <div id="header-options" class="desktop right nav-links">
+                <h4><a id="header-overview" href="#overview">sensors</a></h4>
+                <h4><a id="header-find" href="#find">find your sensor</a></h4>
+                <h4><a id="header-about">join this project</a></h4>
             </div>
-        </div>
-
-        <div class="deck">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-sm-6 col-lg-2 deck-hat">
-                        <h3 class="gray">Local Time</h3>
-                        <div id="local-time"></div>
-                    </div>
-
-                    <div class="col-sm-6 col-lg-2" id="scorecard">
-                        <h3 class="gray deck-hat">Condition now</h3>
-                        <h3 id="condition-now" class="phosphorescent"></h3>
-                    </div>
-
-                    <div class="col-sm-1 col-lg-1 desktop deck-hat">
-                        <div id="hourly-yaxis">
-                            <span id="hourly-max"></span>
-                            <span id="hourly-mid"></span>
-                            <span id="hourly-min"></span>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-7 desktop deck-hat">
-                        <h3 class="gray">Hourly Conditions <label>(drag to show more)<label></h3>
-                        <div id="hourly-chart" class="mask"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="modal" id="initial-modal">
-            <div class="in-modal">
-                <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>
-                <span class="close">&#10006;</span>
-            </div>
-        </div>
-
-        <div id="templates" style="display:none;">
-            <script id="popup-template" type="text/template">
-                <div class="container">
-                    <div class="row">
-                        <h3 class="col-sm-12"><%= place %></h3>
-                        <div class="col-sm-12 col-lg-4 pop-image">
-                            <img src="<%= src %>" />
-                        </div>
-                        <div class="col-sm-12 col-lg-8 pop-chart">
-                            <div class="desktop">
-                                <p><strong>Score: </strong> <%= score %></p>
-                                <p><strong>Description</strong> Life was long, unless you died, and he didn’t intend to spend the next sixty years talking about the last twenty-two</p>
-                            </div>
-                            <div class="mask" id="pop-chart-container" style="height:120px;"></div>
-                        </div>
-                    </div>
-                </div>
-            </script>
         </div>
 
         <!-- build:js scripts/vendor.js -->
@@ -104,18 +46,19 @@
         <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
 
         <!-- build:js({.tmp,app}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
-        <script src="scripts/models/station.js"></script>
-        <script src="scripts/routes/app.js"></script>
-        <script src="scripts/views/map.js"></script>
+        <script src="scripts/main.js"></script>
+        <script src="scripts/router.js"></script>
+
+        <script src="scripts/models/reading.js"></script>
+        <script src="scripts/collections/sensor.js"></script>
+
+        <script src="scripts/templates.js"></script>
+
         <script src="scripts/views/modal.js"></script>
-        <script src="scripts/views/haze.js"></script>
-        <script src="scripts/views/score.js"></script>
-        <script src="scripts/models/hour.js"></script>
-        <script src="scripts/collections/hours.js"></script>
+        <script src="scripts/views/map.js"></script>
         <script src="scripts/views/chart.js"></script>
-        <script src="scripts/views/localtime.js"></script>
+        <script src="scripts/views/header.js"></script>
         <!-- endbuild -->
 </body>
 </html>

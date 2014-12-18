@@ -51,10 +51,10 @@ module.exports = function (grunt) {
                 ],
                 tasks: ['jst']
             },
-            test: {
-                files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
-                tasks: ['test:true']
-            }
+            // test: {
+                // files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'test/spec/**/*.js'],
+                // tasks: ['test:true']
+            // }
         },
         connect: {
             options: {
@@ -73,6 +73,7 @@ module.exports = function (grunt) {
                     }
                 }
             },
+            /*
             test: {
                 options: {
                     port: 9001,
@@ -86,6 +87,7 @@ module.exports = function (grunt) {
                     }
                 }
             },
+            */
             dist: {
                 options: {
                     middleware: function (connect) {
@@ -100,9 +102,11 @@ module.exports = function (grunt) {
             server: {
                 path: 'http://localhost:<%= connect.options.port %>'
             },
+            /*
             test: {
                 path: 'http://localhost:<%= connect.test.options.port %>'
             }
+            */
         },
         clean: {
             dist: ['.tmp', '<%= yeoman.dist %>/*'],
@@ -117,7 +121,7 @@ module.exports = function (grunt) {
                 'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
+                //'test/spec/{,*/}*.js'
             ]
         },
         mocha: {
@@ -240,6 +244,7 @@ module.exports = function (grunt) {
             return grunt.task.run(['build', 'open:server', 'connect:dist:keepalive']);
         }
 
+        /*
         if (target === 'test') {
             return grunt.task.run([
                 'clean:server',
@@ -250,6 +255,7 @@ module.exports = function (grunt) {
                 'watch'
             ]);
         }
+        */
 
         grunt.task.run([
             'clean:server',
@@ -261,6 +267,7 @@ module.exports = function (grunt) {
         ]);
     });
 
+    /*
     grunt.registerTask('test', function (isConnected) {
         isConnected = Boolean(isConnected);
         var testTasks = [
@@ -279,6 +286,7 @@ module.exports = function (grunt) {
             return grunt.task.run(testTasks);
         }
     });
+    */
 
     grunt.registerTask('build', [
         'clean:dist',

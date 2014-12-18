@@ -7,107 +7,80 @@ Air.Views = Air.Views || {};
 
     Air.Views.Map = Backbone.View.extend({
 
-        initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+        initialize: function (options) {
+            var $el = $('#' + options.id);
+            this.setElement($el);
 
-            var reset = $.proxy(this.resetSvg, this);
-            Air.map.on('viewreset', reset);
-        },
+            var map = this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
+            map.scrollWheelZoom.disable();
 
-        render: function() {
-            var transform = d3.geo.transform({point: function(x, y) {
-                var point = Air.map.latLngToLayerPoint([y, x]);
-                this.stream.point(point.x, point.y);
-            }});
-
-            var max = d3.max(_.map(this.model.get('features'), function(feature) {
-                return feature.properties['pm_2.5'];
-            }));
-
-            this.popup = L.popup({
-                closeOnClick: false,
-                className: 'map-pop',
-                autoPanPaddingTopLeft: [0, 70]
-            });
-
-            this.r = d3.scale.quantize()
-                .domain([0, max])
-                .range([10, 30, 50]);
-
-            this.path = d3.geo.path().projection(transform);
-
-            this.svg = d3.select(Air.map.getPanes().overlayPane)
-                .append('svg:svg');
-
-            this.g = this.svg.append('svg:g').attr('class', 'leaflet-zoom-hide');
-
-            var click = $.proxy(this.click, this);
-            this.points = this.g.selectAll('.station')
-                .data(this.model.get('features'))
-              .enter().append('circle')
-                .attr('class', 'station')
-                .attr('r', 0)
-                .on('click', click);
-
-            this.resetSvg();
-        },
-
-        template: _.template($('#popup-template').html()),
-
-        click: function(d) {
-            var coords = Air.map.layerPointToLatLng([d.x, d.y]);
-            this.popup.setLatLng(coords).setContent(this.template({
-
-                place: d.properties.name,
-                src: 'images/fake-station.jpg',
-                score: '40 - poor'
-
-            })).openOn(Air.map);
-        },
-
-        translatePoint: function(d) {
-            var coords = d.geometry.coordinates,
-                point = Air.map.latLngToLayerPoint(new L.latLng([coords[1], coords[0]]));
-            return 'translate(' + point.x + ',' + point.y + ')';
-        },
-
-        getPoint: function(d) {
-            var coords = d.geometry.coordinates,
-                point = Air.map.latLngToLayerPoint(new L.latLng([coords[1], coords[0]]));
-            return point
-        },
-
-        resetSvg: function() {
-
-            var bounds = this.path.bounds(this.model.attributes),
-                topLeft = bounds[0],
-                bottomRight = bounds[1];
-
-            this.svg.attr("width", bottomRight[0] - topLeft[0] + 100)
-                .attr("height", bottomRight[1] - topLeft[1] + 100)
-                .style("left", topLeft[0]-50 + "px")
-                .style("top", topLeft[1]-50 + "px");
-
-            var transform = [-topLeft[0] + 50, -topLeft[1] + 50];
-            this.g.attr("transform", "translate(" + transform[0] + "," + transform[1] + ")");
-
-            var features = this.model.get('features'),
-                points = [];
-
-            for(var i = 0, ii = features.length; i < ii; ++i) {
-                points.push(this.getPoint(features[i]));
+            // Set location of the map.
+            // If it's a single point, center on the point.
+            // If multiple points, use map.fitBounds.
+            var locations = options.locations;
+            if (locations.length > 1) {
+                map.fitBounds(locations);
+            } else {
+                map.setView(locations[0], 11);
             }
 
-            this.points
-                .attr('cx', function(d, i) { d.x = points[i].x; return d.x; })
-                .attr('cy', function(d, i) { d.y = points[i].y; return d.y });
+            var popupContent = JST['app/scripts/templates/tooltip.ejs'];
+            var markerLayer = L.layerGroup(_.map(locations, function(location) {
+                return L.marker(location, {
+                    icon: L.icon({
+                        iconUrl: '/images/transmit_36.png',
+                        iconSize: [36,36],
+                        className: 'icon-marker',
+                    })
+                }).bindPopup(popupContent({
+                    // TODO replace with data from model
+                    name: 'Arduino',
+                    score: 'Petty',
+                    src: 'images/fake-station.jpg',
+                    id: options.id,
+                }, { offset: [12,0] }));
+            }));
 
-            var r = this.r;
-            this.points.transition()
-                .delay(function(d, i) { return 600 + i * 200 })
-                .duration(600)
-                .attr('r', function(d) { return r(d.properties['pm_2.5'])});
+            // using icon markers, but leaving this in case we want to switch back
+            // var markerLayer = L.layerGroup(_.map(locations, function(location) {
+                // return L.circleMarker(location, { className: 'circle-marker' });
+            // }));
+
+            this.markers = markerLayer;
+
+            setTimeout(function() {
+                markerLayer.addTo(map);
+            }, 600);
+
+            map.on('popupopen', this.popopen.bind(this));
+            map.on('popupclose', this.popclose.bind(this));
+
+            this.popups = [];
+
+            return;
         },
+
+        popopen: function() {
+            var $pop = this.$('.map-pop'),
+                $container = $pop.find('#' + this.id + '-chart'),
+                name = $pop.find('#' + this.id + '-pop').text();
+
+            this.popups.push(new Air.Views.Chart({
+                collection: this.collection,
+                el: $container,
+                id: this.id + '-chart',
+                render: true,
+            }));
+
+        },
+
+        popclose: function() {
+            _.each(this.popups, function(popup) {
+                popup.remove();
+            });
+            this.popups = [];
+        }
+
     });
 
 })();
