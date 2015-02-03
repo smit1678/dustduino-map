@@ -29,7 +29,7 @@ Air.Views = Air.Views || {};
             var markerLayer = L.layerGroup(_.map(locations, function(location) {
                 return L.marker(location, {
                     icon: L.icon({
-                        iconUrl: '/images/transmit_36.png',
+                        iconUrl: 'images/transmit_36.png',
                         iconSize: [36,36],
                         className: 'icon-marker',
                     })
