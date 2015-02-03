@@ -1,0 +1,10 @@
+<table class="table-full">
+    <thead><tr>
+        <% _.each(tableHeaders, function(hed) { %>
+            <td><%- hed %></td>
+        <% }); %>
+    </tr></thead>
+    <tbody>
+        <%= tableContent %>
+    </tbody>
+</table>

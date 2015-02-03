@@ -38,7 +38,7 @@ body,
 }
 
 .main-input {
-    margin-top: 15%;
+    margin-top: 25px;
 }
 
 .inverted {
@@ -289,30 +289,49 @@ p {
 /****************************************************/
 /************** Inputs ******************************/
 
-label {
-
-}
-
 .search-input {
-    width: 80%;
-    height: 34px;
+    display: inline-block;
+    float: left;
+    width: 70%;
+    height: 40px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 24px;
     background-color: #FFF;
     background-image: none;
     border: 1px solid #CCC;
-    border-radius: 4px;
+
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+
     transition: border-color ease-in-out .2s;
 }
 
 .search-submit {
-    height: 34px;
+    display: inline-block;
+    float: left;
+    height: 40px;
     padding: 6px 12px;
     font-size: 14px;
     line-height: 24px;
     background-color: #988838;
     color: #FEFEFE;
+    background-image: none;
+    border: 1px solid transparent;
+
+    ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+
+    transition: border-color ease-in-out .2s;
 }
 
 /****************************************************/
@@ -320,6 +339,7 @@ label {
 
 .full-map { height: 100%; }
 .teaser-map { height: 75%; }
+.half-map { height: 100%; }
 
 .circle-marker {
     fill: #7F7D78;
@@ -472,6 +492,34 @@ label {
 
 
 /****************************************************/
+/************** Report ******************************/
+
+.report {
+    margin: 24px 0;
+}
+
+table {
+}
+
+table > thead {
+    font-weight: bold;
+}
+
+table > thead td {
+    border-bottom: 1px solid #eee;
+}
+
+table td {
+    text-align: center;
+    padding: 12px 0;
+}
+
+.table-full {
+    width: 100%;
+    table-layout: fixed;
+}
+
+/****************************************************/
 /************** Indicators **************************/
 
 #local-time { color: #988838; }
@@ -613,6 +661,10 @@ label {
         padding: 1.575em 0;
     }
 
+    .search-input {
+        width: 80%;
+    }
+
     .overlay {
         margin-top: -15%;
     }
@@ -627,7 +679,7 @@ label {
     .deck-hat               { padding-top: 12px; }
     .modal                  { text-align: left; }
 
-    .map-pop                { width: 700px; }
+    .map-pop                { width: 600px; }
 
     #initial-modal {
         left: 6%;

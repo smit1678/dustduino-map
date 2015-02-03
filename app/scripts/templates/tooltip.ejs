@@ -1,13 +1,13 @@
-<div class="container map-pop">
+<div class="map-pop">
     <div class="row">
-        <h3 class="col-sm-12 tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
         <div class="col-sm-12 col-lg-4 pop-image">
             <img src="<%= src %>" />
         </div>
         <div class="col-sm-12 col-lg-8 pop-chart">
+            <h3 class="tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
             <div class="desktop">
-                <p><strong>Score: </strong> <%= score %></p>
-                <p><strong>Description</strong> Life was long, unless you died, and he didn’t intend to spend the next sixty years talking about the last twenty-two</p>
+                <p><strong>Location: </strong> <%= location %></p>
+                <p><a>Generate report</a></p>
             </div>
             <div class="mask" id="<%= id %>-chart" style="height:120px;"></div>
         </div>

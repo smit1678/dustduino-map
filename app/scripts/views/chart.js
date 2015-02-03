@@ -10,6 +10,9 @@ Air.Views = Air.Views || {};
 
         events: {},
         initialize: function (options) {
+
+            this.height = options.height || 120;
+
             if (options.resize) {
                 $(window).bind('resizeEnd', $.proxy(this.resizeHandler, this));
             }
@@ -20,7 +23,7 @@ Air.Views = Air.Views || {};
 
             if (options.render) {
                 this.render();
-            } else {
+            } else if (this.collection) {
                 this.listenTo(this.collection, 'reset', this.render);
             }
         },
@@ -31,7 +34,7 @@ Air.Views = Air.Views || {};
                 days = hours / 24,
                 margin = this.margin = [15, 15, 20, 15],
                 width = this.width = this.$el.width() * days - margin[1] - margin[3],
-                height = 120 - margin[0] - margin[2];
+                height = this.height - margin[0] - margin[2];
 
             this.$el.css('height', height + margin[0] + margin[2]);
 

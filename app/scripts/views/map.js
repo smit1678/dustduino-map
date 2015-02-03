@@ -11,6 +11,7 @@ Air.Views = Air.Views || {};
             var $el = $('#' + options.id);
             this.setElement($el);
 
+            //var map = this.map = L.mapbox.map(options.id/*, 'devseed.j586d1hp'*/);
             var map = this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
             map.scrollWheelZoom.disable();
 
@@ -34,8 +35,8 @@ Air.Views = Air.Views || {};
                     })
                 }).bindPopup(popupContent({
                     // TODO replace with data from model
-                    name: 'Arduino',
-                    score: 'Petty',
+                    name: 'Sensor #123',
+                    location: 'Bus Stop at 780 Fake Road',
                     src: 'images/fake-station.jpg',
                     id: options.id,
                 }, { offset: [12,0] }));

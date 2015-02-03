@@ -30,7 +30,8 @@ module.exports = function (grunt) {
         watch: {
             options: {
                 nospawn: true,
-                livereload: true
+                livereload: true,
+                debounceDelay: 1500
             },
             livereload: {
                 options: {
