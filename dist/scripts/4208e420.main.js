@@ -28,7 +28,7 @@ __p += '<div id="' +
 ((__t = ( name )) == null ? '' : __t) +
 '-map" class="teaser-map"></div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-8 col-lg-offset-1 content-block">\n            <p id="section-join">' +
 ((__t = ( overview )) == null ? '' : __t) +
-'</p>\n        </div>\n    </div>\n</div>\n\n<div class="banner">\n    <div class="banner-img" role="presentation" style="background: url(../' +
+'</p>\n        </div>\n    </div>\n</div>\n\n<div class="banner">\n    <div class="banner-img" role="presentation" style="background: url(' +
 ((__t = ( banner )) == null ? '' : __t) +
 ') no-repeat center center; background-size: cover;"></div>\n    <div class="container overlay">\n        <div class="row">\n            <div class="col-lg-6 col-lg-offset-3 inverted" style="opacity: .85">\n                <p><strong>' +
 ((__t = ( tagline )) == null ? '' : __t) +
@@ -523,7 +523,7 @@ Air.Views = Air.Views || {};
             var markerLayer = L.layerGroup(_.map(locations, function(location) {
                 return L.marker(location, {
                     icon: L.icon({
-                        iconUrl: '/images/transmit_36.png',
+                        iconUrl: 'images/transmit_36.png',
                         iconSize: [36,36],
                         className: 'icon-marker',
                     })
