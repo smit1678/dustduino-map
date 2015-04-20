@@ -1,0 +1,107 @@
+/****************************************************/
+/************** Typography **************************/
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 8px;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #988838;
+}
+
+h2 {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: normal;
+    font-style: italic;
+    color: #777;
+}
+
+h3 {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+h4 {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+    color: #4889B2;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+p {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 12px 0;
+}
+
+.close {
+    font-size: 24px;
+    line-height: 24px;
+    color: #222;
+}
+
+.what {
+    font-size: 14px;
+    line-height: 15px;
+    height: 18px;
+    width: 18px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    bottom: 8px;
+    right: 0;
+    border: 0.1em solid #ccc;
+    text-align: center;
+    color: #666;
+}
+
+.close, .what {
+    position: absolute;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.explain {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    padding-right: 24px;
+}
+
+.explain:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.orange             { color: #988838; }
+.gray               { color: #505050; }
+.black              { color: #000000; }
+
+.phosphorescent {
+    -webkit-transition: background-color 0.4s;
+    -moz-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+}
+
+

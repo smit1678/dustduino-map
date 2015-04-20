@@ -1,0 +1,38 @@
+/****************************************************/
+/************** Header ******************************/
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+}
+
+.nav-links { padding: 0 24px 0 0; }
+.nav-links > h4 {
+    display: inline-block;
+    padding: 24px 12px 0 0;
+}
+.nav-links a { padding: 4px 8px; }
+.nav-links a:hover,
+.nav-links .active { background: #e2edd2; border-radius: 2px; }
+
+.banner {
+    height: 80%;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 0 3px #515151;
+}
+
+.banner-img {
+    transform: translate3d(0,0,0);
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    transition: opacity .4s ease-out;
+}
+

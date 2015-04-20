@@ -1,0 +1,49 @@
+/****************************************************/
+/************** Chart *******************************/
+
+.pm10 { fill: #EED99C; cursor: pointer; }
+.pm25 { fill: #9CEED9; cursor: pointer; }
+
+#hourly-yaxis > span,
+.tick {
+    stroke: #666;
+    color: #666;
+    font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#hourly-yaxis {
+    position: relative;
+    height: 140px;
+}
+
+#hourly-yaxis > span {
+    position: absolute;
+    right: 0;
+    text-align: right;
+}
+
+#hourly-max { top: 25px; }
+#hourly-mid { top: 71px; }
+#hourly-min { bottom: 10px; }
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 6px 6px 0;
+    background: #ddd;
+    opacity: 0.8;
+    color: #222;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1002;
+}
+
+.d3-tip > p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 6px;
+}
+
+
