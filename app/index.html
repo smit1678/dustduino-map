@@ -58,7 +58,13 @@
         <script>
   var nav = responsiveNav(".nav-collapse", {
   label: "",
-  customToggle: "nav-toggle"
+  customToggle: "nav-toggle", 
+  open:function(){
+  	$('#air').addClass('expanded-menu');
+  },
+  close: function() {
+  	$('#air').removeClass('expanded-menu');
+  },
   });
 		</script>
         <!-- endbuild -->

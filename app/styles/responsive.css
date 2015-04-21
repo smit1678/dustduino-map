@@ -86,9 +86,10 @@
 	 .search-input {
         width:80%;
     }
-    
+    .expanded-menu .main-input {
+    	
+    }
     .main-input {
-    margin-top:90px;
     padding-top:15px;
     padding-bottom:20px;
     width:100%;
