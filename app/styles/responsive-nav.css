@@ -1,8 +1,8 @@
 /*! responsive-nav.js 1.0.39 by @viljamis */
 
 .nav-collapse ul {
-  margin: 0;
-  padding: 0 30px 0 0;;
+  margin:0px;
+  padding: 0;
   width: 100%;
   display: inline-block;
   list-style: none;
@@ -10,10 +10,14 @@
 
 .nav-collapse li {
   display: inline-block;
-  padding: 24px 12px 0 0;
+  padding: 24px 12px;
 }
 
-.nav-collapse { padding: 0 30px 0 0; }
+.nav-collapse { 
+	padding:0;
+	float: none;
+	text-align:center;
+}
 
 .nav-collapse a { padding: 4px 8px; }
 .nav-collapse a:hover,
@@ -41,9 +45,20 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  position:absolute;
+  right:10px;
+  top: 10px;
+  height:40px;
+  width:40px;
+  
+  cursor: pointer;
 }
 
-@media screen and (min-width: 40em) {
+.nav-toggle:active {
+	top: 11px;
+}
+
+@media screen and (min-width: 1000px) {
   .js .nav-collapse {
     position: relative;
   }
@@ -53,4 +68,13 @@
   .nav-toggle {
     display: none;
   }
+  
+  .nav-collapse { 
+	padding:0;
+	float: none;
+	text-align:right;
+	right:30px;
+}
+  
+  
 }

@@ -24,7 +24,6 @@
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
-        <script src="scripts/responsive-nav.js"></script>
     </head>
     <body>
         <!--[if lt IE 10]>
@@ -37,7 +36,7 @@
            <h1>Dustduino Project</h1>
             <h2>citizen-powered air quality mapping</h2>
                         
-            
+            <img id="nav-toggle" class="nav-toggle" src="images/hamburger.gif" />
             <nav id="header-options" class="nav-collapse desktop right nav-links">
   				<ul>
    			 	<li><h4><a id="header-overview" href="#overview">about</a></h4></li>
@@ -55,6 +54,13 @@
         <script src="bower_components/d3/d3.js"></script>
         <script src="bower_components/d3-tip/index.js"></script>
         <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
+        <script src="scripts/responsive-nav.js"></script>
+        <script>
+  var nav = responsiveNav(".nav-collapse", {
+  label: "",
+  customToggle: "nav-toggle"
+  });
+		</script>
         <!-- endbuild -->
 
         <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
@@ -75,9 +81,7 @@
         <script src="scripts/views/map.js"></script>
         <script src="scripts/views/chart.js"></script>
         <script src="scripts/views/header.js"></script>
-        <!-- endbuild -->
-        <script>
-  var nav = responsiveNav(".nav-collapse");
-		</script>
+        
+		<!-- endbuild -->
 </body>
 </html>
