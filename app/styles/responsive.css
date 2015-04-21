@@ -69,7 +69,52 @@
 
     .deck .mask { height: 80px; }
     .deck-hat { padding-top: 6px; }
-}
+	}
+
+	h1 {
+        margin: 21px 0 0 0em;
+        font-size: 28px;
+        text-align:center;
+    }
+    
+    h2 {
+        margin: 5px 0 0 0em;
+        font-size: 14px;
+        text-align:center;
+    }
+    
+    .header {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 85px;
+    	background: #f0f4e9;
+	}
+	 .search-input {
+        width:80%;
+    }
+    
+    .main-input {
+    margin-top:50px;
+    padding-top:15px;
+    padding-bottom:20px;
+    width:100%;
+    position:absolute;
+    z-index:1000;
+    background: rgba(255,255,255,.6);
+
+	}
+	
+	label {
+  font-size: 13px;
+  margin-bottom: 8px;
+	}
+	
+	 .search-input {
+        width:80%;
+        margin: 0 auto;
+    }
 
 @media only screen and (min-width: 960px) {
     .mobile     {   display: none;      }
@@ -109,21 +154,45 @@
     }
 
     h1 {
-        margin: 19px 0 0 2.4em;
-        font-size: 24px;
-        line-height: 32px;
+        margin: 21px 0 0 2.4em;
+        font-size: 28px;
     }
 
     h2 {
-        margin: 24px 0 0 1em;
-        font-size: 14px;
-        line-height 32px;
+        margin: 26px 0 0 1em;
+        font-size: 16px;
     }
 
     h3 {
         font-size: 14px;
         line-height: 24px;
     }
+    
+    .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #f0f4e9;
+	}
+	
+	.main-input {
+    margin-top: 30px;
+    padding-top:15px;
+    padding-bottom:20px;
+    width:100%;
+    position:absolute;
+    z-index:1000;
+    background: rgba(255,255,255,.6);
+
+	}
+	
+		label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
 
     .input-block,
     .content-block {
@@ -131,7 +200,7 @@
     }
 
     .search-input {
-        width: 80%;
+        width:80%;
     }
 
     .overlay {
