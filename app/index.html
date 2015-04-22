@@ -33,19 +33,19 @@
         <div id="air"></div>
 
         <div class="header">
-           <h1>Dustduino Project</h1>
-            <h2>citizen-powered air quality mapping</h2>
-                        
-            <img id="nav-toggle" class="nav-toggle" src="images/hamburger.gif" />
-            <nav id="header-options" class="nav-collapse desktop right nav-links">
-  				<ul>
-   			 	<li><h4><a id="header-overview" href="#overview">about</a></h4></li>
-                <li><h4><a id="header-search" href="#search">sensors</a></h4></li>
-                <li><h4><a id="header-about">join this project</a></h4></li>
-  				</ul>
-			</nav>
-                   
-          </div>
+          <h1>Dustduino Project</h1>
+          <h2>citizen-powered air quality mapping</h2>
+
+          <img id="nav-toggle" class="nav-toggle" src="images/hamburger.gif" />
+          <nav id="header-options" class="nav-collapse desktop right nav-links">
+            <ul>
+              <li><h4><a id="header-overview" href="#overview">about</a></h4></li>
+              <li><h4><a id="header-search" href="#search">sensors</a></h4></li>
+              <li><h4><a id="header-about">join this project</a></h4></li>
+            </ul>
+          </nav>
+
+        </div>
 
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -56,17 +56,18 @@
         <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
         <script src="scripts/responsive-nav.js"></script>
         <script>
-  var nav = responsiveNav(".nav-collapse", {
-  label: "",
-  customToggle: "nav-toggle", 
-  open:function(){
-  	$('#air').addClass('expanded-menu');
-  },
-  close: function() {
-  	$('#air').removeClass('expanded-menu');
-  },
-  });
-		</script>
+          var $air = $('#air');
+          var nav = responsiveNav(".nav-collapse", {
+            label: "",
+            customToggle: "nav-toggle",
+            open:function(){
+              $air.addClass('expanded-menu');
+            },
+            close: function() {
+              $air.removeClass('expanded-menu');
+            },
+          });
+        </script>
         <!-- endbuild -->
 
         <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
@@ -87,7 +88,7 @@
         <script src="scripts/views/map.js"></script>
         <script src="scripts/views/chart.js"></script>
         <script src="scripts/views/header.js"></script>
-        
+
 		<!-- endbuild -->
 </body>
 </html>

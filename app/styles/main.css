@@ -45,14 +45,9 @@ body,
     position:absolute;
     z-index:1000;
     background: rgba(255,255,255,.6);
-    
+
     transition: all .2s ease-out;
 }
-
- .expanded-menu .main-input {
- margin-top: 90px;
-    	
-    }
 
 .inverted {
     background-color: #333;
@@ -63,14 +58,18 @@ body,
     margin-top: -40%;
 }
 
- .expanded-menu .leaflet-top .leaflet-control {
- margin-top: 200px;
-    	
-    }
-
 .leaflet-top .leaflet-control {
-  margin-top: 140px;
-  transition: all .2s ease-out;
+    margin-top: 140px;
+    transition: all .2s ease-out;
+}
+
+/* Setting styles for opening, closing the menu on mobile */
+.expanded-menu .main-input {
+    margin-top: 90px;
+}
+
+.expanded-menu .leaflet-top .leaflet-control {
+    margin-top: 200px;
 }
 
 /****************************************************/

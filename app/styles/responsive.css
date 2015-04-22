@@ -69,45 +69,42 @@
 
     .deck .mask { height: 80px; }
     .deck-hat { padding-top: 6px; }
-	}
 
-	h1 {
+    h1 {
         margin: 21px 0 0 0em;
         font-size: 28px;
         text-align:center;
     }
-    
+
     h2 {
         margin: 5px 0 0 0em;
         font-size: 14px;
         text-align:center;
     }
-    
-	 .search-input {
+
+    .search-input {
         width:80%;
     }
-    .expanded-menu .main-input {
-    	
-    }
-    .main-input {
-    padding-top:15px;
-    padding-bottom:20px;
-    width:100%;
-    position:absolute;
-    z-index:1000;
-    background: rgba(255,255,255,.6);
 
-	}
-	
-	label {
-  font-size: 13px;
-  margin-bottom: 8px;
-	}
-	
-	 .search-input {
+    .main-input {
+        padding-top:15px;
+        padding-bottom:20px;
+        width:100%;
+        position:absolute;
+        z-index:1000;
+        background: rgba(255,255,255,.6);
+    }
+
+    label {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+
+    .search-input {
         width:80%;
         margin: 0 auto;
     }
+}
 
 @media only screen and (min-width: 960px) {
     .mobile     {   display: none;      }
@@ -160,23 +157,21 @@
         font-size: 14px;
         line-height: 24px;
     }
-    
-	
-	.main-input {
-    margin-top: 30px;
-    padding-top:15px;
-    padding-bottom:20px;
-    width:100%;
-    z-index:1000;
-    background: rgba(255,255,255,.6);
 
-	}
-	
-		label {
-  font-size: 14px;
-  margin-bottom: 8px;
-  display: block;
-}
+    .main-input {
+        margin-top: 30px;
+        padding-top:15px;
+        padding-bottom:20px;
+        width:100%;
+        z-index:1000;
+        background: rgba(255,255,255,.6);
+    }
+
+    label {
+        font-size: 14px;
+        margin-bottom: 8px;
+        display: block;
+    }
 
     .input-block,
     .content-block {
