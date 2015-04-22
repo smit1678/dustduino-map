@@ -38,7 +38,15 @@ body,
 }
 
 .main-input {
-    margin-top: 25px;
+    margin-top: 30px;
+    padding-top:15px;
+    padding-bottom:20px;
+    width:100%;
+    position:absolute;
+    z-index:1000;
+    background: rgba(255,255,255,.6);
+
+    transition: all .2s ease-out;
 }
 
 .inverted {
@@ -48,6 +56,20 @@ body,
 
 .overlay {
     margin-top: -40%;
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 140px;
+    transition: all .2s ease-out;
+}
+
+/* Setting styles for opening, closing the menu on mobile */
+.expanded-menu .main-input {
+    margin-top: 90px;
+}
+
+.expanded-menu .leaflet-top .leaflet-control {
+    margin-top: 200px;
 }
 
 /****************************************************/

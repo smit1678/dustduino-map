@@ -24,9 +24,7 @@ this["JST"]["app/scripts/templates/overview.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div id="' +
-((__t = ( name )) == null ? '' : __t) +
-'-map" class="teaser-map"></div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-8 col-lg-offset-1 content-block">\n            <p id="section-join">' +
+__p += '\n<div class="container">\n    <div class="row">\n        <div class="col-lg-8 col-lg-offset-1 content-block">\n            <p id="section-join">' +
 ((__t = ( overview )) == null ? '' : __t) +
 '</p>\n        </div>\n    </div>\n</div>\n\n<div class="banner">\n    <div class="banner-img" role="presentation" style="background: url(' +
 ((__t = ( banner )) == null ? '' : __t) +
@@ -66,7 +64,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="container main-input" id="' +
 ((__t = ( id )) == null ? '' : __t) +
-'">\n    <div class="row">\n        <div class="col-sm-12 col-md-8 col-md-offset-2">\n            <label>Search for a sensor by name or ID, or locate it on the map</label>\n            <form>\n                <input type="text" class="search-input">\n                <input type="submit" class="search-submit" value="search"></input>\n            </form>\n        </div>\n    </div>\n</div>\n<div class="half-map" id="search-map"></div>\n';
+'">\n    <div class="row">\n        <div class="col-sm-12 col-md-12 col-lg-5 col-lg-offset-7">\n            <label>Search for a sensor by name or ID, or locate it on the map</label>\n            <form>\n                <input type="text" class="search-input">\n                <input type="submit" class="search-submit" value="search"></input>\n            </form>\n        </div>\n    </div>\n</div>\n<div class="half-map" id="search-map"></div>\n';
 
 }
 return __p
