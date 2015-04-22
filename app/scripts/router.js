@@ -117,14 +117,6 @@ Air.Routers = Air.Routers || {};
                 reset: true,
             });
             */
-
-            // falsifying data, use for development purposes only!
-            collection.fakeTrigger();
-            views.push(new Air.Views.Map({
-                locations: [[-23.6824124,-46.5952992]],
-                collection: collection,
-                id: 'sensor-map',
-            }));
         },
 
         // default catch-all route
