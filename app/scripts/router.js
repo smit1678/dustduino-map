@@ -103,20 +103,6 @@ Air.Routers = Air.Routers || {};
                 description: Air.t.description,
             }));
             this.$container.html(html);
-
-            /*
-            collection.fetch({
-                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
-                success: function() {
-                    views.push(new Air.Views.Map({
-                        locations: [[-23.6824124,-46.5952992]],
-                        collection: collection,
-                        id: 'sensor-map',
-                    }));
-                },
-                reset: true,
-            });
-            */
         },
 
         // default catch-all route
@@ -128,37 +114,6 @@ Air.Routers = Air.Routers || {};
             Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
                 .setView([-23.557, -46.656], 11);
         },
-
-            //************************** Views **************************//
-            // $('.modal').each(function() { new Air.Views.Modal({el: '#' + this.id}); });
-            // new Air.Views.Score({el: '#scorecard', id: 'scorecard', collection: hours});
-            // new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart',
-                                // collection: hours, wait: true});
-            // new Air.Views.Localtime({el: '#local-time', id:'local-time'});
-
-            // Air.map.whenReady(function() {
-
-                // new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
-                // stations.fetch({reset:true});
-
-            // });
-
-            // var popupcharts = [];
-
-            // Air.map.on('popupopen', function() {
-                // popupcharts.push(new Air.Views.Chart({el: '#pop-chart-container',
-                                                 // id: 'pop-chart-container',
-                                                 // collection: hours,
-                                                 // wait: false
-                // }));
-            // });
-
-            // Air.map.on('popupclose', function() {
-                // _.each(popupcharts, function(view) {
-                    // view.remove();
-                // });
-            // });
-            // hours.fetch({reset: true});
     });
 
 })();
