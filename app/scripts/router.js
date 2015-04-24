@@ -19,6 +19,7 @@ Air.Routers = Air.Routers || {};
             'overview'                          : 'all',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+            'manage'                            : 'edit',
             // default route
             '*action'                           : 'reroute'
         },
@@ -53,6 +54,21 @@ Air.Routers = Air.Routers || {};
                 collection: collection,
                 id: 'search-map',
             }));
+        },
+
+        edit: function() {
+            // TODO should execute on success of fetch on sensor list
+            var id = 'sensor-edit';
+            var html = _.template(JST['app/scripts/templates/edit.ejs']({
+                id: id
+            }));
+            this.$container.html(html);
+
+            views.push(new Air.Views.Edit({
+                id: id,
+                el: $('#' + id)
+            }));
+
         },
 
         // generate an overview for a single sensor's data
