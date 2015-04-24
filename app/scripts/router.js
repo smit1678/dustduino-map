@@ -1,7 +1,6 @@
 /*global Air, Backbone*/
 
 Air.Routers = Air.Routers || {};
-
 (function () {
     'use strict';
 
