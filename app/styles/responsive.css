@@ -64,6 +64,16 @@
         width: 76%;
         left: 12%;
     }
+    
+    .align-bottom-container {
+  	display:flex;
+  	align-items: flex-end;
+}
+
+	.align-bottom-items {
+  	align-self: flex-end;
+}
+
 
     .map-pop { width: 360px; }
 
@@ -104,6 +114,7 @@
         width:80%;
         margin: 0 auto;
     }
+
 }
 
 @media only screen and (min-width: 960px) {
@@ -166,6 +177,16 @@
         z-index:1000;
         background: rgba(255,255,255,.6);
     }
+    
+    .align-bottom-container {
+  	display:flex;
+  	align-items: flex-end;
+}
+
+	.align-bottom-items {
+  	align-self: flex-end;
+}
+
 
     label {
         font-size: 14px;

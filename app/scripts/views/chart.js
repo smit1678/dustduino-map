@@ -32,7 +32,7 @@ Air.Views = Air.Views || {};
 
             var hours = this.collection.length,
                 days = hours / 24,
-                margin = this.margin = [15, 15, 20, 15],
+                margin = this.margin = [15, 15, 0, 15],
                 width = this.width = this.$el.width() * days - margin[1] - margin[3],
                 height = this.height - margin[0] - margin[2];
 
