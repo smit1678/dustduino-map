@@ -36,6 +36,7 @@ Air.Views = Air.Views || {};
                 }).bindPopup(popupContent({
                     // TODO replace with data from model
                     name: 'Sensor #123',
+                    path: '123',
                     location: 'Bus Stop at 780 Fake Road',
                     src: 'images/fake-station.jpg',
                     id: options.id,

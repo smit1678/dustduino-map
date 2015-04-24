@@ -16,9 +16,10 @@ Air.Routers = Air.Routers || {};
 
     Air.Routers.App = Backbone.Router.extend({
         routes: {
-            'overview'                          : 'all',
+            'overview'                          : 'overview',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+
             // default route
             '*action'                           : 'reroute'
         },
@@ -30,6 +31,23 @@ Air.Routers = Air.Routers || {};
             this.$container.empty();
             if (callback) callback.apply(this, args);
         },
+
+        overview: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+        },
+
 
         search: function() {
             // TODO should execute on success of fetch on sensor list
@@ -55,7 +73,7 @@ Air.Routers = Air.Routers || {};
             }));
         },
 
-        // generate an overview for a single sensor's data
+        // generate an report for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
             if (!sensorName) this.reroute();
@@ -89,30 +107,9 @@ Air.Routers = Air.Routers || {};
 
         },
 
-        all: function() {
-            Air.header.select('overview');
-
-            var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
-
-            var html = _.template(JST['app/scripts/templates/overview.ejs']({
-                name: 'sensor',
-                overview: Air.t.overview,
-                banner: Air.img.path + Air.img.overview + Air._getSize(),
-                tagline: Air.t.tagline,
-                description: Air.t.description,
-            }));
-            this.$container.html(html);
-        },
-
         // default catch-all route
         reroute: function() {
             this.navigate('overview', {trigger:true});
-        },
-
-        map: function() {
-            Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
-                .setView([-23.557, -46.656], 11);
         },
     });
 
