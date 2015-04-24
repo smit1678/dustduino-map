@@ -38,7 +38,7 @@ body,
 }
 
 .main-input {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top:15px;
     padding-bottom:20px;
     width:100%;
@@ -55,21 +55,25 @@ body,
 }
 
 .overlay {
-    margin-top: -40%;
+    margin-top: -30%;
 }
 
 .leaflet-top .leaflet-control {
-    margin-top: 140px;
+    margin-top: 130px;
     transition: all .2s ease-out;
 }
 
 /* Setting styles for opening, closing the menu on mobile */
 .expanded-menu .main-input {
-    margin-top: 90px;
+    margin-top: 110px;
 }
 
 .expanded-menu .leaflet-top .leaflet-control {
-    margin-top: 200px;
+    margin-top: 220px;
+}
+
+.expanded-menu #air {
+    margin-top: 110px;
 }
 
 /****************************************************/
@@ -87,7 +91,7 @@ body,
 /************** Container ***************************/
 
 #air {
-    padding-top: 60px;
+    padding-top: 80px;
     height: 100%;
 }
 
