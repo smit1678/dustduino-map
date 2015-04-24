@@ -35,6 +35,7 @@ body,
 .input-block,
 .content-block {
     padding: 0.5em 0;
+    transition: all .2s ease-out;
 }
 
 .main-input {
@@ -72,8 +73,8 @@ body,
     margin-top: 220px;
 }
 
-.expanded-menu #air {
-    margin-top: 110px;
+.expanded-menu .content-block {
+    margin-top: 70px;
 }
 
 /****************************************************/
