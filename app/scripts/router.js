@@ -1,4 +1,4 @@
-/*global Air, Backbone*/
+/*global Air, Backbone, L*/
 
 Air.Routers = Air.Routers || {};
 (function () {
@@ -28,7 +28,7 @@ Air.Routers = Air.Routers || {};
         execute: function(callback, args) {
             clean();
             this.$container.empty();
-            if (callback) callback.apply(this, args);
+            if (callback) {callback.apply(this, args);}
         },
 
         search: function() {
@@ -73,7 +73,7 @@ Air.Routers = Air.Routers || {};
         // generate an overview for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
-            if (!sensorName) this.reroute();
+            if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
             var collection = new Air.Collections.Sensor();
