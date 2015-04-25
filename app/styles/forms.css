@@ -45,3 +45,49 @@
 
     transition: border-color ease-in-out .2s;
 }
+
+.edit {
+  margin-top: 40px;
+}
+
+.edit input:focus {
+  background-color: #FDE25D;
+  outline: 0;
+}
+
+.edit form input[type=text]{
+  min-width: 200px;
+  width: 80%;
+}
+.edit form input[type=email]{
+  min-width: 200px;
+  width: 80%;
+}
+.edit label {
+  margin-top: 10px;
+}
+.edit form input[type=submit] {
+    display: inline-block;
+    float: left;
+    height: 30px;
+    padding: 6px 12px;
+    line-height: 18px;
+    background-color: #988838;
+    color: #FEFEFE;
+    background-image: none;
+    border: 1px solid transparent;
+    margin-top: 10px;
+
+    ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    border-radius: 4px;
+    transition: border-color ease-in-out .2s;
+}
+
