@@ -32,7 +32,7 @@ __p += '\n<div class="container">\n    <div class="row">\n        <div class="co
 ((__t = ( tagline )) == null ? '' : __t) +
 '</strong> ' +
 ((__t = ( description )) == null ? '' : __t) +
-'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
+'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block2">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -121,6 +121,13 @@ return __p
         Routers: {},
         init: function () {
             'use strict';
+            
+            $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
+            
+            $('.modal-close').on('click', function(e) {
+            	e.preventDefault();
+            	return false;
+            });
 
             Air.header = new Air.Views.Header({ el: $('#header-options') });
 
@@ -284,6 +291,36 @@ Air.Routers = Air.Routers || {};
                 height: 176,
             }));
 
+        },
+
+        all: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+
+            /*
+            collection.fetch({
+                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
+                success: function() {
+                    views.push(new Air.Views.Map({
+                        locations: [[-23.6824124,-46.5952992]],
+                        collection: collection,
+                        id: 'sensor-map',
+                    }));
+                },
+                reset: true,
+            });
+            */
         },
 
         // default catch-all route
