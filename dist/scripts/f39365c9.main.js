@@ -1,25 +1,5 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/scripts/templates/deck.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="deck">\n    <div class="container">\n        <div class="row">\n\n            <div class="col-sm-6 col-lg-2 deck-hat">\n                <h3 class="gray">Local Time</h3>\n                <div id="local-time"></div>\n            </div>\n\n            <div class="col-sm-6 col-lg-2" id="scorecard">\n                <h3 class="gray deck-hat">Condition now</h3>\n                <h3 id="condition-now" class="phosphorescent"></h3>\n            </div>\n\n            <div class="col-sm-1 col-lg-1 desktop deck-hat">\n                <div id="hourly-yaxis">\n                    <span id="hourly-max"></span>\n                    <span id="hourly-mid"></span>\n                    <span id="hourly-min"></span>\n                </div>\n            </div>\n            <div class="col-sm-12 col-lg-7 desktop deck-hat">\n                <h3 class="gray">Hourly Conditions <label>(drag to show more)<label></h3>\n                <div id="hourly-chart" class="mask"></div>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n';
-
-}
-return __p
-};
-
-this["JST"]["app/scripts/templates/modal.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="modal" id="initial-modal">\n    <div class="in-modal">\n        <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>\n        <span class="close">&#10006;</span>\n    </div>\n</div>\n';
-
-}
-return __p
-};
-
 this["JST"]["app/scripts/templates/overview.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -428,30 +408,6 @@ Air.Views = Air.Views || {};
             }));
         },
 
-    });
-
-})();
-
-/*global Air, Backbone, JST*/
-
-Air.Views = Air.Views || {};
-
-(function () {
-    'use strict';
-
-    Air.Views.Modal = Backbone.View.extend({
-        events: { 'click .close': 'close' },
-        initialize: function() {
-            var close = $.proxy(this.close, this);
-            $('body').one('click', close);
-        },
-
-        close: function() {
-            var $this = this.$el;
-            $this.fadeOut(200, function() {
-                $this.remove();
-            });
-        }
     });
 
 })();

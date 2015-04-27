@@ -152,12 +152,23 @@ module.exports = function (grunt) {
             }
         },
 
+
+        cmq: {
+            dist: {
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css': [
+                        '<%= yeoman.app %>/styles/main.css'
+                    ]
+                }
+            }
+        },
+
         cssmin: {
             dist: {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
                         //'.tmp/styles/{,*/}*.css',
-                        '<%= yeoman.app %>/styles/main.css'
+                        '<%= yeoman.dist %>/styles/main.css'
                     ]
                 }
             }
@@ -269,6 +280,7 @@ module.exports = function (grunt) {
         'htmlmin',
         'concat',
         'sass',
+        'cmq',
         'cssmin',
         'copy',
         'rev',
