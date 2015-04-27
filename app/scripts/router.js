@@ -1,7 +1,6 @@
-/*global Air, Backbone*/
+/*global Air, Backbone, L*/
 
 Air.Routers = Air.Routers || {};
-
 (function () {
     'use strict';
 
@@ -19,6 +18,7 @@ Air.Routers = Air.Routers || {};
             'overview'                          : 'overview',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+            'manage'                            : 'edit',
 
             // default route
             '*action'                           : 'reroute'
@@ -29,7 +29,7 @@ Air.Routers = Air.Routers || {};
         execute: function(callback, args) {
             clean();
             this.$container.empty();
-            if (callback) callback.apply(this, args);
+            if (callback) {callback.apply(this, args);}
         },
 
         overview: function() {
@@ -73,10 +73,25 @@ Air.Routers = Air.Routers || {};
             }));
         },
 
+        edit: function() {
+            // TODO should execute on success of fetch on sensor list
+            var id = 'sensor-edit';
+            var html = _.template(JST['app/scripts/templates/edit.ejs']({
+                id: id
+            }));
+            this.$container.html(html);
+
+            views.push(new Air.Views.Edit({
+                id: id,
+                el: $('#' + id)
+            }));
+
+        },
+
         // generate an report for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
-            if (!sensorName) this.reroute();
+            if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
             var collection = new Air.Collections.Sensor();
