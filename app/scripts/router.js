@@ -103,7 +103,7 @@ Air.Routers = Air.Routers || {};
                 description: Air.t.description,
             }));
             this.$container.html(html);
-
+            
             /*
             collection.fetch({
                 data: {sensor: 'sensor', hours: pageSize, format: 'json'},

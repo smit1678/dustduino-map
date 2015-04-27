@@ -41,11 +41,35 @@
             <ul>
               <li><h4><a id="header-overview" href="#overview">about</a></h4></li>
               <li><h4><a id="header-search" href="#search">sensors</a></h4></li>
-              <li><h4><a id="header-join href="#join">join this project</a></h4></li>
+              <li><h4><a id="header-join" href="#modal">join this project</a></h4></li>
             </ul>
           </nav>
 
         </div>
+        
+        <div id="modal" style="display:none">
+      
+			<div id="signup-header">        
+        	<h2>Join this Project</h2>
+        	<a class="modal-close" href="#"></a>
+        	</div>
+        	<form action>
+        	<p>Sign up to get your sensor processed or <a>click here</a> to purchase your sensor.</p>
+        	<div class="txt-fld">
+        	  <label for>Email</label>
+        	  <input id name type="text">
+        	</div>
+        	<div class="btn-fld">
+        		<button type="submit">Sign Up</button>
+        	</div>
+        	</form>
+       
+			
+		
+		
+		
+		
+		</div>
 
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -55,6 +79,8 @@
         <script src="bower_components/d3-tip/index.js"></script>
         <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
         <script src="scripts/responsive-nav.js"></script>
+		<script type="text/javascript" src="scripts/jquery.leanModal.min.js"></script>
+
         <script>
           var $air = $('#air');
           var nav = responsiveNav(".nav-collapse", {
@@ -88,7 +114,6 @@
         <script src="scripts/views/map.js"></script>
         <script src="scripts/views/chart.js"></script>
         <script src="scripts/views/header.js"></script>
-		<script type="text/javascript" src="scripts/jquery.leanModal.min.js"></script>
 		<!-- endbuild -->
 </body>
 </html>
