@@ -43,7 +43,7 @@
         padding: 1em 1.2em;
         transition: all .2s ease-out;
     }
-    
+
      .content-block2 {
         padding: 1em 1.2em;
     }
@@ -63,12 +63,12 @@
         font-size: 18px;
         line-height: 28px;
     }
-    
+
     #modal {
     height:50%;
     width:50%;
    }
-   
+
    #modal .txt-fld input {
   width: 100%;
   }
@@ -134,6 +134,19 @@
         margin: 0 auto;
     }
 
+    .edit {
+  	margin-top: 35px;
+	}
+
+    .form-padding{
+	padding: 0px 45px;
+	margin-top:25px;
+	}
+
+	.map-padding{
+	padding: 0px 45px;
+	}
+
     #air {
         padding-top: 80px;
         height: 100%;
@@ -196,11 +209,11 @@
     height:50%;
     width:40%;
     }
-    
+
     #modal .txt-fld input {
     width: 100%;
     }
-    
+
    #signup-header h2 {
   color: #000;
   font-size: 1.2em;
@@ -242,7 +255,7 @@
     .content-block {
         padding: 1em 0;
     }
-    
+
      .content-block2 {
         padding: 1em 0;
     }
@@ -278,6 +291,16 @@
         border-radius: 6px;
         margin-top: 6px;
     }
+
+    .form-padding{
+	padding: 0px 75px 0px 35px;
+	margin-top:0px;
+
+	}
+
+	.map-padding{
+	padding: 0px 35px 0px 75px;
+	}
 
     #air {
   	padding-top: 60px;

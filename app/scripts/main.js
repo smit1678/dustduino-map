@@ -1,5 +1,5 @@
 /*global Air, $*/
-;'use strict';
+'use strict';
 
 (function() {
     window.Air = {
@@ -9,9 +9,9 @@
         Routers: {},
         init: function () {
             'use strict';
-            
+
             $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
-            
+
             $('.modal-close').on('click', function(e) {
             	e.preventDefault();
             	return false;
@@ -27,13 +27,11 @@
 })();
 
 $(document).ready(function () {
-    'use strict';
 
     // Throttle the window.resize event to fire after resize is finished.
     var $window = $(window);
     $window.resize(function() {
-        if (this.resizeTo) clearTimeout(this.resizeTo);
-        // end of resize; trigger resize event
+      if (this.resizeTo) { clearTimeout(this.resizeTo); }        // end of resize; trigger resize event
         this.resizeTo = setTimeout(function() {
             $window.trigger('resizeEnd');
             // also close map popup
@@ -62,7 +60,7 @@ $(document).ready(function () {
     var img = {
         path: 'images/',
         overview: 'banner/dustduino_',
-    }
+    };
 
     // TODO replace with correct language based on browser location
     Air.t = t.en;
