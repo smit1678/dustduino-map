@@ -8,6 +8,8 @@
     width: 100%;
     height: auto;
     background: #f0f4e9;
+
+    @include box-shadow;
 }
 
 .nav-links { padding: 0 30px 0 0; }

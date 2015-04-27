@@ -17,6 +17,11 @@
     border-bottom-left-radius: 4px;
 
     transition: border-color ease-in-out .2s;
+
+    @include medium {
+        width: 80%;
+        margin: 0 auto;
+    }
 }
 
 .search-submit {

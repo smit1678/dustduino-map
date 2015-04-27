@@ -3,6 +3,12 @@
 
 h1, h2 {
     text-align: center;
+
+    @include large {
+        display: block;
+        float: left;
+        text-align: left;
+    }
 }
 
 h1 {
@@ -12,6 +18,11 @@ h1 {
     font-weight: bold;
     color: #988838;
     line-height: 24px;
+
+    @include large {
+        margin: 21px 0 0 2.4em;
+    }
+
 }
 
 h2 {
@@ -22,12 +33,19 @@ h2 {
     font-style: italic;
     color: #777;
     line-height: 24px;
+
+    @include large {
+        margin: 24px 0 0 1em;
+        font-size: 16px;
+    }
 }
 
 h3 {
     font-size: 13px;
     line-height: 24px;
     font-weight: normal;
+    @include medium { display: block; }
+    @include large { font-size: 14px; }
 }
 
 h4 {
@@ -49,6 +67,8 @@ a:visited {
 label {
     font-size: 14px;
     margin-bottom: 6px;
+    @include medium { margin-bottom: 8px; }
+    @include large { margin-bottom: 8px; }
     display: block;
 }
 
@@ -58,43 +78,31 @@ p {
     margin: 12px 0;
 }
 
+button {
+    font-family: Arvo, Georgia, serif;
+    background: #988838;
+    border: none;
+    width: 100%;
+    overflow: visible;
+    font-size: 1em;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-weight: bold;
+}
+
 .close {
     font-size: 24px;
     line-height: 24px;
     color: #222;
 }
 
-.what {
-    font-size: 14px;
-    line-height: 15px;
-    height: 18px;
-    width: 18px;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-    bottom: 8px;
-    right: 0;
-    border: 0.1em solid #ccc;
-    text-align: center;
-    color: #666;
-}
-
 .close, .what {
     position: absolute;
     cursor: pointer;
     padding: 2px;
-}
-
-.explain {
-    position: relative;
-    overflow: visible;
-    display: inline-block;
-    padding-right: 24px;
-}
-
-.explain:hover {
-    text-decoration: underline;
-    cursor: pointer;
 }
 
 .orange             { color: #988838; }
@@ -118,5 +126,3 @@ p {
 .sensor-location {
   font-size: 16px;
 }
-
-
