@@ -1,5 +1,19 @@
 .report {
-    margin: 40px 0;
+    margin: 10px 0;
+    transition: all .2s ease-out;
+     @include medium {
+        margin: 20px 0;
+    }
+    @include large {
+        margin: 30px 0;
+    }
+}
+
+.expanded-menu .report {
+    margin-top: 80px;
+       @include medium {
+        margin: 80px 0;
+    }
 }
 
 table {
