@@ -1,25 +1,5 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/scripts/templates/deck.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="deck">\n    <div class="container">\n        <div class="row">\n\n            <div class="col-sm-6 col-lg-2 deck-hat">\n                <h3 class="gray">Local Time</h3>\n                <div id="local-time"></div>\n            </div>\n\n            <div class="col-sm-6 col-lg-2" id="scorecard">\n                <h3 class="gray deck-hat">Condition now</h3>\n                <h3 id="condition-now" class="phosphorescent"></h3>\n            </div>\n\n            <div class="col-sm-1 col-lg-1 desktop deck-hat">\n                <div id="hourly-yaxis">\n                    <span id="hourly-max"></span>\n                    <span id="hourly-mid"></span>\n                    <span id="hourly-min"></span>\n                </div>\n            </div>\n            <div class="col-sm-12 col-lg-7 desktop deck-hat">\n                <h3 class="gray">Hourly Conditions <label>(drag to show more)<label></h3>\n                <div id="hourly-chart" class="mask"></div>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n';
-
-}
-return __p
-};
-
-this["JST"]["app/scripts/templates/modal.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="modal" id="initial-modal">\n    <div class="in-modal">\n        <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>\n        <span class="close">&#10006;</span>\n    </div>\n</div>\n';
-
-}
-return __p
-};
-
 this["JST"]["app/scripts/templates/overview.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -32,7 +12,7 @@ __p += '\n<div class="container">\n    <div class="row">\n        <div class="co
 ((__t = ( tagline )) == null ? '' : __t) +
 '</strong> ' +
 ((__t = ( description )) == null ? '' : __t) +
-'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
+'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block2">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -121,6 +101,13 @@ return __p
         Routers: {},
         init: function () {
             'use strict';
+            
+            $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
+            
+            $('.modal-close').on('click', function(e) {
+            	e.preventDefault();
+            	return false;
+            });
 
             Air.header = new Air.Views.Header({ el: $('#header-options') });
 
@@ -286,6 +273,36 @@ Air.Routers = Air.Routers || {};
 
         },
 
+        all: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+
+            /*
+            collection.fetch({
+                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
+                success: function() {
+                    views.push(new Air.Views.Map({
+                        locations: [[-23.6824124,-46.5952992]],
+                        collection: collection,
+                        id: 'sensor-map',
+                    }));
+                },
+                reset: true,
+            });
+            */
+        },
+
         // default catch-all route
         reroute: function() {
             this.navigate('overview', {trigger:true});
@@ -391,30 +408,6 @@ Air.Views = Air.Views || {};
             }));
         },
 
-    });
-
-})();
-
-/*global Air, Backbone, JST*/
-
-Air.Views = Air.Views || {};
-
-(function () {
-    'use strict';
-
-    Air.Views.Modal = Backbone.View.extend({
-        events: { 'click .close': 'close' },
-        initialize: function() {
-            var close = $.proxy(this.close, this);
-            $('body').one('click', close);
-        },
-
-        close: function() {
-            var $this = this.$el;
-            $this.fadeOut(200, function() {
-                $this.remove();
-            });
-        }
     });
 
 })();

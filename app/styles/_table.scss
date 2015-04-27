@@ -1,0 +1,24 @@
+.report {
+    margin: 40px 0;
+}
+
+table {
+}
+
+table > thead {
+    font-weight: bold;
+}
+
+table > thead td {
+    border-bottom: 1px solid #eee;
+}
+
+table td {
+    text-align: center;
+    padding: 12px 0;
+}
+
+.table-full {
+    width: 100%;
+    table-layout: fixed;
+}
