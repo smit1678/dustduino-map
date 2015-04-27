@@ -47,36 +47,56 @@
 }
 
 .edit {
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 .edit input:focus {
-  background-color: #FDE25D;
   outline: 0;
 }
 
 .edit form input[type=text]{
+  font-family: Arvo, Georgia, serif;
   min-width: 200px;
-  width: 80%;
+  width: 100%;
+  height:30px;
+  color:#aaa;
+  font-size:.9rem;
+  padding-left:8px;
 }
 .edit form input[type=email]{
+  font-family: Arvo, Georgia, serif;
   min-width: 200px;
-  width: 80%;
+  width: 100%;
+  height:30px;
+  color:#aaa;
+  font-size:.9rem;
+  padding-left:8px;
 }
-.edit label {
+
+.edit .main-label {
   margin-top: 10px;
+  margin-bottom: 25px;
+  font-size:1.1rem;
+  font-weight:bold;
+}
+
+.edit label {
+  margin-top: 25px;
+  font-size:1.1rem;
 }
 .edit form input[type=submit] {
+    font-family: Arvo, Georgia, serif;
+    font-size:1rem;
     display: inline-block;
-    float: left;
-    height: 30px;
+    float: right;
+    height: 50px;
     padding: 6px 12px;
     line-height: 18px;
     background-color: #988838;
     color: #FEFEFE;
     background-image: none;
     border: 1px solid transparent;
-    margin-top: 10px;
+    margin-top: 30px;
 
     ms-touch-action: manipulation;
     touch-action: manipulation;
@@ -91,3 +111,12 @@
     transition: border-color ease-in-out .2s;
 }
 
+.form-padding{
+	padding: 0px 30px 0px 30px;
+	margin-top:25px;
+	margin-bottom:25px;
+}
+
+.map-padding{
+	padding: 0px 30px 0px 30px;
+}

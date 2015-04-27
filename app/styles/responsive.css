@@ -104,6 +104,19 @@
         width:80%;
         margin: 0 auto;
     }
+    
+    .edit {
+  	margin-top: 35px;
+	}
+    
+    .form-padding{
+	padding: 0px 45px;
+	margin-top:25px;
+	}
+
+	.map-padding{
+	padding: 0px 45px;
+	}
 }
 
 @media only screen and (min-width: 960px) {
@@ -209,4 +222,14 @@
         border-radius: 6px;
         margin-top: 6px;
     }
+    
+    .form-padding{
+	padding: 0px 75px 0px 35px;
+	margin-top:0px;
+	
+	}
+
+	.map-padding{
+	padding: 0px 35px 0px 75px;
+	}
 }
