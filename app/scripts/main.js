@@ -8,6 +8,15 @@
         Views: {},
         Routers: {},
         init: function () {
+            'use strict';
+
+            $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
+
+            $('.modal-close').on('click', function(e) {
+            	e.preventDefault();
+            	return false;
+            });
+
             Air.header = new Air.Views.Header({ el: $('#header-options') });
 
             Air.router = new Air.Routers.App();

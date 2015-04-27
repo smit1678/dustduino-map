@@ -1,12 +1,12 @@
 <div class="container report">
-    <div class="row">
-        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image">
+    <div class="row align-bottom-container">
+        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image align-bottom-items">
             <img src="<%= src %>" />
         </div>
-        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart">
-            <h3 class="tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
-            <div class="desktop">
-                <p><strong>Location: </strong> <%= location %></p>
+        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart align-bottom-items">
+            <h3 class="sensor-number tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
+            <div>
+                <p class="sensor-location"><strong>Location: </strong> <%= location %></p>
             </div>
             <div class="mask" id="<%= id %>-chart"></div>
         </div>

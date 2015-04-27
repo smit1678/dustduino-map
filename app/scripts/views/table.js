@@ -27,6 +27,8 @@ Air.Views = Air.Views || {};
 
             var headers = ['created', 'pm10', 'pm10_reading', 'pm25', 'pm25_reading'];
 
+			var headerDisplay = ['created', 'pm10', 'pm10 reading', 'pm25', 'pm25 reading'];
+			
             var table = [];
             for(; i < ii; ++i) {
                 table.push(_.map(headers, function(hed) {
@@ -35,7 +37,7 @@ Air.Views = Air.Views || {};
             };
 
             this.$el.html(this.template({
-                tableHeaders: headers,
+                tableHeaders: headerDisplay,
                 tableContent: '<tr>' + table.join('</tr><tr>') + '</tr>'
             }));
         },

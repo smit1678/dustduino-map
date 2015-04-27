@@ -24,15 +24,15 @@ this["JST"]["app/scripts/templates/overview.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\n<div class="container">\n    <div class="row">\n        <div class="col-lg-8 col-lg-offset-1 content-block">\n            <p id="section-join">' +
+__p += '\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block">\n            <p id="section-join">' +
 ((__t = ( overview )) == null ? '' : __t) +
 '</p>\n        </div>\n    </div>\n</div>\n\n<div class="banner">\n    <div class="banner-img" role="presentation" style="background: url(' +
 ((__t = ( banner )) == null ? '' : __t) +
-') no-repeat center center; background-size: cover;"></div>\n    <div class="container overlay">\n        <div class="row">\n            <div class="col-lg-6 col-lg-offset-3 inverted" style="opacity: .85">\n                <p><strong>' +
+') no-repeat center center; background-size: cover;"></div>\n    <div class="container overlay">\n        <div class="row">\n            <div class="col-lg-6 col-lg-offset-3 inverted" style="opacity: .85">\n                <p class="main-image"><strong>' +
 ((__t = ( tagline )) == null ? '' : __t) +
 '</strong> ' +
 ((__t = ( description )) == null ? '' : __t) +
-' <a>Start creating your data.</a></p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-8 col-lg-offset-1 content-block">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
+'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -42,13 +42,13 @@ this["JST"]["app/scripts/templates/report.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container report">\n    <div class="row">\n        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image">\n            <img src="' +
+__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image align-bottom-items">\n            <img src="' +
 ((__t = ( src )) == null ? '' : __t) +
-'" />\n        </div>\n        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart">\n            <h3 class="tooltip-sensor-name" id="' +
+'" />\n        </div>\n        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart align-bottom-items">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-pop">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</h3>\n            <div class="desktop">\n                <p><strong>Location: </strong> ' +
+'</h3>\n            <div>\n                <p class="sensor-location"><strong>Location: </strong> ' +
 ((__t = ( location )) == null ? '' : __t) +
 '</p>\n            </div>\n            <div class="mask" id="' +
 ((__t = ( id )) == null ? '' : __t) +
@@ -101,7 +101,9 @@ __p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm
 ((__t = ( name )) == null ? '' : __t) +
 '</h3>\n            <div class="desktop">\n                <p><strong>Location: </strong> ' +
 ((__t = ( location )) == null ? '' : __t) +
-'</p>\n                <p><a>Generate report</a></p>\n            </div>\n            <div class="mask" id="' +
+'</p>\n                <p><a href="#/report/' +
+__e( path ) +
+'">Generate report</a></p>\n            </div>\n            <div class="mask" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-chart" style="height:120px;"></div>\n        </div>\n    </div>\n</div>\n';
 
@@ -193,9 +195,10 @@ Air.Routers = Air.Routers || {};
 
     Air.Routers.App = Backbone.Router.extend({
         routes: {
-            'overview'                          : 'all',
+            'overview'                          : 'overview',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+
             // default route
             '*action'                           : 'reroute'
         },
@@ -207,6 +210,23 @@ Air.Routers = Air.Routers || {};
             this.$container.empty();
             if (callback) callback.apply(this, args);
         },
+
+        overview: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+        },
+
 
         search: function() {
             // TODO should execute on success of fetch on sensor list
@@ -232,7 +252,7 @@ Air.Routers = Air.Routers || {};
             }));
         },
 
-        // generate an overview for a single sensor's data
+        // generate an report for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
             if (!sensorName) this.reroute();
@@ -266,84 +286,10 @@ Air.Routers = Air.Routers || {};
 
         },
 
-        all: function() {
-            Air.header.select('overview');
-
-            var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
-
-            var html = _.template(JST['app/scripts/templates/overview.ejs']({
-                name: 'sensor',
-                overview: Air.t.overview,
-                banner: Air.img.path + Air.img.overview + Air._getSize(),
-                tagline: Air.t.tagline,
-                description: Air.t.description,
-            }));
-            this.$container.html(html);
-
-            /*
-            collection.fetch({
-                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
-                success: function() {
-                    views.push(new Air.Views.Map({
-                        locations: [[-23.6824124,-46.5952992]],
-                        collection: collection,
-                        id: 'sensor-map',
-                    }));
-                },
-                reset: true,
-            });
-            */
-
-            // falsifying data, use for development purposes only!
-            collection.fakeTrigger();
-            views.push(new Air.Views.Map({
-                locations: [[-23.6824124,-46.5952992]],
-                collection: collection,
-                id: 'sensor-map',
-            }));
-        },
-
         // default catch-all route
         reroute: function() {
             this.navigate('overview', {trigger:true});
         },
-
-        map: function() {
-            Air.map = Air.map || L.mapbox.map('paulo-map', 'devseed.j586d1hp')
-                .setView([-23.557, -46.656], 11);
-        },
-
-            //************************** Views **************************//
-            // $('.modal').each(function() { new Air.Views.Modal({el: '#' + this.id}); });
-            // new Air.Views.Score({el: '#scorecard', id: 'scorecard', collection: hours});
-            // new Air.Views.Chart({el: '#hourly-chart', id: 'hourly-chart',
-                                // collection: hours, wait: true});
-            // new Air.Views.Localtime({el: '#local-time', id:'local-time'});
-
-            // Air.map.whenReady(function() {
-
-                // new Air.Views.Map({el: '#paulo-map', id: 'paulo-map', model: stations});
-                // stations.fetch({reset:true});
-
-            // });
-
-            // var popupcharts = [];
-
-            // Air.map.on('popupopen', function() {
-                // popupcharts.push(new Air.Views.Chart({el: '#pop-chart-container',
-                                                 // id: 'pop-chart-container',
-                                                 // collection: hours,
-                                                 // wait: false
-                // }));
-            // });
-
-            // Air.map.on('popupclose', function() {
-                // _.each(popupcharts, function(view) {
-                    // view.remove();
-                // });
-            // });
-            // hours.fetch({reset: true});
     });
 
 })();
@@ -430,6 +376,8 @@ Air.Views = Air.Views || {};
 
             var headers = ['created', 'pm10', 'pm10_reading', 'pm25', 'pm25_reading'];
 
+			var headerDisplay = ['created', 'pm10', 'pm10 reading', 'pm25', 'pm25 reading'];
+			
             var table = [];
             for(; i < ii; ++i) {
                 table.push(_.map(headers, function(hed) {
@@ -438,7 +386,7 @@ Air.Views = Air.Views || {};
             };
 
             this.$el.html(this.template({
-                tableHeaders: headers,
+                tableHeaders: headerDisplay,
                 tableContent: '<tr>' + table.join('</tr><tr>') + '</tr>'
             }));
         },
@@ -528,6 +476,7 @@ Air.Views = Air.Views || {};
                 }).bindPopup(popupContent({
                     // TODO replace with data from model
                     name: 'Sensor #123',
+                    path: '123',
                     location: 'Bus Stop at 780 Fake Road',
                     src: 'images/fake-station.jpg',
                     id: options.id,
@@ -612,7 +561,7 @@ Air.Views = Air.Views || {};
 
             var hours = this.collection.length,
                 days = hours / 24,
-                margin = this.margin = [15, 15, 20, 15],
+                margin = this.margin = [15, 15, 0, 15],
                 width = this.width = this.$el.width() * days - margin[1] - margin[3],
                 height = this.height - margin[0] - margin[2];
 

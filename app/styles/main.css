@@ -35,10 +35,15 @@ body,
 .input-block,
 .content-block {
     padding: 0.5em 0;
+    transition: all .2s ease-out;
+}
+
+.content-block2 {
+    padding: 0.5em 0;
 }
 
 .main-input {
-    margin-top: 30px;
+    margin-top: 15px;
     padding-top:15px;
     padding-bottom:20px;
     width:100%;
@@ -55,21 +60,25 @@ body,
 }
 
 .overlay {
-    margin-top: -40%;
+    margin-top: -30%;
 }
 
 .leaflet-top .leaflet-control {
-    margin-top: 140px;
+    margin-top: 120px;
     transition: all .2s ease-out;
 }
 
 /* Setting styles for opening, closing the menu on mobile */
 .expanded-menu .main-input {
-    margin-top: 90px;
+    margin-top: 70px;
 }
 
 .expanded-menu .leaflet-top .leaflet-control {
-    margin-top: 200px;
+    margin-top: 175px;
+}
+
+.expanded-menu .content-block {
+    margin-top: 60px;
 }
 
 /****************************************************/
@@ -87,7 +96,7 @@ body,
 /************** Container ***************************/
 
 #air {
-    padding-top: 60px;
+    padding-top: 80px;
     height: 100%;
 }
 
@@ -157,7 +166,7 @@ body,
 /************** Report ******************************/
 
 .report {
-    margin: 24px 0;
+    margin: 40px 0;
 }
 
 table {
@@ -189,4 +198,18 @@ table td {
     padding: 0 4px;
     border-radius: 4px;
     display: inline-block;
+}
+button {
+    font-family: Arvo, Georgia, serif;
+    background: #988838;
+    border: none;
+    width: 100%;
+    overflow: visible;
+    font-size: 1em;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-weight: bold;
 }
