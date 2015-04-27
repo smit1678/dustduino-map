@@ -10,6 +10,18 @@ __p += '<div class="deck">\n    <div class="container">\n        <div class="row
 return __p
 };
 
+this["JST"]["app/scripts/templates/edit.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container edit" id="' +
+((__t = ( id )) == null ? '' : __t) +
+'">\n  <div class="row">\n   <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">\n      <label class="main-label">Click on the map to add your location</label>\n      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>\n    </div>\n  \t<div class="col-sm-12 col-md-12 col-lg-6 form-padding">\n      <label class="main-label">Manage your device </label>\n      <form>\n        <div class="form-group">\n          <label for="latitude">Latitude</label>\n          <input type="text" name="latitude" value="0.0" id="latitude">\n        </div>\n        <div class="form-group">\n          <label for="longitude">Longitude</label>\n          <input type="text" name="longitude" value="0.0" id="longitude">\n        </div>\n        <div class="form-group">\n          <label for="description">Description</label>\n          <input type="text" name="description" value="Enter a description of your device" id="description">\n        </div>\n        <div class="form-group">\n          <label for="email">Email</label>\n          <input type="email" name="email" id="email" value="Enter your email here" />\n        </div>\n        <div class="form-group">\n          <label for="arduino">Arduino Token</label>\n          <input type="text" name="arduino" value="Enter Arduino Token" id="arduino">\n        </div>\n        <input type="submit" class="edit-submit" value="Submit">\n      </form>\n    </div>   \n  </div>\n</div>';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/modal.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -32,7 +44,7 @@ __p += '\n<div class="container">\n    <div class="row">\n        <div class="co
 ((__t = ( tagline )) == null ? '' : __t) +
 '</strong> ' +
 ((__t = ( description )) == null ? '' : __t) +
-'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
+'</p>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class="container">\n    <div class="row">\n        <div class="col-lg-6 col-lg-offset-4 content-block2">\n            <p>Particulate matter (PM) is an air pollution term for a mixture of solid particles and liquid droplets found in the air. The pollutant comes in a variety of sizes and can be composed of many types of materials and chemicals. Particles that are small enough to be inhaled have the potential to cause health effects. Of particular concern is a class of particles known as fine particulate matter or PM2.5 that gets deep into the lung.</p>\n            <p>Inhalable particles, particularly fine particles, have the greatest demonstrated impact on human health. Their small size allows them to get deep into the lungs and from there they can reach or trigger inflammation in the lung, blood vessels or the heart, and perhaps other organs. Studies have linked PM exposure to health problems, including some cancers.</p>\n            <p>For more on particulate matter health concerns, see the <a href="http://whqlibdoc.who.int/hq/2006/WHO_SDE_PHE_OEH_06.02_eng.pdf?ua=1">WHO report</a>.</p>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -42,9 +54,7 @@ this["JST"]["app/scripts/templates/report.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image align-bottom-items">\n            <img src="' +
-((__t = ( src )) == null ? '' : __t) +
-'" />\n        </div>\n        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart align-bottom-items">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
+__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-lg-10 col-lg-offset-1 pop-chart">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-pop">' +
 ((__t = ( name )) == null ? '' : __t) +
@@ -93,17 +103,15 @@ this["JST"]["app/scripts/templates/tooltip.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 col-lg-4 pop-image">\n            <img src="' +
-((__t = ( src )) == null ? '' : __t) +
-'" />\n        </div>\n        <div class="col-sm-12 col-lg-8 pop-chart">\n            <h3 class="tooltip-sensor-name" id="' +
+__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 pop-chart">\n            <h3 class="sensor-number" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-pop">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</h3>\n            <div class="desktop">\n                <p><strong>Location: </strong> ' +
+'</h3>\n            <p><strong>Location: </strong> ' +
 ((__t = ( location )) == null ? '' : __t) +
-'</p>\n                <p><a href="#/report/' +
+'</p>\n            <p><a href="#/report/' +
 __e( path ) +
-'">Generate report</a></p>\n            </div>\n            <div class="mask" id="' +
+'">Generate report</a></p>\n            <div class="mask" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-chart" style="height:120px;"></div>\n        </div>\n    </div>\n</div>\n';
 
@@ -111,7 +119,7 @@ __e( path ) +
 return __p
 };
 /*global Air, $*/
-;'use strict';
+'use strict';
 
 (function() {
     window.Air = {
@@ -121,6 +129,13 @@ return __p
         Routers: {},
         init: function () {
             'use strict';
+
+            $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
+
+            $('.modal-close').on('click', function(e) {
+            	e.preventDefault();
+            	return false;
+            });
 
             Air.header = new Air.Views.Header({ el: $('#header-options') });
 
@@ -132,13 +147,11 @@ return __p
 })();
 
 $(document).ready(function () {
-    'use strict';
 
     // Throttle the window.resize event to fire after resize is finished.
     var $window = $(window);
     $window.resize(function() {
-        if (this.resizeTo) clearTimeout(this.resizeTo);
-        // end of resize; trigger resize event
+      if (this.resizeTo) { clearTimeout(this.resizeTo); }        // end of resize; trigger resize event
         this.resizeTo = setTimeout(function() {
             $window.trigger('resizeEnd');
             // also close map popup
@@ -167,7 +180,7 @@ $(document).ready(function () {
     var img = {
         path: 'images/',
         overview: 'banner/dustduino_',
-    }
+    };
 
     // TODO replace with correct language based on browser location
     Air.t = t.en;
@@ -177,10 +190,9 @@ $(document).ready(function () {
 
 });
 
-/*global Air, Backbone*/
+/*global Air, Backbone, L*/
 
 Air.Routers = Air.Routers || {};
-
 (function () {
     'use strict';
 
@@ -198,6 +210,7 @@ Air.Routers = Air.Routers || {};
             'overview'                          : 'overview',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+            'manage'                            : 'edit',
 
             // default route
             '*action'                           : 'reroute'
@@ -208,7 +221,7 @@ Air.Routers = Air.Routers || {};
         execute: function(callback, args) {
             clean();
             this.$container.empty();
-            if (callback) callback.apply(this, args);
+            if (callback) {callback.apply(this, args);}
         },
 
         overview: function() {
@@ -252,10 +265,25 @@ Air.Routers = Air.Routers || {};
             }));
         },
 
+        edit: function() {
+            // TODO should execute on success of fetch on sensor list
+            var id = 'sensor-edit';
+            var html = _.template(JST['app/scripts/templates/edit.ejs']({
+                id: id
+            }));
+            this.$container.html(html);
+
+            views.push(new Air.Views.Edit({
+                id: id,
+                el: $('#' + id)
+            }));
+
+        },
+
         // generate an report for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
-            if (!sensorName) this.reroute();
+            if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
             var collection = new Air.Collections.Sensor();
@@ -284,6 +312,36 @@ Air.Routers = Air.Routers || {};
                 height: 176,
             }));
 
+        },
+
+        all: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+
+            /*
+            collection.fetch({
+                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
+                success: function() {
+                    views.push(new Air.Views.Map({
+                        locations: [[-23.6824124,-46.5952992]],
+                        collection: collection,
+                        id: 'sensor-map',
+                    }));
+                },
+                reset: true,
+            });
+            */
         },
 
         // default catch-all route
@@ -777,4 +835,75 @@ Air.Views = Air.Views || {};
             this.$('#header-' + id).addClass('active');
         },
     });
+})();
+
+/*global L*/
+Air.Views = Air.Views || {};
+(function () {
+  'use strict';
+  // just something to switch around our header selection
+  Air.Views.Edit = Backbone.View.extend({
+    events: {
+      'submit form': 'submit'
+    },
+
+    initialize: function() {
+      // Initialize map
+      L.mapbox.accessToken = 'pk.eyJ1Ijoia2FtaWN1dCIsImEiOiJMVzF2NThZIn0.WO0ArcIIzYVioen3HpfugQ';
+      var map = L.mapbox.map('minimap', 'devseed.j586d1hp');
+
+      var marker;
+
+      // Map onload
+      map.on('load', function() {
+        var c = map.getCenter();
+        marker = L.marker(c).addTo(map);
+        this.$('input[name="latitude"]').val(c.lat);
+        this.$('input[name="longitude"]').val(c.lng);
+      }.bind(this));
+
+      // Map onclick
+      map.on('click', function(e) {
+        this.$('input[name="latitude"]').val(e.latlng.lat);
+        this.$('input[name="longitude"]').val(e.latlng.lng);
+        marker.setLatLng(e.latlng);
+        map.panTo(e.latlng);
+      }.bind(this));
+
+      // Cache id fields
+      this.fields = ['longitude', 'latitude', 'description', 'email', 'arduino'];
+      this.fields.forEach(function(field) {
+        this['$' + field] = this.$('input[name="' + field + '"]');
+      }.bind(this));
+
+    },
+
+    submit: function(e) {
+      e.preventDefault();
+
+      //Validate input
+      var valid = true;
+      this.fields.forEach(function(field) {
+        valid = this['$' + field].val().length > 0 && valid;
+      }.bind(this));
+
+      // If valid, send a PUT request
+      if (valid) {
+        var data = {};
+        this.fields.forEach(function(field) {
+          data[field] = this['$' + field].val();
+        });
+        $.ajax({
+          url: 'api.something',
+          type: 'PUT',
+          data: data,
+          success: function() {
+            console.log('success!');
+          }
+        });
+      } else {
+        console.log('Fields not valid.');
+      }
+    },
+  });
 })();
