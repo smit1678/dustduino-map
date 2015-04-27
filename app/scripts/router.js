@@ -107,6 +107,36 @@ Air.Routers = Air.Routers || {};
 
         },
 
+        all: function() {
+            Air.header.select('overview');
+
+            var pageSize = 144;
+            var collection = new Air.Collections.Sensor();
+
+            var html = _.template(JST['app/scripts/templates/overview.ejs']({
+                name: 'sensor',
+                overview: Air.t.overview,
+                banner: Air.img.path + Air.img.overview + Air._getSize(),
+                tagline: Air.t.tagline,
+                description: Air.t.description,
+            }));
+            this.$container.html(html);
+
+            /*
+            collection.fetch({
+                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
+                success: function() {
+                    views.push(new Air.Views.Map({
+                        locations: [[-23.6824124,-46.5952992]],
+                        collection: collection,
+                        id: 'sensor-map',
+                    }));
+                },
+                reset: true,
+            });
+            */
+        },
+
         // default catch-all route
         reroute: function() {
             this.navigate('overview', {trigger:true});

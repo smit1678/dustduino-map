@@ -63,6 +63,15 @@
         font-size: 18px;
         line-height: 28px;
     }
+    
+    #modal {
+    height:50%;
+    width:50%;
+   }
+   
+   #modal .txt-fld input {
+  width: 100%;
+  }
 
     #initial-modal {
         width: 60%;
@@ -182,6 +191,27 @@
         font-size: 14px;
         line-height: 24px;
     }
+
+	 #modal {
+    height:50%;
+    width:40%;
+    }
+    
+    #modal .txt-fld input {
+    width: 100%;
+    }
+    
+   #signup-header h2 {
+  color: #000;
+  font-size: 1.2em;
+  margin:0 auto;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  float: none;
+        text-align: center;
+	}
+
 
     .main-input {
         margin-top: 15px;

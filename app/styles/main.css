@@ -199,3 +199,17 @@ table td {
     border-radius: 4px;
     display: inline-block;
 }
+button {
+    font-family: Arvo, Georgia, serif;
+    background: #988838;
+    border: none;
+    width: 100%;
+    overflow: visible;
+    font-size: 1em;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-weight: bold;
+}
