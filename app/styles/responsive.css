@@ -40,7 +40,8 @@
 
     .input-block,
     .content-block {
-        padding: 1.2em 0;
+        padding: 1.2em 1.2em;
+        transition: all .2s ease-out;
     }
 
     .local {
@@ -54,6 +55,11 @@
         line-height: 24px;
     }
 
+    .main-image {
+        font-size: 18px;
+        line-height: 28px;
+    }
+
     #initial-modal {
         width: 60%;
         left: 20%;
@@ -64,15 +70,15 @@
         width: 76%;
         left: 12%;
     }
-    
+
     .align-bottom-container {
   	display:flex;
   	align-items: flex-end;
-}
+    }
 
-	.align-bottom-items {
+    .align-bottom-items {
   	align-self: flex-end;
-}
+    }
 
 
     .map-pop { width: 360px; }
@@ -87,7 +93,7 @@
     }
 
     h2 {
-        margin: 5px 0 0 0em;
+        margin: 5px 0 10px 0px;
         font-size: 14px;
         text-align:center;
     }
@@ -115,6 +121,10 @@
         margin: 0 auto;
     }
 
+    #air {
+        padding-top: 80px;
+        height: 100%;
+    }
 }
 
 @media only screen and (min-width: 960px) {
@@ -160,7 +170,7 @@
     }
 
     h2 {
-        margin: 26px 0 0 1em;
+        margin: 24px 0 0 1em;
         font-size: 16px;
     }
 
@@ -170,22 +180,22 @@
     }
 
     .main-input {
-        margin-top: 30px;
+        margin-top: 15px;
         padding-top:15px;
         padding-bottom:20px;
         width:100%;
         z-index:1000;
         background: rgba(255,255,255,.6);
     }
-    
+
     .align-bottom-container {
   	display:flex;
   	align-items: flex-end;
-}
+    }
 
 	.align-bottom-items {
   	align-self: flex-end;
-}
+    }
 
 
     label {
@@ -229,5 +239,10 @@
         padding: 2px 8px;
         border-radius: 6px;
         margin-top: 6px;
+    }
+
+    #air {
+  	padding-top: 60px;
+  	height: 100%;
     }
 }
