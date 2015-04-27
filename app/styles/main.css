@@ -263,12 +263,14 @@ table td {
 #modal .txt-fld {
   position: relative;
   width: 100%;
-  padding: 20px 30px;
+  height:80px;
+  padding: 0px 30px;
   text-align: right;
 }
 
 #modal .txt-fld label {
   display: block;
+  width:100%
   float: left;
   padding-top: 8px;
   color: #222;
@@ -277,8 +279,9 @@ table td {
 }
 
 #modal .txt-fld input {
-  width: 300px;
+  width: 100%;
   padding: 8px;
+  display: block;
   border-radius: 4px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
