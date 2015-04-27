@@ -614,10 +614,17 @@ button {
   transition: border-color ease-in-out .2s; }
 
 .edit {
-  margin-top: 15px; }
+  margin-top: 15px;
+  transition: all .2s ease-out; }
   @media only screen and (min-width: 480px) {
     .edit {
-      margin-top: 35px; } }
+      margin-top: 25px; } }
+
+.expanded-menu .edit {
+  margin-top: 80px; }
+  @media only screen and (min-width: 480px) {
+    .expanded-menu .edit {
+      margin: 80px 0; } }
 
 .edit input:focus {
   outline: 0; }
