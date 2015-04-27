@@ -195,3 +195,18 @@ table td {
     border-radius: 4px;
     display: inline-block;
 }
+
+/****************************************************/
+/************** Modal - join this project **************************/
+
+#join {
+    position: fixed;
+    z-index:100;
+    top: 0px;
+    left: 0px;
+    height:100%;
+    width:100%;
+    background: #000;
+}
+
+

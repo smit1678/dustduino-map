@@ -64,3 +64,5 @@ $(document).ready(function () {
     Air.init();
 
 });
+
+$("#join").leanModal();
