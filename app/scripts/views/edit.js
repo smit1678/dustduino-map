@@ -37,6 +37,36 @@ Air.Views = Air.Views || {};
         this['$' + field] = this.$('input[name="' + field + '"]');
       }.bind(this));
 
+      // Add event listeners to input text fields
+      $('input').each(function() {
+        $(this).attr('default',$(this).val());
+      });
+
+      $('input').focus(function() {
+        console.log($(this).val(), $(this).attr('default'));
+        if ($(this).val() === $(this).attr('default')) {
+          $(this).val('');
+        }
+      });
+      $('input').blur(function() {
+       var def =  $(this).attr('default');
+       var val = $(this).val();
+        if (def.length > 0 && val.length === 0) {
+          $(this).val(def);
+        }
+      });
+
+      // Add event listeners to latitude/longitude fields
+      $('input[name="longitude"').keyup($.debounce(function() {
+        var latlng = [$('input[name="latitude"]').val(),$('input[name="longitude"]').val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
+      $('input[name="latitude"').keyup($.debounce(function() {
+        var latlng = [$('input[name="latitude"]').val(),$('input[name="longitude"]').val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
     },
 
     submit: function(e) {
