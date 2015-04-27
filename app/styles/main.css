@@ -38,8 +38,12 @@ body,
     transition: all .2s ease-out;
 }
 
+.content-block2 {
+    padding: 0.5em 0;
+}
+
 .main-input {
-    margin-top: 20px;
+    margin-top: 15px;
     padding-top:15px;
     padding-bottom:20px;
     width:100%;
@@ -60,21 +64,21 @@ body,
 }
 
 .leaflet-top .leaflet-control {
-    margin-top: 130px;
+    margin-top: 120px;
     transition: all .2s ease-out;
 }
 
 /* Setting styles for opening, closing the menu on mobile */
 .expanded-menu .main-input {
-    margin-top: 110px;
+    margin-top: 70px;
 }
 
 .expanded-menu .leaflet-top .leaflet-control {
-    margin-top: 220px;
+    margin-top: 175px;
 }
 
 .expanded-menu .content-block {
-    margin-top: 70px;
+    margin-top: 60px;
 }
 
 /****************************************************/

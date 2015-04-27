@@ -40,8 +40,12 @@
 
     .input-block,
     .content-block {
-        padding: 1.2em 1.2em;
+        padding: 1em 1.2em;
         transition: all .2s ease-out;
+    }
+    
+     .content-block2 {
+        padding: 1em 1.2em;
     }
 
     .local {
@@ -112,7 +116,7 @@
     }
 
     label {
-        font-size: 13px;
+        font-size: 14px;
         margin-bottom: 8px;
     }
 
@@ -206,7 +210,11 @@
 
     .input-block,
     .content-block {
-        padding: 1.575em 0;
+        padding: 1em 0;
+    }
+    
+     .content-block2 {
+        padding: 1em 0;
     }
 
     .search-input {
