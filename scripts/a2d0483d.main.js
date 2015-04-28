@@ -1,5 +1,17 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["app/scripts/templates/edit.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="container edit" id="' +
+((__t = ( id )) == null ? '' : __t) +
+'">\n  <div class="row">\n   <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">\n      <label class="main-label">Click on the map to add your location</label>\n      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>\n    </div>\n  \t<div class="col-sm-12 col-md-12 col-lg-6 form-padding">\n      <label class="main-label">Manage your device </label>\n      <form>\n        <div class="form-group">\n          <label for="latitude">Latitude</label>\n          <input type="text" name="latitude" value="0.0" id="latitude">\n        </div>\n        <div class="form-group">\n          <label for="longitude">Longitude</label>\n          <input type="text" name="longitude" value="0.0" id="longitude">\n        </div>\n        <div class="form-group">\n          <label for="description">Description</label>\n          <input type="text" name="description" value="Enter a description of your device" id="description">\n        </div>\n        <div class="form-group">\n          <label for="email">Email</label>\n          <input type="email" name="email" id="email" value="Enter your email here" />\n        </div>\n        <div class="form-group">\n          <label for="arduino">Arduino Token</label>\n          <input type="text" name="arduino" value="Enter Arduino Token" id="arduino">\n        </div>\n        <input type="submit" class="edit-submit" value="Submit">\n      </form>\n    </div>   \n  </div>\n</div>';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/overview.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -91,7 +103,7 @@ __e( path ) +
 return __p
 };
 /*global Air, $*/
-;'use strict';
+'use strict';
 
 (function() {
     window.Air = {
@@ -101,9 +113,9 @@ return __p
         Routers: {},
         init: function () {
             'use strict';
-            
+
             $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
-            
+
             $('.modal-close').on('click', function(e) {
             	e.preventDefault();
             	return false;
@@ -119,13 +131,11 @@ return __p
 })();
 
 $(document).ready(function () {
-    'use strict';
 
     // Throttle the window.resize event to fire after resize is finished.
     var $window = $(window);
     $window.resize(function() {
-        if (this.resizeTo) clearTimeout(this.resizeTo);
-        // end of resize; trigger resize event
+      if (this.resizeTo) { clearTimeout(this.resizeTo); }        // end of resize; trigger resize event
         this.resizeTo = setTimeout(function() {
             $window.trigger('resizeEnd');
             // also close map popup
@@ -154,7 +164,7 @@ $(document).ready(function () {
     var img = {
         path: 'images/',
         overview: 'banner/dustduino_',
-    }
+    };
 
     // TODO replace with correct language based on browser location
     Air.t = t.en;
@@ -164,10 +174,9 @@ $(document).ready(function () {
 
 });
 
-/*global Air, Backbone*/
+/*global Air, Backbone, L*/
 
 Air.Routers = Air.Routers || {};
-
 (function () {
     'use strict';
 
@@ -185,6 +194,7 @@ Air.Routers = Air.Routers || {};
             'overview'                          : 'overview',
             'search'                            : 'search',
             'report/:sensor'                    : 'report',
+            'manage'                            : 'edit',
 
             // default route
             '*action'                           : 'reroute'
@@ -195,7 +205,7 @@ Air.Routers = Air.Routers || {};
         execute: function(callback, args) {
             clean();
             this.$container.empty();
-            if (callback) callback.apply(this, args);
+            if (callback) {callback.apply(this, args);}
         },
 
         overview: function() {
@@ -239,10 +249,25 @@ Air.Routers = Air.Routers || {};
             }));
         },
 
+        edit: function() {
+            // TODO should execute on success of fetch on sensor list
+            var id = 'sensor-edit';
+            var html = _.template(JST['app/scripts/templates/edit.ejs']({
+                id: id
+            }));
+            this.$container.html(html);
+
+            views.push(new Air.Views.Edit({
+                id: id,
+                el: $('#' + id)
+            }));
+
+        },
+
         // generate an report for a single sensor's data
         report: function(sensorName) {
             // if no argument, show all sensors for now
-            if (!sensorName) this.reroute();
+            if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
             var collection = new Air.Collections.Sensor();
@@ -770,4 +795,108 @@ Air.Views = Air.Views || {};
             this.$('#header-' + id).addClass('active');
         },
     });
+})();
+
+/*global L*/
+Air.Views = Air.Views || {};
+(function () {
+  'use strict';
+  // just something to switch around our header selection
+  Air.Views.Edit = Backbone.View.extend({
+    events: {
+      'submit form': 'submit'
+    },
+
+    initialize: function() {
+      // Initialize map
+      L.mapbox.accessToken = 'pk.eyJ1Ijoia2FtaWN1dCIsImEiOiJMVzF2NThZIn0.WO0ArcIIzYVioen3HpfugQ';
+      var map = L.mapbox.map('minimap', 'devseed.j586d1hp');
+
+      var marker;
+
+      var $lat = this.$('#latitude');
+      var $lon = this.$('#longitude');
+
+      // Map onload
+      map.on('load', function() {
+        var c = map.getCenter();
+        marker = L.marker(c).addTo(map);
+        $lat.val(c.lat);
+        $lon.val(c.lng);
+      }.bind(this));
+
+      // Map onclick
+      map.on('click', function(e) {
+        $lat.val(e.latlng.lat);
+        $lon.val(e.latlng.lng);
+        marker.setLatLng(e.latlng);
+        map.panTo(e.latlng);
+      }.bind(this));
+
+      // Cache id fields
+      this.fields = ['longitude', 'latitude', 'description', 'email', 'arduino'];
+      this.fields.forEach(function(field) {
+        this['$' + field] = this.$('input[name="' + field + '"]');
+      }.bind(this));
+
+      // Add event listeners to input text fields
+      var $input = $('input');
+      $input.each(function() {
+        $(this).attr('default',$(this).val());
+      });
+      $input.focus(function() {
+        if ($(this).val() === $(this).attr('default')) {
+          $(this).val('');
+        }
+      });
+      $input.blur(function() {
+       var def =  $(this).attr('default');
+       var val = $(this).val();
+        if (def.length > 0 && val.length === 0) {
+          $(this).val(def);
+        }
+      });
+
+      // Add event listeners to latitude/longitude fields
+      $lon.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
+
+      $lat.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
+    },
+
+    submit: function(e) {
+      e.preventDefault();
+
+      //Validate input
+      var valid = true;
+      this.fields.forEach(function(field) {
+        valid = this['$' + field].val().length > 0 && valid;
+      }.bind(this));
+
+      // If valid, send a PUT request
+      if (valid) {
+        var data = {};
+        this.fields.forEach(function(field) {
+          data[field] = this['$' + field].val();
+        });
+        $.ajax({
+          url: 'api.something',
+          type: 'PUT',
+          data: data,
+          success: function() {
+            console.log('success!');
+          }
+        });
+      } else {
+        console.log('Fields not valid.');
+      }
+    },
+  });
 })();
