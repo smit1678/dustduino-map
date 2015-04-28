@@ -814,18 +814,21 @@ Air.Views = Air.Views || {};
 
       var marker;
 
+      var $lat = this.$('#latitude');
+      var $lon = this.$('#longitude');
+
       // Map onload
       map.on('load', function() {
         var c = map.getCenter();
         marker = L.marker(c).addTo(map);
-        this.$('input[name="latitude"]').val(c.lat);
-        this.$('input[name="longitude"]').val(c.lng);
+        $lat.val(c.lat);
+        $lon.val(c.lng);
       }.bind(this));
 
       // Map onclick
       map.on('click', function(e) {
-        this.$('input[name="latitude"]').val(e.latlng.lat);
-        this.$('input[name="longitude"]').val(e.latlng.lng);
+        $lat.val(e.latlng.lat);
+        $lon.val(e.latlng.lng);
         marker.setLatLng(e.latlng);
         map.panTo(e.latlng);
       }.bind(this));
@@ -837,17 +840,16 @@ Air.Views = Air.Views || {};
       }.bind(this));
 
       // Add event listeners to input text fields
-      $('input').each(function() {
+      var $input = $('input');
+      $input.each(function() {
         $(this).attr('default',$(this).val());
       });
-
-      $('input').focus(function() {
-        console.log($(this).val(), $(this).attr('default'));
+      $input.focus(function() {
         if ($(this).val() === $(this).attr('default')) {
           $(this).val('');
         }
       });
-      $('input').blur(function() {
+      $input.blur(function() {
        var def =  $(this).attr('default');
        var val = $(this).val();
         if (def.length > 0 && val.length === 0) {
@@ -856,13 +858,14 @@ Air.Views = Air.Views || {};
       });
 
       // Add event listeners to latitude/longitude fields
-      $('input[name="longitude"').keyup($.debounce(function() {
-        var latlng = [$('input[name="latitude"]').val(),$('input[name="longitude"]').val()];
+      $lon.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
         map.panTo(latlng);
         marker.setLatLng(latlng);
       }, 300));
-      $('input[name="latitude"').keyup($.debounce(function() {
-        var latlng = [$('input[name="latitude"]').val(),$('input[name="longitude"]').val()];
+
+      $lat.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
         map.panTo(latlng);
         marker.setLatLng(latlng);
       }, 300));

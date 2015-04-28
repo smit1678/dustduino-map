@@ -53,8 +53,15 @@
 
 .edit {
     margin-top: 15px;
-    @include medium { margin-top: 35px; }
+    transition: all .2s ease-out;
+    @include medium { margin-top: 25px; }
+}
 
+.expanded-menu .edit {
+    margin-top: 80px;
+       @include medium {
+        margin: 80px 0;
+    }
 }
 
 .edit input:focus {

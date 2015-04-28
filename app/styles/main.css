@@ -614,10 +614,17 @@ button {
   transition: border-color ease-in-out .2s; }
 
 .edit {
-  margin-top: 15px; }
+  margin-top: 15px;
+  transition: all .2s ease-out; }
   @media only screen and (min-width: 480px) {
     .edit {
-      margin-top: 35px; } }
+      margin-top: 25px; } }
+
+.expanded-menu .edit {
+  margin-top: 80px; }
+  @media only screen and (min-width: 480px) {
+    .expanded-menu .edit {
+      margin: 80px 0; } }
 
 .edit input:focus {
   outline: 0; }
@@ -806,7 +813,20 @@ button {
   margin-bottom: 6px; }
 
 .report {
-  margin: 40px 0; }
+  margin: 10px 0;
+  transition: all .2s ease-out; }
+  @media only screen and (min-width: 480px) {
+    .report {
+      margin: 20px 0; } }
+  @media only screen and (min-width: 960px) {
+    .report {
+      margin: 30px 0; } }
+
+.expanded-menu .report {
+  margin-top: 80px; }
+  @media only screen and (min-width: 480px) {
+    .expanded-menu .report {
+      margin: 80px 0; } }
 
 table > thead {
   font-weight: bold; }
