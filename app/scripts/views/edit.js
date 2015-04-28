@@ -89,7 +89,7 @@ Air.Views = Air.Views || {};
         data.lat = data.latitude;
         data.lon = data.longitude; 
         $.ajax({
-          url: 'http://63030708.ngrok.com/api/v1/sensors/update/',
+          url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/update/',
           type: 'PUT',
           contentType: 'application/json',
           data: JSON.stringify(data),
