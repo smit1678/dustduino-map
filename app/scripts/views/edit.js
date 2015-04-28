@@ -80,13 +80,14 @@ Air.Views = Air.Views || {};
       this.fields.forEach(function(field) {
         valid = this['$' + field].val().length > 0 && valid;
       }.bind(this));
-
       // If valid, send a PUT request
       if (valid) {
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
         }.bind(this));
+        data.lat = data.latitude;
+        data.lon = data.longitude; 
         $.ajax({
           url: 'http://63030708.ngrok.com/api/v1/sensors/update/',
           type: 'PUT',
