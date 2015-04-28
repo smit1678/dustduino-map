@@ -86,13 +86,20 @@ Air.Views = Air.Views || {};
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
-        });
+        }.bind(this));
         $.ajax({
-          url: 'api.something',
+          url: 'http://63030708.ngrok.com/api/v1/sensors/update/',
           type: 'PUT',
-          data: data,
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          headers: {
+            'Authorization':'Token ' + data.arduino
+          },
           success: function() {
             console.log('success!');
+          },
+          error: function() {
+            console.log('error');
           }
         });
       } else {
