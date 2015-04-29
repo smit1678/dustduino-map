@@ -80,19 +80,27 @@ Air.Views = Air.Views || {};
       this.fields.forEach(function(field) {
         valid = this['$' + field].val().length > 0 && valid;
       }.bind(this));
-
       // If valid, send a PUT request
       if (valid) {
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
-        });
+        }.bind(this));
+        data.lat = data.latitude;
+        data.lon = data.longitude;
         $.ajax({
-          url: 'api.something',
+          url: Air.api + 'sensors/update/',
           type: 'PUT',
-          data: data,
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          headers: {
+            'Authorization':'Token ' + data.arduino
+          },
           success: function() {
             console.log('success!');
+          },
+          error: function() {
+            console.log('error');
           }
         });
       } else {
