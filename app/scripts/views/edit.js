@@ -87,9 +87,9 @@ Air.Views = Air.Views || {};
           data[field] = this['$' + field].val();
         }.bind(this));
         data.lat = data.latitude;
-        data.lon = data.longitude; 
+        data.lon = data.longitude;
         $.ajax({
-          url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/update/',
+          url: Air.api + 'sensors/update/',
           type: 'PUT',
           contentType: 'application/json',
           data: JSON.stringify(data),
