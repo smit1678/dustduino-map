@@ -1,12 +1,12 @@
 /*global Air, Backbone*/
 
-Air.Model = Air.Model || {};
+Air.Models = Air.Models || {};
 
 (function () {
     'use strict';
 
     // collection for multiple sensors
-    Air.Model.Sensors = Backbone.Model.extend({
+    Air.Models.Sensor = Backbone.Model.extend({
         defaults: {
             id: null,
             sensor_name: '',

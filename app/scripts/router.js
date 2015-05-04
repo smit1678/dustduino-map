@@ -51,27 +51,38 @@ Air.Routers = Air.Routers || {};
 
         search: function() {
             Air.header.select('search');
+
+            // Init search and map views, so we show something
+            // while the data queries.
+
             var id = 'sensor-search';
             var html = _.template(JST['app/scripts/templates/search.ejs']({
                 id: id
             }));
-
             this.$container.html(html);
 
-            views.push(new Air.Views.Search({
+            var sensors = new Air.Collections.Sensors();
+
+            var search = new Air.Views.Search({
                 id: id,
-                el: $('#' + id)
-            }));
+                el: $('#' + id),
+                collection: sensors
+            });
 
-            // falsifying data, use for development purposes only!
-            var collection = new Air.Collections.Sensors();
-
-
-            views.push(new Air.Views.Map({
-                locations: [[-23.6824124,-46.5952992]],
-                collection: collection,
+            var map = new Air.Views.Map({
                 id: 'search-map',
-            }));
+                collection: sensors
+            });
+
+            sensors.fetch({
+                reset: true,
+                success: function(collection) {
+                    console.log(collection);
+                }
+            });
+
+            views.push(search);
+            views.push(map);
         },
 
         edit: function() {

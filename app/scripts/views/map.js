@@ -8,59 +8,61 @@ Air.Views = Air.Views || {};
     Air.Views.Map = Backbone.View.extend({
 
         initialize: function (options) {
-            var $el = $('#' + options.id);
-            this.setElement($el);
+            this.listenToOnce(this.collection, 'reset', this.render);
+            this.setElement($('#' + options.id));
+            this.popupContent = JST['app/scripts/templates/tooltip.ejs'];
+            this.layer = L.featureGroup().on('click', this.click.bind(this));
+            this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
+            this.layer.addTo(this.map);
+            this.map.scrollWheelZoom.disable();
+        },
 
-            //var map = this.map = L.mapbox.map(options.id/*, 'devseed.j586d1hp'*/);
-            var map = this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
-            map.scrollWheelZoom.disable();
-
-            // Set location of the map.
-            // If it's a single point, center on the point.
-            // If multiple points, use map.fitBounds.
-            var locations = options.locations;
-            if (locations.length > 1) {
-                map.fitBounds(locations);
-            } else {
-                map.setView(locations[0], 11);
+        color: function(reading) {
+            if (!reading) {
+                return 'marker-gray';
             }
+        },
 
-            var popupContent = JST['app/scripts/templates/tooltip.ejs'];
-            var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                return L.marker(location, {
-                    icon: L.icon({
-                        iconUrl: 'images/transmit_36.png',
-                        iconSize: [36,36],
-                        className: 'icon-marker',
+        render: function() {
+            // Roughly the default center of Sao Paulo, used as a default.
+            var center = {
+                lat: -23.6824124,
+                lon: -46.5952992
+            };
+
+            var getColor = this.color;
+            var markers = this.collection.map(function(model) {
+                var last = model.get('last_reading');
+                return {
+                    id: model.get('id'),
+                    lat: model.get('lat') || center.lat,
+                    lon: model.get('lon') || center.lon,
+                    last: (last ? last.pm25 : 'n/a'),
+                    colorClass: last
+                }
+            });
+
+            var layer = this.layer;
+            _.each(markers, function(marker) {
+                var iconMarker = L.marker([marker.lat, marker.lon], {
+                    icon: L.divIcon({
+                        className: 'reading-marker ' + marker.colorClass,
+                        html: marker.last,
+                        iconSize: [48, 48]
                     })
-                }).bindPopup(popupContent({
-                    // TODO replace with data from model
-                    name: 'Sensor #123',
-                    path: '123',
-                    location: 'Bus Stop at 780 Fake Road',
-                    src: 'images/fake-station.jpg',
-                    id: options.id,
-                }, { offset: [12,0] }));
+                });
+                iconMarker._code = marker.id;
+                iconMarker.addTo(layer);
+            });
+
+            this.map.fitBounds(_.map(markers, function(marker) {
+                return [marker.lat, marker.lon]
             }));
 
-            // using icon markers, but leaving this in case we want to switch back
-            // var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                // return L.circleMarker(location, { className: 'circle-marker' });
-            // }));
-
-            this.markers = markerLayer;
-
-            setTimeout(function() {
-                markerLayer.addTo(map);
-            }, 600);
-
-            map.on('popupopen', this.popopen.bind(this));
-            map.on('popupclose', this.popclose.bind(this));
-
-            this.popups = [];
-
-            return;
+            return this;
         },
+
+        click: function() {},
 
         popopen: function() {
             var $pop = this.$('.map-pop'),
