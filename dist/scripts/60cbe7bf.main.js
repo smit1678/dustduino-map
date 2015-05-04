@@ -223,12 +223,12 @@ Air.Routers = Air.Routers || {};
 
 
         search: function() {
-            // TODO should execute on success of fetch on sensor list
             Air.header.select('search');
             var id = 'sensor-search';
             var html = _.template(JST['app/scripts/templates/search.ejs']({
                 id: id
             }));
+
             this.$container.html(html);
 
             views.push(new Air.Views.Search({
@@ -237,8 +237,9 @@ Air.Routers = Air.Routers || {};
             }));
 
             // falsifying data, use for development purposes only!
-            var collection = new Air.Collections.Sensor();
-            collection.fakeTrigger();
+            var collection = new Air.Collections.Sensors();
+
+
             views.push(new Air.Views.Map({
                 locations: [[-23.6824124,-46.5952992]],
                 collection: collection,
@@ -267,7 +268,7 @@ Air.Routers = Air.Routers || {};
             if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
+            var collection = new Air.Collections.Sensors();
 
             var html = _.template(JST['app/scripts/templates/report.ejs']({
                 name: 'Sensor #123',
@@ -299,7 +300,7 @@ Air.Routers = Air.Routers || {};
             Air.header.select('overview');
 
             var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
+            var collection = new Air.Collections.Sensors();
 
             var html = _.template(JST['app/scripts/templates/overview.ejs']({
                 name: 'sensor',
@@ -353,37 +354,46 @@ Air.Models = Air.Models || {};
 
 /*global Air, Backbone*/
 
+Air.Model = Air.Model || {};
+
+(function () {
+    'use strict';
+
+    // collection for multiple sensors
+    Air.Model.Sensors = Backbone.Model.extend({
+        defaults: {
+            id: null,
+            sensor_name: '',
+
+            // Default is the center of Sao Paulo
+            lat: -23.6824124,
+            lon: -46.5952992,
+
+            address: '',
+            serial: null,
+            account: null,
+            last_reading: {}
+        }
+    });
+})();
+
+/*global Air, Backbone*/
+
 Air.Collections = Air.Collections || {};
 
 (function () {
     'use strict';
 
-    // collection file for a single sensor
-    Air.Collections.Sensor = Backbone.Collection.extend({
-        model: Air.Models.Reading,
-        //url: 'http://thawing-cove-4522.herokuapp.com/api/readings/',
-
-        // fake function to mock a real collection
-        // development purposes only
-        fakeTrigger: function() {
-            var hours = 72,
-                records = [],
-                i = 0;
-
-            for(; i < hours; ++i) {
-                records.push({
-                    owner: 'arduino',
-                    created: i,
-                    pm10_reading: Math.round(Math.random() * 500),
-                    pm25_reading: Math.round(Math.random() * 500),
-                    pm10: Math.round(Math.random() * 100),
-                    pm25: Math.round(Math.random() * 100),
-                });
-            }
-
-            this.reset(records);
-        },
+    // collection for multiple sensors
+    Air.Collections.Sensors = Backbone.Collection.extend({
+        model: Air.Models.Sensor,
+        url: 'http://thawing-cove-4522.herokuapp.com/api/readings/',
+        parse: function(resp) {
+            console.log(resp)
+            return resp
+        }
     });
+
 })();
 
 /*global Air, Backbone, JST*/

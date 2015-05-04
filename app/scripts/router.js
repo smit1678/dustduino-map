@@ -50,12 +50,12 @@ Air.Routers = Air.Routers || {};
 
 
         search: function() {
-            // TODO should execute on success of fetch on sensor list
             Air.header.select('search');
             var id = 'sensor-search';
             var html = _.template(JST['app/scripts/templates/search.ejs']({
                 id: id
             }));
+
             this.$container.html(html);
 
             views.push(new Air.Views.Search({
@@ -64,8 +64,9 @@ Air.Routers = Air.Routers || {};
             }));
 
             // falsifying data, use for development purposes only!
-            var collection = new Air.Collections.Sensor();
-            collection.fakeTrigger();
+            var collection = new Air.Collections.Sensors();
+
+
             views.push(new Air.Views.Map({
                 locations: [[-23.6824124,-46.5952992]],
                 collection: collection,
@@ -94,7 +95,7 @@ Air.Routers = Air.Routers || {};
             if (!sensorName)  { this.reroute(); }
 
             var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
+            var collection = new Air.Collections.Sensors();
 
             var html = _.template(JST['app/scripts/templates/report.ejs']({
                 name: 'Sensor #123',
@@ -126,7 +127,7 @@ Air.Routers = Air.Routers || {};
             Air.header.select('overview');
 
             var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
+            var collection = new Air.Collections.Sensors();
 
             var html = _.template(JST['app/scripts/templates/overview.ejs']({
                 name: 'sensor',
