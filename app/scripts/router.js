@@ -118,9 +118,10 @@ Air.Routers = Air.Routers || {};
                     views.push(new Air.Views.Chart({
                         el: $('#report-chart'),
                         collection: readings,
-                        height: 176
+                        height: 176,
+                        resize: true,
+                        id: 'report-chart'
                     }));
-                    console.log(readings);
                     readings.fetch({ reset: true });
                 }.bind(this)
             });
