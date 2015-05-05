@@ -35,8 +35,6 @@ Air.Routers = Air.Routers || {};
         overview: function() {
             Air.header.select('overview');
 
-            var collection = new Air.Collections.Sensor();
-
             var html = _.template(JST['app/scripts/templates/overview.ejs']({
                 name: 'sensor',
                 overview: Air.t.overview,
@@ -122,7 +120,8 @@ Air.Routers = Air.Routers || {};
                         collection: readings,
                         height: 176
                     }));
-                    readings.fetch();
+                    console.log(readings);
+                    readings.fetch({ reset: true });
                 }.bind(this)
             });
         },

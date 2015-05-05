@@ -9,14 +9,15 @@ Air.Collections = Air.Collections || {};
     Air.Collections.Readings = Backbone.Collection.extend({
         model: Air.Models.Reading,
         url: 'http://brazil-sensor.herokuapp.com/api/v1/readings',
-
         initialize: function(options) {
             if (options.id) {
                 this.url += ('/?sensor=' + options.id);
             }
         },
         parse: function(resp) {
-            return resp.results;
+            if (resp.results) {
+                return resp.results;
+            } else return resp;
         }
     });
 
