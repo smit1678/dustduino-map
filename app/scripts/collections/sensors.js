@@ -10,7 +10,10 @@ Air.Collections = Air.Collections || {};
         model: Air.Models.Sensor,
         url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/',
         parse: function(resp) {
-            return resp.results;
+            if (resp.results) {
+                return resp.results;
+            }
+            else return resp
         }
     });
 

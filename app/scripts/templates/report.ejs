@@ -1,11 +1,17 @@
 <div class="container report">
     <div class="row align-bottom-container">
         <div class="col-sm-12 col-lg-10 col-lg-offset-1 pop-chart">
-            <h3 class="sensor-number tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
-            <div>
-                <p class="sensor-location"><strong>Location: </strong> <%= location %></p>
-            </div>
-            <div class="mask" id="<%= id %>-chart"></div>
+            <h3 class="sensor-number tooltip-sensor-name"><%= sensor_name %></h3>
+
+            <% if (description) { %>
+            <p class="sensor-location"><strong>Location: </strong><%= description %></p>
+            <% } %>
+
+            <% if (!geocoded) { %>
+            <p><strong>Warning: </strong>Location data is missing for this sensor.</p>
+            <% } %>
+
+            <div class="mask" id="report-<%= id %>-chart"></div>
         </div>
     </div>
 
