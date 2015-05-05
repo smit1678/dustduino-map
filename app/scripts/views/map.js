@@ -17,10 +17,16 @@ Air.Views = Air.Views || {};
             this.map.scrollWheelZoom.disable();
         },
 
+        // TODO currently all markers are one color, unless they have no value,
+        // in which case they are deactivated gray.
+        //
+        // If we want to create some sort of color scale that goes with the
+        // pollution value, that would go here.
         color: function(reading) {
             if (!reading) {
-                return 'marker-gray';
+                return 'null';
             }
+            return '';
         },
 
         render: function() {
@@ -46,7 +52,7 @@ Air.Views = Air.Views || {};
             _.each(markers, function(marker) {
                 var iconMarker = L.marker([marker.lat, marker.lon], {
                     icon: L.divIcon({
-                        className: 'reading-marker ' + marker.colorClass,
+                        className: 'circle-marker ' + marker.colorClass,
                         html: marker.last,
                         iconSize: [48, 48]
                     })

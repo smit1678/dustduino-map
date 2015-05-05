@@ -6,10 +6,18 @@
 .half-map { height: 100%; }
 
 .circle-marker {
-    fill: #7F7D78;
-    stroke: #fefefe;
-    fill-opacity: .8;
-    stroke-opacity: .4;
+    font-family: Arvo, Georgia, serif;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #FEFEFE;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 50%;
+    opacity: .9;
+    filter: alpha(opacity=9);
+    font-size: 18px;
+
+    background: #988838;
+
     cursor: pointer;
 
     -webkit-animation: fadein .3s;
@@ -17,10 +25,9 @@
     animation: fadein .3s;
 }
 
-.icon-marker {
-    -webkit-animation: fadein .3s;
-    -moz-animation: fadein .3s;
-    animation: fadein .3s;
+.circle-marker.null {
+    background: #6E6E6E;
+    opacity: .8;
 }
 
 @keyframes fadein {
