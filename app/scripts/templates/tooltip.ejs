@@ -1,14 +1,9 @@
 <div class="map-pop">
     <div class="row">
-        <div class="col-sm-12 col-lg-4 pop-image">
-            <img src="<%= src %>" />
-        </div>
-        <div class="col-sm-12 col-lg-8 pop-chart">
-            <h3 class="tooltip-sensor-name" id="<%= id %>-pop"><%= name %></h3>
-            <div class="desktop">
-                <p><strong>Location: </strong> <%= location %></p>
-                <p><a href="#/report/<%- path %>">Generate report</a></p>
-            </div>
+        <div class="col-sm-12 pop-chart">
+            <h3 class="sensor-number" id="<%= id %>-pop"><%= name %></h3>
+            <p><strong>Location: </strong> <%= location %></p>
+            <p><a href="#/report/<%- path %>">Generate report</a></p>
             <div class="mask" id="<%= id %>-chart" style="height:120px;"></div>
         </div>
     </div>

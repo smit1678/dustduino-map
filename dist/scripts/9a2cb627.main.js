@@ -34,9 +34,7 @@ this["JST"]["app/scripts/templates/report.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-md-4 col-lg-3 col-lg-offset-1 pop-image align-bottom-items">\n            <img src="' +
-((__t = ( src )) == null ? '' : __t) +
-'" />\n        </div>\n        <div class="col-sm-12 col-md-8 col-lg-7 pop-chart align-bottom-items">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
+__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-lg-10 col-lg-offset-1 pop-chart">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-pop">' +
 ((__t = ( name )) == null ? '' : __t) +
@@ -85,17 +83,15 @@ this["JST"]["app/scripts/templates/tooltip.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 col-lg-4 pop-image">\n            <img src="' +
-((__t = ( src )) == null ? '' : __t) +
-'" />\n        </div>\n        <div class="col-sm-12 col-lg-8 pop-chart">\n            <h3 class="tooltip-sensor-name" id="' +
+__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 pop-chart">\n            <h3 class="sensor-number" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-pop">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</h3>\n            <div class="desktop">\n                <p><strong>Location: </strong> ' +
+'</h3>\n            <p><strong>Location: </strong> ' +
 ((__t = ( location )) == null ? '' : __t) +
-'</p>\n                <p><a href="#/report/' +
+'</p>\n            <p><a href="#/report/' +
 __e( path ) +
-'">Generate report</a></p>\n            </div>\n            <div class="mask" id="' +
+'">Generate report</a></p>\n            <div class="mask" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '-chart" style="height:120px;"></div>\n        </div>\n    </div>\n</div>\n';
 
@@ -107,6 +103,7 @@ return __p
 
 (function() {
     window.Air = {
+        api: 'http://brazil-sensor.herokuapp.com/api/v1/',
         Models: {},
         Collections: {},
         Views: {},
@@ -879,19 +876,27 @@ Air.Views = Air.Views || {};
       this.fields.forEach(function(field) {
         valid = this['$' + field].val().length > 0 && valid;
       }.bind(this));
-
       // If valid, send a PUT request
       if (valid) {
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
-        });
+        }.bind(this));
+        data.lat = data.latitude;
+        data.lon = data.longitude;
         $.ajax({
-          url: 'api.something',
+          url: Air.api + 'sensors/update/',
           type: 'PUT',
-          data: data,
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          headers: {
+            'Authorization':'Token ' + data.arduino
+          },
           success: function() {
             console.log('success!');
+          },
+          error: function() {
+            console.log('error');
           }
         });
       } else {
