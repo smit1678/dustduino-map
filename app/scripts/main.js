@@ -3,6 +3,7 @@
 
 (function() {
     window.Air = {
+        api: 'http://brazil-sensor.herokuapp.com/api/v1/',
         Models: {},
         Collections: {},
         Views: {},

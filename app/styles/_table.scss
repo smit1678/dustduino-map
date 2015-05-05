@@ -1,0 +1,38 @@
+.report {
+    margin: 10px 0;
+    transition: all .2s ease-out;
+     @include medium {
+        margin: 20px 0;
+    }
+    @include large {
+        margin: 30px 0;
+    }
+}
+
+.expanded-menu .report {
+    margin-top: 80px;
+       @include medium {
+        margin: 80px 0;
+    }
+}
+
+table {
+}
+
+table > thead {
+    font-weight: bold;
+}
+
+table > thead td {
+    border-bottom: 1px solid #eee;
+}
+
+table td {
+    text-align: center;
+    padding: 12px 0;
+}
+
+.table-full {
+    width: 100%;
+    table-layout: fixed;
+}

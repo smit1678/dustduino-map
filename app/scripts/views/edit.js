@@ -15,18 +15,21 @@ Air.Views = Air.Views || {};
 
       var marker;
 
+      var $lat = this.$('#latitude');
+      var $lon = this.$('#longitude');
+
       // Map onload
       map.on('load', function() {
         var c = map.getCenter();
         marker = L.marker(c).addTo(map);
-        this.$('input[name="latitude"]').val(c.lat);
-        this.$('input[name="longitude"]').val(c.lng);
+        $lat.val(c.lat);
+        $lon.val(c.lng);
       }.bind(this));
 
       // Map onclick
       map.on('click', function(e) {
-        this.$('input[name="latitude"]').val(e.latlng.lat);
-        this.$('input[name="longitude"]').val(e.latlng.lng);
+        $lat.val(e.latlng.lat);
+        $lon.val(e.latlng.lng);
         marker.setLatLng(e.latlng);
         map.panTo(e.latlng);
       }.bind(this));
@@ -37,6 +40,36 @@ Air.Views = Air.Views || {};
         this['$' + field] = this.$('input[name="' + field + '"]');
       }.bind(this));
 
+      // Add event listeners to input text fields
+      var $input = $('input');
+      $input.each(function() {
+        $(this).attr('default',$(this).val());
+      });
+      $input.focus(function() {
+        if ($(this).val() === $(this).attr('default')) {
+          $(this).val('');
+        }
+      });
+      $input.blur(function() {
+       var def =  $(this).attr('default');
+       var val = $(this).val();
+        if (def.length > 0 && val.length === 0) {
+          $(this).val(def);
+        }
+      });
+
+      // Add event listeners to latitude/longitude fields
+      $lon.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
+
+      $lat.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
     },
 
     submit: function(e) {
@@ -47,19 +80,27 @@ Air.Views = Air.Views || {};
       this.fields.forEach(function(field) {
         valid = this['$' + field].val().length > 0 && valid;
       }.bind(this));
-
       // If valid, send a PUT request
       if (valid) {
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
-        });
+        }.bind(this));
+        data.lat = data.latitude;
+        data.lon = data.longitude;
         $.ajax({
-          url: 'api.something',
+          url: Air.api + 'sensors/update/',
           type: 'PUT',
-          data: data,
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          headers: {
+            'Authorization':'Token ' + data.arduino
+          },
           success: function() {
             console.log('success!');
+          },
+          error: function() {
+            console.log('error');
           }
         });
       } else {

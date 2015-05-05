@@ -1,0 +1,129 @@
+h1, h2, h3, h4, h5, h6,
+p, div, span, section, lable, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    color: #333;
+    height: 100%;
+    font-family: Arvo, Georgia, serif;
+    position: relative;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body,
+.close,
+.what,
+.header,
+.modal,
+.phosphorescent,
+.deck {
+    background-color: #fff;
+}
+
+.input-block,
+.content-block {
+    padding: 0.5em 0;
+    transition: all .2s ease-out;
+
+    @include medium {
+        padding: 1em 1.2em;
+    }
+    @include large {
+        padding: 1em 0;
+    }
+}
+
+.content-block2 {
+    padding: 0.5em 0;
+    @include medium {
+        padding: 1em 1.2em;
+    }
+    @include large {
+        padding: 1em 0;
+    }
+}
+
+.main-input {
+    margin-top: 15px;
+    padding-top:15px;
+    padding-bottom:20px;
+    width:100%;
+    position:absolute;
+    z-index:1000;
+    background: rgba(255,255,255,.6);
+
+    transition: all .2s ease-out;
+}
+
+.inverted {
+    background-color: #333;
+    color: #fefefe;
+}
+
+.overlay {
+    margin-top: -30%;
+    @include large {
+        margin-top: -15%;
+    }
+}
+
+.leaflet-top .leaflet-control {
+    margin-top: 120px;
+    transition: all .2s ease-out;
+}
+
+/* Setting styles for opening, closing the menu on mobile */
+.expanded-menu .main-input {
+    margin-top: 70px;
+}
+
+.expanded-menu .leaflet-top .leaflet-control {
+    margin-top: 175px;
+}
+
+.expanded-menu .content-block {
+    margin-top: 60px;
+}
+
+#air {
+    padding-top: 80px;
+    height: 100%;
+    @include large { padding-top: 60px; }
+}
+
+.mask {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.drag {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+}
+
+.main-image {
+    @include medium {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}

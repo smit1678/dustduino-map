@@ -3,15 +3,22 @@
 
 #modal {
     position: fixed;
-    z-index:100;
+    z-index: 100;
     top: 0px;
     left: 0px;
-    height:50%;
-    width:95%;
-    background:rgba(255, 255, 255, .95);
+    height: 50%;
+    width: 95%;
+    background: rgba(255, 255, 255, .95);
     box-shadow: 1px 1px 1px 1px #888888;
 
     border-radius: 5px;
+
+    @include medium {
+        width: 50%;
+    }
+    @include large {
+        width: 40%;
+    }
 }
 
 #signup-header {
@@ -24,17 +31,22 @@
 #signup-header h2 {
     color: #000;
     font-size: 1.3em;
-    margin:0 auto;
+    margin: 0 auto;
     font-style: normal;
     font-weight: bold;
     text-align: center;
+
+    @include large {
+        font-size: 1.2em;
+        float: none;
+    }
 }
 
 #modal p {
     color: #000;
     font-size: 1em;
     padding: 25px 30px 25px 30px;
-    line-height:25px;
+    line-height: 25px;
     margin: 0;
     text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
     text-shadow: none;
@@ -54,14 +66,14 @@
 #modal .txt-fld {
     position: relative;
     width: 100%;
-    height:80px;
+    height: 80px;
     padding: 0px 30px;
     text-align: right;
 }
 
 #modal .txt-fld label {
     display: block;
-    width:100%
+    width: 100%;
     float: left;
     padding-top: 8px;
     color: #222;
