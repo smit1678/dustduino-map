@@ -1,15 +1,5 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/scripts/templates/deck.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="deck">\n    <div class="container">\n        <div class="row">\n\n            <div class="col-sm-6 col-lg-2 deck-hat">\n                <h3 class="gray">Local Time</h3>\n                <div id="local-time"></div>\n            </div>\n\n            <div class="col-sm-6 col-lg-2" id="scorecard">\n                <h3 class="gray deck-hat">Condition now</h3>\n                <h3 id="condition-now" class="phosphorescent"></h3>\n            </div>\n\n            <div class="col-sm-1 col-lg-1 desktop deck-hat">\n                <div id="hourly-yaxis">\n                    <span id="hourly-max"></span>\n                    <span id="hourly-mid"></span>\n                    <span id="hourly-min"></span>\n                </div>\n            </div>\n            <div class="col-sm-12 col-lg-7 desktop deck-hat">\n                <h3 class="gray">Hourly Conditions <label>(drag to show more)<label></h3>\n                <div id="hourly-chart" class="mask"></div>\n            </div>\n\n        </div>\n    </div>\n</div>\n\n';
-
-}
-return __p
-};
-
 this["JST"]["app/scripts/templates/edit.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -17,16 +7,6 @@ with (obj) {
 __p += '<div class="container edit" id="' +
 ((__t = ( id )) == null ? '' : __t) +
 '">\n  <div class="row">\n   <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">\n      <label class="main-label">Click on the map to add your location</label>\n      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>\n    </div>\n  \t<div class="col-sm-12 col-md-12 col-lg-6 form-padding">\n      <label class="main-label">Manage your device </label>\n      <form>\n        <div class="form-group">\n          <label for="latitude">Latitude</label>\n          <input type="text" name="latitude" value="0.0" id="latitude">\n        </div>\n        <div class="form-group">\n          <label for="longitude">Longitude</label>\n          <input type="text" name="longitude" value="0.0" id="longitude">\n        </div>\n        <div class="form-group">\n          <label for="description">Description</label>\n          <input type="text" name="description" value="Enter a description of your device" id="description">\n        </div>\n        <div class="form-group">\n          <label for="email">Email</label>\n          <input type="email" name="email" id="email" value="Enter your email here" />\n        </div>\n        <div class="form-group">\n          <label for="arduino">Arduino Token</label>\n          <input type="text" name="arduino" value="Enter Arduino Token" id="arduino">\n        </div>\n        <input type="submit" class="edit-submit" value="Submit">\n      </form>\n    </div>   \n  </div>\n</div>';
-
-}
-return __p
-};
-
-this["JST"]["app/scripts/templates/modal.ejs"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="modal" id="initial-modal">\n    <div class="in-modal">\n        <p>Remote sensors in 40 locations relay hourly data on the quality of air in <span class="orange">São Paulo</span>, a city of 11.3 million residents.</p>\n        <span class="close">&#10006;</span>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -123,6 +103,7 @@ return __p
 
 (function() {
     window.Air = {
+        api: 'http://brazil-sensor.herokuapp.com/api/v1/',
         Models: {},
         Collections: {},
         Views: {},
@@ -449,30 +430,6 @@ Air.Views = Air.Views || {};
             }));
         },
 
-    });
-
-})();
-
-/*global Air, Backbone, JST*/
-
-Air.Views = Air.Views || {};
-
-(function () {
-    'use strict';
-
-    Air.Views.Modal = Backbone.View.extend({
-        events: { 'click .close': 'close' },
-        initialize: function() {
-            var close = $.proxy(this.close, this);
-            $('body').one('click', close);
-        },
-
-        close: function() {
-            var $this = this.$el;
-            $this.fadeOut(200, function() {
-                $this.remove();
-            });
-        }
     });
 
 })();
@@ -854,18 +811,21 @@ Air.Views = Air.Views || {};
 
       var marker;
 
+      var $lat = this.$('#latitude');
+      var $lon = this.$('#longitude');
+
       // Map onload
       map.on('load', function() {
         var c = map.getCenter();
         marker = L.marker(c).addTo(map);
-        this.$('input[name="latitude"]').val(c.lat);
-        this.$('input[name="longitude"]').val(c.lng);
+        $lat.val(c.lat);
+        $lon.val(c.lng);
       }.bind(this));
 
       // Map onclick
       map.on('click', function(e) {
-        this.$('input[name="latitude"]').val(e.latlng.lat);
-        this.$('input[name="longitude"]').val(e.latlng.lng);
+        $lat.val(e.latlng.lat);
+        $lon.val(e.latlng.lng);
         marker.setLatLng(e.latlng);
         map.panTo(e.latlng);
       }.bind(this));
@@ -876,6 +836,36 @@ Air.Views = Air.Views || {};
         this['$' + field] = this.$('input[name="' + field + '"]');
       }.bind(this));
 
+      // Add event listeners to input text fields
+      var $input = $('input');
+      $input.each(function() {
+        $(this).attr('default',$(this).val());
+      });
+      $input.focus(function() {
+        if ($(this).val() === $(this).attr('default')) {
+          $(this).val('');
+        }
+      });
+      $input.blur(function() {
+       var def =  $(this).attr('default');
+       var val = $(this).val();
+        if (def.length > 0 && val.length === 0) {
+          $(this).val(def);
+        }
+      });
+
+      // Add event listeners to latitude/longitude fields
+      $lon.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
+
+      $lat.keyup($.debounce(function() {
+        var latlng = [$lat.val(), $lon.val()];
+        map.panTo(latlng);
+        marker.setLatLng(latlng);
+      }, 300));
     },
 
     submit: function(e) {
@@ -886,19 +876,27 @@ Air.Views = Air.Views || {};
       this.fields.forEach(function(field) {
         valid = this['$' + field].val().length > 0 && valid;
       }.bind(this));
-
       // If valid, send a PUT request
       if (valid) {
         var data = {};
         this.fields.forEach(function(field) {
           data[field] = this['$' + field].val();
-        });
+        }.bind(this));
+        data.lat = data.latitude;
+        data.lon = data.longitude;
         $.ajax({
-          url: 'api.something',
+          url: Air.api + 'sensors/update/',
           type: 'PUT',
-          data: data,
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          headers: {
+            'Authorization':'Token ' + data.arduino
+          },
           success: function() {
             console.log('success!');
+          },
+          error: function() {
+            console.log('error');
           }
         });
       } else {
