@@ -759,11 +759,17 @@ button {
     .map-pop {
       width: 600px; } }
 
-.pop-image > img {
-  width: 100%; }
-
 .leaflet-popup-content {
-  width: auto !important; }
+  width: auto !important;
+  font-family: Arvo, Georgia, serif; }
+
+.map-pop-data {
+  width: 100%;
+  font-size: 14px;
+  table-layout: fixed td;
+    table-layout-width: 25%; }
+  .map-pop-data thead td {
+    font-weight: bold; }
 
 /****************************************************/
 /************** Chart *******************************/

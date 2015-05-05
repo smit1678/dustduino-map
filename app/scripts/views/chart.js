@@ -23,7 +23,9 @@ Air.Views = Air.Views || {};
 
             if (options.render) {
                 this.render();
-            } else if (this.collection) {
+            }
+
+            else if (this.collection) {
                 this.listenTo(this.collection, 'reset', this.render);
             }
         },

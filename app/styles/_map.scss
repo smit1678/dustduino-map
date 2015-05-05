@@ -54,6 +54,22 @@
         width: 600px;
     }
 }
-.pop-image > img { width: 100%; }
 
-.leaflet-popup-content { width: auto !important; }
+.leaflet-popup-content {
+    width: auto !important;
+    font-family: Arvo, Georgia, serif;
+}
+
+.map-pop-data {
+    width: 100%;
+    font-size: 14px;
+    table-layout: fixed
+
+    td {
+        width: 25%;
+    }
+
+    thead td {
+        font-weight: bold;
+    }
+}

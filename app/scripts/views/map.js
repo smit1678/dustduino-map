@@ -8,13 +8,20 @@ Air.Views = Air.Views || {};
     Air.Views.Map = Backbone.View.extend({
 
         initialize: function (options) {
+            // Listen for server response.
             this.listenToOnce(this.collection, 'reset', this.render);
+
+            // Set internal $
             this.setElement($('#' + options.id));
-            this.popupContent = JST['app/scripts/templates/tooltip.ejs'];
+
+            // Layer group and map; add layer to map.
             this.layer = L.featureGroup().on('click', this.click.bind(this));
             this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
             this.layer.addTo(this.map);
-            this.map.scrollWheelZoom.disable();
+
+            // Cache popup and the graphs that we will draw in them.
+            this.popup = L.popup();
+            this.popupContent = JST['app/scripts/templates/tooltip.ejs'];
         },
 
         // TODO currently all markers are one color, unless they have no value,
@@ -22,11 +29,11 @@ Air.Views = Air.Views || {};
         //
         // If we want to create some sort of color scale that goes with the
         // pollution value, that would go here.
-        color: function(reading) {
-            if (!reading) {
-                return 'null';
+        color: function(model) {
+            if (model.get('has_last')) {
+                return '';
             }
-            return '';
+            return 'null';
         },
 
         render: function() {
@@ -38,13 +45,12 @@ Air.Views = Air.Views || {};
 
             var getColor = this.color;
             var markers = this.collection.map(function(model) {
-                var last = model.get('last_reading');
                 return {
                     id: model.get('id'),
                     lat: model.get('lat') || center.lat,
                     lon: model.get('lon') || center.lon,
-                    last: (last ? last.pm25 : 'n/a'),
-                    colorClass: last
+                    last: model.get('last_reading').pm25,
+                    colorClass: getColor(model)
                 }
             });
 
@@ -68,29 +74,17 @@ Air.Views = Air.Views || {};
             return this;
         },
 
-        click: function() {},
-
-        popopen: function() {
-            var $pop = this.$('.map-pop'),
-                $container = $pop.find('#' + this.id + '-chart'),
-                name = $pop.find('#' + this.id + '-pop').text();
-
-            this.popups.push(new Air.Views.Chart({
-                collection: this.collection,
-                el: $container,
-                id: this.id + '-chart',
-                render: true,
-            }));
-
-        },
-
-        popclose: function() {
-            _.each(this.popups, function(popup) {
-                popup.remove();
+        click: function(e) {
+            var id = e.layer._code;
+            var model = this.collection.find(function(model) {
+                return model.get('id') === id;
             });
-            this.popups = [];
+            if (!model) {
+                return false;
+            }
+            this.popup.setLatLng([model.get('lat'), model.get('lon')])
+                .setContent(this.popupContent(model.attributes))
+                .openOn(this.map);
         }
-
     });
-
 })();

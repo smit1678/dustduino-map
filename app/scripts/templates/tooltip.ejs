@@ -1,10 +1,42 @@
 <div class="map-pop">
     <div class="row">
         <div class="col-sm-12 pop-chart">
-            <h3 class="sensor-number" id="<%= id %>-pop"><%= name %></h3>
-            <p><strong>Location: </strong> <%= location %></p>
-            <p><a href="#/report/<%- path %>">Generate report</a></p>
-            <div class="mask" id="<%= id %>-chart" style="height:120px;"></div>
+            <h3 class="sensor-number"><%= sensor_name %></h3>
+
+            <p><a href="#/report/<%- id %>">Generate report</a></p>
+
+            <% if (description) { %>
+            <p><strong>Location: </strong> <%= description %></p>
+            <% } %>
+
+            <% if (!geocoded) { %>
+            <p><strong>Warning: </strong>Location data is missing for this sensor.</p>
+            <% } %>
+
+            <% if (has_last) { %>
+            <table class="map-pop-data">
+                <thead>
+                    <tr>
+                        <td>PM 2.5</td>
+                        <td>PM 2.5 count</td>
+                        <td>PM 10</td>
+                        <td>PM 10 count</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><%= last_reading.pm25 %></td>
+                        <td><%= last_reading.pm25count %></td>
+                        <td><%= last_reading.pm10 %></td>
+                        <td><%= last_reading.pm10count %></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <% } else { %>
+            <p><strong>Warning: </strong>Data from the last hour does not exist. Please ensure sensor is functioning.</p>
+            <% } %>
+
         </div>
     </div>
 </div>
