@@ -89,7 +89,7 @@ Air.Views = Air.Views || {};
         data.lat = data.latitude;
         data.lon = data.longitude;
         $.ajax({
-          url: Air.api + 'sensors/update/',
+          url: Air.api + '/sensors/update/',
           type: 'PUT',
           contentType: 'application/json',
           data: JSON.stringify(data),

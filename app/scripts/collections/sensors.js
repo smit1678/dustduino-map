@@ -8,7 +8,7 @@ Air.Collections = Air.Collections || {};
     // collection for multiple sensors
     Air.Collections.Sensors = Backbone.Collection.extend({
         model: Air.Models.Sensor,
-        url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/',
+        url: Air.api + '/sensors/',
         parse: function(resp) {
             if (resp.results) {
                 return resp.results;

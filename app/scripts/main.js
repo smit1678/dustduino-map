@@ -3,13 +3,12 @@
 
 (function() {
     window.Air = {
-        api: 'http://brazil-sensor.herokuapp.com/api/v1/',
+        api: 'http://brazil-sensor.herokuapp.com/api/v1',
         Models: {},
         Collections: {},
         Views: {},
         Routers: {},
         init: function () {
-            'use strict';
 
             $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
 

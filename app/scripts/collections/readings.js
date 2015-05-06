@@ -8,7 +8,7 @@ Air.Collections = Air.Collections || {};
     // collection for multiple sensors
     Air.Collections.Readings = Backbone.Collection.extend({
         model: Air.Models.Reading,
-        url: 'http://brazil-sensor.herokuapp.com/api/v1/readings',
+        url:  Air.api + '/readings',
         initialize: function(options) {
             if (options.id) {
                 this.url += ('/?sensor=' + options.id);
