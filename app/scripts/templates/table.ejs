@@ -1,10 +1,17 @@
 <table class="table-full">
     <thead><tr>
-        <% _.each(tableHeaders, function(hed) { %>
+        <% _.each(headers, function(hed) { %>
             <td><%- hed %></td>
         <% }); %>
     </tr></thead>
     <tbody>
-        <%= tableContent %>
+
+        <% _.each(rows, function(row) { %>
+        <tr>
+            <% _.each(row, function(cell) { %>
+                <td><%= cell %></td>
+            <% }); %>
+        </tr>
+        <% }); %>
     </tbody>
 </table>

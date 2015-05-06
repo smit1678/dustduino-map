@@ -8,81 +8,83 @@ Air.Views = Air.Views || {};
     Air.Views.Map = Backbone.View.extend({
 
         initialize: function (options) {
-            var $el = $('#' + options.id);
-            this.setElement($el);
+            // Listen for server response.
+            this.listenToOnce(this.collection, 'reset', this.render);
 
-            //var map = this.map = L.mapbox.map(options.id/*, 'devseed.j586d1hp'*/);
-            var map = this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
-            map.scrollWheelZoom.disable();
+            // Set internal $
+            this.setElement($('#' + options.id));
 
-            // Set location of the map.
-            // If it's a single point, center on the point.
-            // If multiple points, use map.fitBounds.
-            var locations = options.locations;
-            if (locations.length > 1) {
-                map.fitBounds(locations);
-            } else {
-                map.setView(locations[0], 11);
+            // Layer group and map; add layer to map.
+            this.layer = L.featureGroup().on('click', this.click.bind(this));
+            this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
+            this.layer.addTo(this.map);
+
+            // Cache popup and the graphs that we will draw in them.
+            this.popup = L.popup();
+            this.popupContent = JST['app/scripts/templates/tooltip.ejs'];
+        },
+
+        // TODO currently all markers are one color, unless they have no value,
+        // in which case they are deactivated gray.
+        //
+        // If we want to create some sort of color scale that goes with the
+        // pollution value, that would go here.
+        color: function(model) {
+            if (model.get('has_last')) {
+                return '';
             }
-
-            var popupContent = JST['app/scripts/templates/tooltip.ejs'];
-            var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                return L.marker(location, {
-                    icon: L.icon({
-                        iconUrl: 'images/transmit_36.png',
-                        iconSize: [36,36],
-                        className: 'icon-marker',
-                    })
-                }).bindPopup(popupContent({
-                    // TODO replace with data from model
-                    name: 'Sensor #123',
-                    path: '123',
-                    location: 'Bus Stop at 780 Fake Road',
-                    src: 'images/fake-station.jpg',
-                    id: options.id,
-                }, { offset: [12,0] }));
-            }));
-
-            // using icon markers, but leaving this in case we want to switch back
-            // var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                // return L.circleMarker(location, { className: 'circle-marker' });
-            // }));
-
-            this.markers = markerLayer;
-
-            setTimeout(function() {
-                markerLayer.addTo(map);
-            }, 600);
-
-            map.on('popupopen', this.popopen.bind(this));
-            map.on('popupclose', this.popclose.bind(this));
-
-            this.popups = [];
-
-            return;
+            return 'null';
         },
 
-        popopen: function() {
-            var $pop = this.$('.map-pop'),
-                $container = $pop.find('#' + this.id + '-chart'),
-                name = $pop.find('#' + this.id + '-pop').text();
+        render: function() {
+            // Roughly the default center of Sao Paulo, used as a default.
+            var center = {
+                lat: -23.6824124,
+                lon: -46.5952992
+            };
 
-            this.popups.push(new Air.Views.Chart({
-                collection: this.collection,
-                el: $container,
-                id: this.id + '-chart',
-                render: true,
-            }));
-
-        },
-
-        popclose: function() {
-            _.each(this.popups, function(popup) {
-                popup.remove();
+            var getColor = this.color;
+            var markers = this.collection.map(function(model) {
+                return {
+                    id: model.get('id'),
+                    lat: model.get('lat') || center.lat,
+                    lon: model.get('lon') || center.lon,
+                    last: model.get('last_reading').pm25,
+                    colorClass: getColor(model)
+                }
             });
-            this.popups = [];
+
+            var layer = this.layer;
+            _.each(markers, function(marker) {
+                var iconMarker = L.marker([marker.lat, marker.lon], {
+                    icon: L.divIcon({
+                        className: 'circle-marker ' + marker.colorClass,
+                        html: marker.last,
+                        iconSize: [48, 48]
+                    })
+                });
+                iconMarker._code = marker.id;
+                iconMarker.addTo(layer);
+            });
+
+            this.map.fitBounds(_.map(markers, function(marker) {
+                return [marker.lat, marker.lon]
+            }));
+
+            return this;
+        },
+
+        click: function(e) {
+            var id = e.layer._code;
+            var model = this.collection.find(function(model) {
+                return model.get('id') === id;
+            });
+            if (!model) {
+                return false;
+            }
+            this.popup.setLatLng([model.get('lat'), model.get('lon')])
+                .setContent(this.popupContent(model.attributes))
+                .openOn(this.map);
         }
-
     });
-
 })();

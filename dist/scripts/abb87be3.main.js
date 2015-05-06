@@ -32,17 +32,22 @@ return __p
 
 this["JST"]["app/scripts/templates/report.ejs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-lg-10 col-lg-offset-1 pop-chart">\n            <h3 class="sensor-number tooltip-sensor-name" id="' +
-((__t = ( id )) == null ? '' : __t) +
-'-pop">' +
-((__t = ( name )) == null ? '' : __t) +
-'</h3>\n            <div>\n                <p class="sensor-location"><strong>Location: </strong> ' +
-((__t = ( location )) == null ? '' : __t) +
-'</p>\n            </div>\n            <div class="mask" id="' +
-((__t = ( id )) == null ? '' : __t) +
-'-chart"></div>\n        </div>\n    </div>\n\n    <div class="row" style="margin-top: 1em;">\n        <div class="co-sm-12 col-lg-10 col-lg-offset-1">\n            <div id="report-table"></div>\n        </div>\n    </div>\n</div>\n\n';
+__p += '<div class="container report">\n    <div class="row align-bottom-container">\n        <div class="col-sm-12 col-lg-10 col-lg-offset-1 pop-chart">\n            <h3 class="sensor-number tooltip-sensor-name">' +
+((__t = ( sensor_name )) == null ? '' : __t) +
+'</h3>\n\n            ';
+ if (description) { ;
+__p += '\n            <p class="sensor-location"><strong>Location: </strong>' +
+((__t = ( description )) == null ? '' : __t) +
+'</p>\n            ';
+ } ;
+__p += '\n\n            ';
+ if (!geocoded) { ;
+__p += '\n            <p><strong>Warning: </strong>Location data is missing for this sensor.</p>\n            ';
+ } ;
+__p += '\n\n            <div class="mask" id="report-chart"></div>\n        </div>\n    </div>\n\n    <div class="row" style="margin-top: 1em;">\n        <div class="co-sm-12 col-lg-10 col-lg-offset-1">\n            <div id="report-table"></div>\n        </div>\n    </div>\n</div>\n\n';
 
 }
 return __p
@@ -66,14 +71,22 @@ var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<table class="table-full">\n    <thead><tr>\n        ';
- _.each(tableHeaders, function(hed) { ;
+ _.each(headers, function(hed) { ;
 __p += '\n            <td>' +
 __e( hed ) +
 '</td>\n        ';
  }); ;
-__p += '\n    </tr></thead>\n    <tbody>\n        ' +
-((__t = ( tableContent )) == null ? '' : __t) +
-'\n    </tbody>\n</table>\n';
+__p += '\n    </tr></thead>\n    <tbody>\n\n        ';
+ _.each(rows, function(row) { ;
+__p += '\n        <tr>\n            ';
+ _.each(row, function(cell) { ;
+__p += '\n                <td>' +
+((__t = ( cell )) == null ? '' : __t) +
+'</td>\n            ';
+ }); ;
+__p += '\n        </tr>\n        ';
+ }); ;
+__p += '\n    </tbody>\n</table>\n';
 
 }
 return __p
@@ -81,19 +94,38 @@ return __p
 
 this["JST"]["app/scripts/templates/tooltip.ejs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 pop-chart">\n            <h3 class="sensor-number" id="' +
-((__t = ( id )) == null ? '' : __t) +
-'-pop">' +
-((__t = ( name )) == null ? '' : __t) +
-'</h3>\n            <p><strong>Location: </strong> ' +
-((__t = ( location )) == null ? '' : __t) +
-'</p>\n            <p><a href="#/report/' +
-__e( path ) +
-'">Generate report</a></p>\n            <div class="mask" id="' +
-((__t = ( id )) == null ? '' : __t) +
-'-chart" style="height:120px;"></div>\n        </div>\n    </div>\n</div>\n';
+__p += '<div class="map-pop">\n    <div class="row">\n        <div class="col-sm-12 pop-chart">\n            <h3 class="sensor-number">' +
+((__t = ( sensor_name )) == null ? '' : __t) +
+'</h3>\n\n            <p><a href="#/report/' +
+__e( id ) +
+'">Generate report</a></p>\n\n            ';
+ if (description) { ;
+__p += '\n            <p><strong>Location: </strong> ' +
+((__t = ( description )) == null ? '' : __t) +
+'</p>\n            ';
+ } ;
+__p += '\n\n            ';
+ if (!geocoded) { ;
+__p += '\n            <p><strong>Warning: </strong>Location data is missing for this sensor.</p>\n            ';
+ } ;
+__p += '\n\n            ';
+ if (has_last) { ;
+__p += '\n            <table class="map-pop-data">\n                <thead>\n                    <tr>\n                        <td>PM 2.5</td>\n                        <td>PM 2.5 count</td>\n                        <td>PM 10</td>\n                        <td>PM 10 count</td>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr>\n                        <td>' +
+((__t = ( last_reading.pm25 )) == null ? '' : __t) +
+'</td>\n                        <td>' +
+((__t = ( last_reading.pm25count )) == null ? '' : __t) +
+'</td>\n                        <td>' +
+((__t = ( last_reading.pm10 )) == null ? '' : __t) +
+'</td>\n                        <td>' +
+((__t = ( last_reading.pm10count )) == null ? '' : __t) +
+'</td>\n                    </tr>\n                </tbody>\n            </table>\n\n            ';
+ } else { ;
+__p += '\n            <p><strong>Warning: </strong>Data from the last hour does not exist. Please ensure sensor is functioning.</p>\n            ';
+ } ;
+__p += '\n\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p
@@ -208,9 +240,6 @@ Air.Routers = Air.Routers || {};
         overview: function() {
             Air.header.select('overview');
 
-            var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
-
             var html = _.template(JST['app/scripts/templates/overview.ejs']({
                 name: 'sensor',
                 overview: Air.t.overview,
@@ -223,27 +252,39 @@ Air.Routers = Air.Routers || {};
 
 
         search: function() {
-            // TODO should execute on success of fetch on sensor list
             Air.header.select('search');
+
+            // Init search and map views, so we show something
+            // while the data queries.
+
             var id = 'sensor-search';
             var html = _.template(JST['app/scripts/templates/search.ejs']({
                 id: id
             }));
             this.$container.html(html);
 
-            views.push(new Air.Views.Search({
-                id: id,
-                el: $('#' + id)
-            }));
+            var sensors = new Air.Collections.Sensors();
 
-            // falsifying data, use for development purposes only!
-            var collection = new Air.Collections.Sensor();
-            collection.fakeTrigger();
-            views.push(new Air.Views.Map({
-                locations: [[-23.6824124,-46.5952992]],
-                collection: collection,
+            var search = new Air.Views.Search({
+                id: id,
+                el: $('#' + id),
+                collection: sensors
+            });
+
+            var map = new Air.Views.Map({
                 id: 'search-map',
-            }));
+                collection: sensors
+            });
+
+            sensors.fetch({
+                reset: true,
+                success: function(collection) {
+                    console.log(collection);
+                }
+            });
+
+            views.push(search);
+            views.push(map);
         },
 
         edit: function() {
@@ -258,71 +299,37 @@ Air.Routers = Air.Routers || {};
                 id: id,
                 el: $('#' + id)
             }));
-
         },
 
         // generate an report for a single sensor's data
-        report: function(sensorName) {
+        report: function(id) {
             // if no argument, show all sensors for now
-            if (!sensorName)  { this.reroute(); }
+            if (id == undefined || isNaN(id))  { this.reroute(); }
 
-            var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
+            var sensors = new Air.Collections.Sensors();
+            sensors.url += id;
+            sensors.fetch({
+                success: function(collection, resp) {
 
-            var html = _.template(JST['app/scripts/templates/report.ejs']({
-                name: 'Sensor #123',
-                location: 'Bus Stop at 780 Fake Road',
-                src: 'images/fake-station.jpg',
-                id: 'report'
-            }));
-            this.$container.html(html);
+                    var model = collection.at(0);
+                    var html = _.template(JST['app/scripts/templates/report.ejs'](model.attributes));
+                    this.$container.html(html);
 
-            collection.fakeTrigger();
-            var $table = $('#report-table');
-            views.push(new Air.Views.Table({
-                el: $table,
-                collection: collection,
-                render: true
-            }));
-
-            views.push(new Air.Views.Chart({
-                collection: collection,
-                el: $('#report-chart'),
-                id: 'report-chart',
-                render: true,
-                height: 176,
-            }));
-
-        },
-
-        all: function() {
-            Air.header.select('overview');
-
-            var pageSize = 144;
-            var collection = new Air.Collections.Sensor();
-
-            var html = _.template(JST['app/scripts/templates/overview.ejs']({
-                name: 'sensor',
-                overview: Air.t.overview,
-                banner: Air.img.path + Air.img.overview + Air._getSize(),
-                tagline: Air.t.tagline,
-                description: Air.t.description,
-            }));
-            this.$container.html(html);
-
-            /*
-            collection.fetch({
-                data: {sensor: 'sensor', hours: pageSize, format: 'json'},
-                success: function() {
-                    views.push(new Air.Views.Map({
-                        locations: [[-23.6824124,-46.5952992]],
-                        collection: collection,
-                        id: 'sensor-map',
+                    var readings = new Air.Collections.Readings({ id: id });
+                    views.push(new Air.Views.Table({
+                        el: $('#report-table'),
+                        collection: readings
                     }));
-                },
-                reset: true,
+                    views.push(new Air.Views.Chart({
+                        el: $('#report-chart'),
+                        collection: readings,
+                        height: 176,
+                        resize: true,
+                        id: 'report-chart'
+                    }));
+                    readings.fetch({ reset: true });
+                }.bind(this)
             });
-            */
         },
 
         // default catch-all route
@@ -353,37 +360,101 @@ Air.Models = Air.Models || {};
 
 /*global Air, Backbone*/
 
+Air.Models = Air.Models || {};
+
+(function () {
+    'use strict';
+
+
+    // collection for multiple sensors
+    Air.Models.Sensor = Backbone.Model.extend({
+        initialize: function() {
+
+            // If lat/lon are missing, set a sensible default so we can map it,
+            // but make sure to point out that it's lacking geo data.
+            if (!this.attributes.lat || !this.attributes.lon) {
+                this.set('lat', this.defaults.lat)
+                this.set('lon', this.defaults.lon)
+                this.set('geocoded', false);
+            }
+
+            // Similar to location, if there's no last reading then
+            // set the defaults to n/a for display, and show that it has no reading.
+            if (!this.attributes.last_reading) {
+                this.set('last_reading', this.defaults.last_reading);
+                this.set('has_last', false);
+            }
+        },
+
+
+        defaults: {
+            id: null,
+            sensor_name: '',
+
+            // Default is the center of Sao Paulo
+            lat: -23.6824124,
+            lon: -46.5952992,
+
+            address: '',
+            serial: null,
+            account: null,
+            last_reading: {
+                pm10: 'n/a',
+                pm10count: 'n/a',
+                pm25: 'n/a',
+                pm25count: 'n/a'
+            },
+
+            geocoded: true,
+            has_last: true
+        }
+    });
+})();
+
+/*global Air, Backbone*/
+
 Air.Collections = Air.Collections || {};
 
 (function () {
     'use strict';
 
-    // collection file for a single sensor
-    Air.Collections.Sensor = Backbone.Collection.extend({
-        model: Air.Models.Reading,
-        //url: 'http://thawing-cove-4522.herokuapp.com/api/readings/',
-
-        // fake function to mock a real collection
-        // development purposes only
-        fakeTrigger: function() {
-            var hours = 72,
-                records = [],
-                i = 0;
-
-            for(; i < hours; ++i) {
-                records.push({
-                    owner: 'arduino',
-                    created: i,
-                    pm10_reading: Math.round(Math.random() * 500),
-                    pm25_reading: Math.round(Math.random() * 500),
-                    pm10: Math.round(Math.random() * 100),
-                    pm25: Math.round(Math.random() * 100),
-                });
+    // collection for multiple sensors
+    Air.Collections.Sensors = Backbone.Collection.extend({
+        model: Air.Models.Sensor,
+        url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/',
+        parse: function(resp) {
+            if (resp.results) {
+                return resp.results;
             }
-
-            this.reset(records);
-        },
+            else return resp
+        }
     });
+
+})();
+
+/*global Air, Backbone*/
+
+Air.Collections = Air.Collections || {};
+
+(function () {
+    'use strict';
+
+    // collection for multiple sensors
+    Air.Collections.Readings = Backbone.Collection.extend({
+        model: Air.Models.Reading,
+        url: 'http://brazil-sensor.herokuapp.com/api/v1/readings',
+        initialize: function(options) {
+            if (options.id) {
+                this.url += ('/?sensor=' + options.id);
+            }
+        },
+        parse: function(resp) {
+            if (resp.results) {
+                return resp.results;
+            } else return resp;
+        }
+    });
+
 })();
 
 /*global Air, Backbone, JST*/
@@ -396,43 +467,40 @@ Air.Views = Air.Views || {};
     Air.Views.Table = Backbone.View.extend({
 
         initialize: function(options) {
-
-            if (options.render) {
-                this.render();
-            }
-            else if (this.collection) {
-                this.listenTo(this.collection, 'reset', this.render);
-            }
-
+            this.listenToOnce(this.collection, 'reset', this.render);
         },
 
         template: JST['app/scripts/templates/table.ejs'],
 
         render: function() {
 
-            var models = this.collection.models,
-                i = 0, ii = models.length;
+            var properties = ['hour_code', 'pm10', 'pm10count', 'pm25', 'pm25count'];
+            var headers = ['Created', 'PM 10 reading', 'PM 10 count', 'PM 2.5 reading', 'PM 2.5 count'];
 
-            var headers = ['created', 'pm10', 'pm10_reading', 'pm25', 'pm25_reading'];
+            // fix our headers to show properly formatted dates
+            var input = d3.time.format('%Y%m%d%H');
+            var output = d3.time.format('%H:00 %d/%m/%y');
 
-			var headerDisplay = ['created', 'pm10', 'pm10 reading', 'pm25', 'pm25 reading'];
-			
-            var table = [];
-            for(; i < ii; ++i) {
-                table.push(_.map(headers, function(hed) {
-                    return '<td>' + models[i].attributes[hed] + '</td>';
-                }).join(''));
-            };
+            var table = this.collection.map(function(model) {
+                return _.map(properties, function(p, i) {
+                    if (i === 0) {
+                        return output(input.parse(model.get(p)));
+                    }
+                    return round(model.get(p), 2);
+                });
+            });
 
             this.$el.html(this.template({
-                tableHeaders: headerDisplay,
-                tableContent: '<tr>' + table.join('</tr><tr>') + '</tr>'
+                headers: headers,
+                rows: table
             }));
         },
-
     });
-
 })();
+
+function round (value, decimals) {
+    return isNaN(value) || value === null ? null : Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+};
 
 Air.Views = Air.Views || {};
 (function () {
@@ -463,83 +531,85 @@ Air.Views = Air.Views || {};
     Air.Views.Map = Backbone.View.extend({
 
         initialize: function (options) {
-            var $el = $('#' + options.id);
-            this.setElement($el);
+            // Listen for server response.
+            this.listenToOnce(this.collection, 'reset', this.render);
 
-            //var map = this.map = L.mapbox.map(options.id/*, 'devseed.j586d1hp'*/);
-            var map = this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
-            map.scrollWheelZoom.disable();
+            // Set internal $
+            this.setElement($('#' + options.id));
 
-            // Set location of the map.
-            // If it's a single point, center on the point.
-            // If multiple points, use map.fitBounds.
-            var locations = options.locations;
-            if (locations.length > 1) {
-                map.fitBounds(locations);
-            } else {
-                map.setView(locations[0], 11);
+            // Layer group and map; add layer to map.
+            this.layer = L.featureGroup().on('click', this.click.bind(this));
+            this.map = L.mapbox.map(options.id, 'devseed.j586d1hp');
+            this.layer.addTo(this.map);
+
+            // Cache popup and the graphs that we will draw in them.
+            this.popup = L.popup();
+            this.popupContent = JST['app/scripts/templates/tooltip.ejs'];
+        },
+
+        // TODO currently all markers are one color, unless they have no value,
+        // in which case they are deactivated gray.
+        //
+        // If we want to create some sort of color scale that goes with the
+        // pollution value, that would go here.
+        color: function(model) {
+            if (model.get('has_last')) {
+                return '';
             }
-
-            var popupContent = JST['app/scripts/templates/tooltip.ejs'];
-            var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                return L.marker(location, {
-                    icon: L.icon({
-                        iconUrl: 'images/transmit_36.png',
-                        iconSize: [36,36],
-                        className: 'icon-marker',
-                    })
-                }).bindPopup(popupContent({
-                    // TODO replace with data from model
-                    name: 'Sensor #123',
-                    path: '123',
-                    location: 'Bus Stop at 780 Fake Road',
-                    src: 'images/fake-station.jpg',
-                    id: options.id,
-                }, { offset: [12,0] }));
-            }));
-
-            // using icon markers, but leaving this in case we want to switch back
-            // var markerLayer = L.layerGroup(_.map(locations, function(location) {
-                // return L.circleMarker(location, { className: 'circle-marker' });
-            // }));
-
-            this.markers = markerLayer;
-
-            setTimeout(function() {
-                markerLayer.addTo(map);
-            }, 600);
-
-            map.on('popupopen', this.popopen.bind(this));
-            map.on('popupclose', this.popclose.bind(this));
-
-            this.popups = [];
-
-            return;
+            return 'null';
         },
 
-        popopen: function() {
-            var $pop = this.$('.map-pop'),
-                $container = $pop.find('#' + this.id + '-chart'),
-                name = $pop.find('#' + this.id + '-pop').text();
+        render: function() {
+            // Roughly the default center of Sao Paulo, used as a default.
+            var center = {
+                lat: -23.6824124,
+                lon: -46.5952992
+            };
 
-            this.popups.push(new Air.Views.Chart({
-                collection: this.collection,
-                el: $container,
-                id: this.id + '-chart',
-                render: true,
-            }));
-
-        },
-
-        popclose: function() {
-            _.each(this.popups, function(popup) {
-                popup.remove();
+            var getColor = this.color;
+            var markers = this.collection.map(function(model) {
+                return {
+                    id: model.get('id'),
+                    lat: model.get('lat') || center.lat,
+                    lon: model.get('lon') || center.lon,
+                    last: model.get('last_reading').pm25,
+                    colorClass: getColor(model)
+                }
             });
-            this.popups = [];
+
+            var layer = this.layer;
+            _.each(markers, function(marker) {
+                var iconMarker = L.marker([marker.lat, marker.lon], {
+                    icon: L.divIcon({
+                        className: 'circle-marker ' + marker.colorClass,
+                        html: marker.last,
+                        iconSize: [48, 48]
+                    })
+                });
+                iconMarker._code = marker.id;
+                iconMarker.addTo(layer);
+            });
+
+            this.map.fitBounds(_.map(markers, function(marker) {
+                return [marker.lat, marker.lon]
+            }));
+
+            return this;
+        },
+
+        click: function(e) {
+            var id = e.layer._code;
+            var model = this.collection.find(function(model) {
+                return model.get('id') === id;
+            });
+            if (!model) {
+                return false;
+            }
+            this.popup.setLatLng([model.get('lat'), model.get('lon')])
+                .setContent(this.popupContent(model.attributes))
+                .openOn(this.map);
         }
-
     });
-
 })();
 
 /*global Air, Backbone, JST*/
@@ -565,20 +635,19 @@ Air.Views = Air.Views || {};
                 this.listenTo(this.collection, 'error', this.errorHandler);
             }
 
-            if (options.render) {
-                this.render();
-            } else if (this.collection) {
-                this.listenTo(this.collection, 'reset', this.render);
-            }
+            this.listenToOnce(this.collection, 'reset', this.render);
         },
 
         render: function () {
 
             var hours = this.collection.length,
                 days = hours / 24,
-                margin = this.margin = [15, 15, 0, 15],
+                margin = this.margin = [10, 15, 45, 15],
                 width = this.width = this.$el.width() * days - margin[1] - margin[3],
                 height = this.height - margin[0] - margin[2];
+
+            var input = d3.time.format('%Y%m%d%H');
+            var output = d3.time.format('%H:00 %d/%m/%y');
 
             this.$el.css('height', height + margin[0] + margin[2]);
 
@@ -589,7 +658,6 @@ Air.Views = Air.Views || {};
             var drag = d3.behavior.drag()
                 .on('drag', this.dragmove.bind(this))
                 .on('dragend', this.dragend.bind(this));
-
 
             //*********** init **************
             var base = this.base = d3.select('#' + this.id).append('svg:svg')
@@ -602,20 +670,19 @@ Air.Views = Air.Views || {};
                 .attr('class', 'bar-chart')
                 .attr('transform', 'translate(' + margin[3] + ',' + margin[0] + ')')
 
-            var valid = _.filter(this.collection.pluck('pm10_reading').concat(this.collection.pluck('pm25_reading')),
-                                 function(reading) { return reading !== null });
+            var valid = this.collection.pluck('pm10').concat(this.collection.pluck('pm25'));
 
             var max = d3.max(valid);
 
             var x = this.x = d3.scale.linear()
                 .domain([0, hours])
-                .range([0, width]);
+                .range([width, 0]);
 
             var y = d3.scale.linear()
                 .range([height, 0])
                 .domain([0, max]);
 
-            var dblWidth = x(1) - x(0),
+            var dblWidth = x(0) - x(1),
                 barWidth = Math.floor(dblWidth / 2) - 2;
 
             if (barWidth < 0) barWidth = Math.floor(dblWidth / 2) || 1;
@@ -623,9 +690,10 @@ Air.Views = Air.Views || {};
             //*********** axis **************
 
             var ticks = [];
-            _.each(this.collection.models, function(model, i) {
-                if (model.attributes.hour % 6 === 0) {
-                    ticks.push({hour: model.attributes.hour + ':00' , index: i});
+            this.collection.each(function(model, i) {
+                var hour = model.get('hour_code');
+                if (hour.slice(8) % 6 === 0) {
+                    ticks.push({hour: output(input.parse(hour)) , index: i});
                 }
             });
 
@@ -634,13 +702,23 @@ Air.Views = Air.Views || {};
                 .attr('transform', 'translate(' + margin[3] + ',' + (height + margin[0]) + ')')
                 .selectAll('.tick')
                 .data(ticks)
-              .enter().append('text')
+              .enter().append('g')
+                .attr('transform', function(d) {
+                    return 'translate(' + x(d.index) + ',32)'
+                })
+
+            this.xAxis.append('text')
                 .attr('class', 'tick')
                 .attr('text-anchor', 'middle')
-                .attr('transform', function(d) {
-                    return 'translate(' + x(d.index) + ',14)'
-                })
                 .text(function(d) { return d.hour });
+
+            this.xAxis.append('line')
+                .attr('x1', 0)
+                .attr('x2', 0)
+                .attr('y1', -25)
+                .attr('y2', -15)
+                .style('stroke-width', 1)
+                .style('stroke', '#666');
 
             /*
             $('#hourly-max').html(Math.ceil(max) + ' &ndash;');
@@ -650,15 +728,15 @@ Air.Views = Air.Views || {};
 
             //*********** tips **************
 
-            var template = _.template('<h3><%= date %></h3><p>PM 2.5: <%= pm25 %><br />PM10: <%= pm10 %></p>');
+            var template = _.template('<h3><%= date %></h3><p>PM 2.5: <%= pm25 %><br />PM 10: <%= pm10 %></p>');
 
             var tip = d3.tip()
                 .attr('class', 'd3-tip')
-                .html(function(d) {
+                .html(function(model) {
                     return template({
-                        date: ['August', d.get('day'), d.get('hour') + ':00'].join(' '),
-                        pm25: d.get('pm25'),
-                        pm10: d.get('pm10')
+                        date: output(input.parse(model.get('hour_code'))),
+                        pm25: d3.round(model.get('pm25'), 2),
+                        pm10: d3.round(model.get('pm10'), 2),
                     });
                 });
 
@@ -690,15 +768,15 @@ Air.Views = Air.Views || {};
 
             pm25.transition()
                 .duration(200)
-                .delay(function(d, i) { return (hours - i) * 30 })
-                .attr('y', function(d) { return y(d.get('pm25_reading'))})
-                .attr('height', function(d) { return height - y(d.get('pm25_reading'))});
+                .delay(function(d, i) { return (hours - i) * 10 })
+                .attr('y', function(d) { return y(d.get('pm25'))})
+                .attr('height', function(d) { return height - y(d.get('pm25'))});
 
             pm10.transition()
                 .duration(200)
-                .delay(function(d, i) { return (hours - i) * 30 })
-                .attr('y', function(d) { return y(d.get('pm10_reading'))})
-                .attr('height', function(d) { return height - y(d.get('pm10_reading'))});
+                .delay(function(d, i) { return (hours - i) * 10 })
+                .attr('y', function(d) { return y(d.get('pm10'))})
+                .attr('height', function(d) { return height - y(d.get('pm10'))});
 
             this.bars = [pm25, pm10];
         },
@@ -767,7 +845,7 @@ Air.Views = Air.Views || {};
 
             this.xAxis
                 .attr('transform', function(d) {
-                    return 'translate(' + x(d.index) + ',14)'
+                    return 'translate(' + x(d.index) + ',32)'
                 })
 
             // calculate roughly where we were before
