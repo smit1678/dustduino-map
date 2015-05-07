@@ -1,10 +1,13 @@
 <div class="container edit" id="<%= id %>">
   <div class="row">
-   <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">
+    <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">
       <label class="main-label">Click on the map to add your location</label>
       <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>
     </div>
-  	<div class="col-sm-12 col-md-12 col-lg-6 form-padding">
+    <div class="col-sm-12 col-md-12 col-lg-6 form-padding">
+      <div class='notify' id="message-box">
+        <p id="notify-message"></p>
+      </div>
       <label class="main-label">Manage your device </label>
       <form>
         <div class="form-group">
@@ -29,6 +32,6 @@
         </div>
         <input type="submit" class="edit-submit" value="Submit">
       </form>
-    </div>   
+    </div>
   </div>
 </div>
