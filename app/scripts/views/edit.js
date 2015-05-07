@@ -58,20 +58,20 @@ Air.Views = Air.Views || {};
     notify: function(err) {
       var classToAdd = '';
       if (err) {
-        //Red notification 
+        //Red notification
         $('#message-box p').text(err);
-        classToAdd = 'notify-fail'; 
+        classToAdd = 'notify-fail';
       } else {
         // Green notification
         $('#message-box p').text('Update was successful!');
-        classToAdd = 'notify-success'; 
+        classToAdd = 'notify-success';
       }
       $('#message-box').addClass(classToAdd);
-      setTimeout(function (){ 
+      setTimeout(function (){
          $('#message-box').removeClass(classToAdd);
       }, 3000);
     },
-  
+
 
     submit: function(e) {
       e.preventDefault();
