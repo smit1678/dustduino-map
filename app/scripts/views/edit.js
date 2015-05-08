@@ -40,23 +40,6 @@ Air.Views = Air.Views || {};
         this['$' + field] = this.$('input[name="' + field + '"]');
       }.bind(this));
 
-      // Add event listeners to input text fields
-      var $input = $('input');
-      $input.each(function() {
-        $(this).attr('default',$(this).val());
-      });
-      $input.focus(function() {
-        if ($(this).val() === $(this).attr('default')) {
-          $(this).val('');
-        }
-      });
-      $input.blur(function() {
-       var def =  $(this).attr('default');
-       var val = $(this).val();
-        if (def.length > 0 && val.length === 0) {
-          $(this).val(def);
-        }
-      });
 
       // Add event listeners to latitude/longitude fields
       $lon.keyup($.debounce(function() {
@@ -71,6 +54,24 @@ Air.Views = Air.Views || {};
         marker.setLatLng(latlng);
       }, 300));
     },
+
+    notify: function(err) {
+      var classToAdd = '';
+      if (err) {
+        //Red notification
+        $('#message-box p').text(err);
+        classToAdd = 'notify-fail';
+      } else {
+        // Green notification
+        $('#message-box p').text('Update was successful!');
+        classToAdd = 'notify-success';
+      }
+      $('#message-box').addClass(classToAdd);
+      setTimeout(function (){
+         $('#message-box').removeClass(classToAdd);
+      }, 3000);
+    },
+
 
     submit: function(e) {
       e.preventDefault();
@@ -97,14 +98,15 @@ Air.Views = Air.Views || {};
             'Authorization':'Token ' + data.arduino
           },
           success: function() {
+            this.notify();
             console.log('success!');
-          },
+          }.bind(this),
           error: function() {
-            console.log('error');
-          }
+            this.notify('Error updating sensor');
+          }.bind(this)
         });
       } else {
-        console.log('Fields not valid.');
+        this.notify('Fields not valid');
       }
     },
   });

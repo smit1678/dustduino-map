@@ -626,6 +626,29 @@ button {
     .expanded-menu .edit {
       margin: 80px 0; } }
 
+.edit .notify {
+  display: none;
+  width: 100%;
+  border: 1px solid transparent;
+  font-family: Arvo, Georgia, serif;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px; }
+  .edit .notify p {
+    font-size: 14px; }
+
+.edit .notify-success {
+  display: block;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6; }
+
+.edit .notify-fail {
+  display: block;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1; }
+
 .edit input:focus {
   outline: 0; }
 

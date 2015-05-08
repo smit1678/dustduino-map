@@ -2,152 +2,179 @@
 /************** Inputs ******************************/
 
 .search-input {
-    display: inline-block;
-    float: left;
-    width: 70%;
-    height: 40px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 24px;
-    background-color: #FFF;
-    background-image: none;
-    border: 1px solid #CCC;
+  display: inline-block;
+  float: left;
+  width: 70%;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #FFF;
+  background-image: none;
+  border: 1px solid #CCC;
 
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 
-    transition: border-color ease-in-out .2s;
+  transition: border-color ease-in-out .2s;
 
-    @include medium {
-        width: 80%;
-        margin: 0 auto;
-    }
+  @include medium {
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 
 .search-submit {
-    display: inline-block;
-    float: left;
-    height: 40px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 24px;
-    background-color: #988838;
-    color: #FEFEFE;
-    background-image: none;
-    border: 1px solid transparent;
+  display: inline-block;
+  float: left;
+  height: 40px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #988838;
+  color: #FEFEFE;
+  background-image: none;
+  border: 1px solid transparent;
 
-    ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
+  ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 
-    transition: border-color ease-in-out .2s;
+  transition: border-color ease-in-out .2s;
 }
 
 .edit {
-    margin-top: 15px;
-    transition: all .2s ease-out;
-    @include medium { margin-top: 25px; }
+  margin-top: 15px;
+  transition: all .2s ease-out;
+  @include medium { margin-top: 25px; }
 }
 
 .expanded-menu .edit {
-    margin-top: 80px;
-       @include medium {
-        margin: 80px 0;
-    }
+  margin-top: 80px;
+  @include medium {
+    margin: 80px 0;
+  }
+}
+
+.edit .notify {
+  display:none;
+  width: 100%;
+  border: 1px solid transparent;
+  font-family: Arvo, Georgia, serif;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.edit .notify-success {
+  display:block;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.edit .notify-fail {
+  display: block;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
 }
 
 .edit input:focus {
-    outline: 0;
+  outline: 0;
 }
 
 .edit form input[type=text]{
-    font-family: Arvo, Georgia, serif;
-    min-width: 200px;
-    width: 100%;
-    height:30px;
-    color:#aaa;
-    font-size:.9rem;
-    padding-left:8px;
+  font-family: Arvo, Georgia, serif;
+  min-width: 200px;
+  width: 100%;
+  height:30px;
+  color:#aaa;
+  font-size:.9rem;
+  padding-left:8px;
 }
 .edit form input[type=email]{
-    font-family: Arvo, Georgia, serif;
-    min-width: 200px;
-    width: 100%;
-    height:30px;
-    color:#aaa;
-    font-size:.9rem;
-    padding-left:8px;
+  font-family: Arvo, Georgia, serif;
+  min-width: 200px;
+  width: 100%;
+  height:30px;
+  color:#aaa;
+  font-size:.9rem;
+  padding-left:8px;
 }
 
 .edit .main-label {
-    margin-top: 10px;
-    margin-bottom: 25px;
-    font-size:1.1rem;
-    font-weight:bold;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  font-size:1.1rem;
+  font-weight:bold;
 }
 
 .edit label {
-    margin-top: 25px;
-    font-size:1.1rem;
+  margin-top: 25px;
+  font-size:1.1rem;
 }
 .edit form input[type=submit] {
-    font-family: Arvo, Georgia, serif;
-    font-size:1rem;
-    display: inline-block;
-    float: right;
-    height: 50px;
-    padding: 6px 12px;
-    line-height: 18px;
-    background-color: #988838;
-    color: #FEFEFE;
-    background-image: none;
-    border: 1px solid transparent;
-    margin-top: 30px;
+  font-family: Arvo, Georgia, serif;
+  font-size:1rem;
+  display: inline-block;
+  float: right;
+  height: 50px;
+  padding: 6px 12px;
+  line-height: 18px;
+  background-color: #988838;
+  color: #FEFEFE;
+  background-image: none;
+  border: 1px solid transparent;
+  margin-top: 30px;
 
-    ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
+  ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
 
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
-    border-radius: 4px;
-    transition: border-color ease-in-out .2s;
+  border-radius: 4px;
+  transition: border-color ease-in-out .2s;
 }
 
 .edit .leaflet-top .leaflet-control {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .form-padding{
-    padding: 0px 30px 0px 30px;
-    margin-top:25px;
-    margin-bottom:25px;
-    @include medium {
-	padding: 0px 45px;
-    }
-    @include large {
-	padding: 0px 75px 0px 35px;
-	margin-top: 0px;
-    }
+  padding: 0px 30px 0px 30px;
+  margin-top:25px;
+  margin-bottom:25px;
+  @include medium {
+    padding: 0px 45px;
+  }
+  @include large {
+    padding: 0px 75px 0px 35px;
+    margin-top: 0px;
+  }
 }
 
 .map-padding{
-    padding: 0px 30px 0px 30px;
-    @include medium {
-	padding: 0px 45px;
-    }
-    @include large {
-	padding: 0px 35px 0px 75px;
-    }
+  padding: 0px 30px 0px 30px;
+  @include medium {
+    padding: 0px 45px;
+  }
+  @include large {
+    padding: 0px 35px 0px 75px;
+  }
 }
