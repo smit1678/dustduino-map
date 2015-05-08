@@ -6,7 +6,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="container edit" id="' +
 ((__t = ( id )) == null ? '' : __t) +
-'">\n  <div class="row">\n   <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">\n      <label class="main-label">Click on the map to add your location</label>\n      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>\n    </div>\n  \t<div class="col-sm-12 col-md-12 col-lg-6 form-padding">\n      <label class="main-label">Manage your device </label>\n      <form>\n        <div class="form-group">\n          <label for="latitude">Latitude</label>\n          <input type="text" name="latitude" value="0.0" id="latitude">\n        </div>\n        <div class="form-group">\n          <label for="longitude">Longitude</label>\n          <input type="text" name="longitude" value="0.0" id="longitude">\n        </div>\n        <div class="form-group">\n          <label for="description">Description</label>\n          <input type="text" name="description" value="Enter a description of your device" id="description">\n        </div>\n        <div class="form-group">\n          <label for="email">Email</label>\n          <input type="email" name="email" id="email" value="Enter your email here" />\n        </div>\n        <div class="form-group">\n          <label for="arduino">Arduino Token</label>\n          <input type="text" name="arduino" value="Enter Arduino Token" id="arduino">\n        </div>\n        <input type="submit" class="edit-submit" value="Submit">\n      </form>\n    </div>   \n  </div>\n</div>';
+'">\n  <div class="row">\n    <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">\n      <label class="main-label">Click on the map to add your location</label>\n      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>\n    </div>\n    <div class="col-sm-12 col-md-12 col-lg-6 form-padding">\n      <div class=\'notify\' id="message-box">\n        <p id="notify-message"></p>\n      </div>\n      <label class="main-label">Manage your device </label>\n      <form>\n        <div class="form-group">\n          <label for="latitude">Latitude</label>\n          <input type="text" name="latitude" placeholder="0.0" id="latitude">\n        </div>\n        <div class="form-group">\n          <label for="longitude">Longitude</label>\n          <input type="text" name="longitude" placeholder="0.0" id="longitude">\n        </div>\n        <div class="form-group">\n          <label for="description">Description</label>\n          <input type="text" name="description" placeholder="Enter a description of your device" id="description">\n        </div>\n        <div class="form-group">\n          <label for="email">Email</label>\n          <input type="email" name="email" id="email" placeholder="Enter your email here" />\n        </div>\n        <div class="form-group">\n          <label for="arduino">Arduino Token</label>\n          <input type="text" name="arduino" placeholder="Enter Arduino Token" id="arduino">\n        </div>\n        <input type="submit" class="edit-submit" value="Submit">\n      </form>\n    </div>\n  </div>\n</div>';
 
 }
 return __p
@@ -135,13 +135,12 @@ return __p
 
 (function() {
     window.Air = {
-        api: 'http://brazil-sensor.herokuapp.com/api/v1/',
+        api: 'https://brazil-sensor.herokuapp.com/api/v1',
         Models: {},
         Collections: {},
         Views: {},
         Routers: {},
         init: function () {
-            'use strict';
 
             $('#header-join').leanModal({ top : 200, overlay : 0.5, closeButton: '.modal-close' });
 
@@ -421,7 +420,7 @@ Air.Collections = Air.Collections || {};
     // collection for multiple sensors
     Air.Collections.Sensors = Backbone.Collection.extend({
         model: Air.Models.Sensor,
-        url: 'http://brazil-sensor.herokuapp.com/api/v1/sensors/',
+        url: Air.api + '/sensors/',
         parse: function(resp) {
             if (resp.results) {
                 return resp.results;
@@ -442,7 +441,7 @@ Air.Collections = Air.Collections || {};
     // collection for multiple sensors
     Air.Collections.Readings = Backbone.Collection.extend({
         model: Air.Models.Reading,
-        url: 'http://brazil-sensor.herokuapp.com/api/v1/readings',
+        url:  Air.api + '/readings',
         initialize: function(options) {
             if (options.id) {
                 this.url += ('/?sensor=' + options.id);
@@ -914,23 +913,6 @@ Air.Views = Air.Views || {};
         this['$' + field] = this.$('input[name="' + field + '"]');
       }.bind(this));
 
-      // Add event listeners to input text fields
-      var $input = $('input');
-      $input.each(function() {
-        $(this).attr('default',$(this).val());
-      });
-      $input.focus(function() {
-        if ($(this).val() === $(this).attr('default')) {
-          $(this).val('');
-        }
-      });
-      $input.blur(function() {
-       var def =  $(this).attr('default');
-       var val = $(this).val();
-        if (def.length > 0 && val.length === 0) {
-          $(this).val(def);
-        }
-      });
 
       // Add event listeners to latitude/longitude fields
       $lon.keyup($.debounce(function() {
@@ -945,6 +927,24 @@ Air.Views = Air.Views || {};
         marker.setLatLng(latlng);
       }, 300));
     },
+
+    notify: function(err) {
+      var classToAdd = '';
+      if (err) {
+        //Red notification
+        $('#message-box p').text(err);
+        classToAdd = 'notify-fail';
+      } else {
+        // Green notification
+        $('#message-box p').text('Update was successful!');
+        classToAdd = 'notify-success';
+      }
+      $('#message-box').addClass(classToAdd);
+      setTimeout(function (){
+         $('#message-box').removeClass(classToAdd);
+      }, 3000);
+    },
+
 
     submit: function(e) {
       e.preventDefault();
@@ -963,7 +963,7 @@ Air.Views = Air.Views || {};
         data.lat = data.latitude;
         data.lon = data.longitude;
         $.ajax({
-          url: Air.api + 'sensors/update/',
+          url: Air.api + '/sensors/update/',
           type: 'PUT',
           contentType: 'application/json',
           data: JSON.stringify(data),
@@ -971,14 +971,15 @@ Air.Views = Air.Views || {};
             'Authorization':'Token ' + data.arduino
           },
           success: function() {
+            this.notify();
             console.log('success!');
-          },
+          }.bind(this),
           error: function() {
-            console.log('error');
-          }
+            this.notify('Error updating sensor');
+          }.bind(this)
         });
       } else {
-        console.log('Fields not valid.');
+        this.notify('Fields not valid');
       }
     },
   });
