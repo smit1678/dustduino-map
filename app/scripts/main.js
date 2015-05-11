@@ -87,7 +87,7 @@
     // text object for copy
     var t = {
       en: {
-        overview: 'The São Paulo Dustduino project connects makers and electronics hackers with civic-minded citizens and journalists to create better data on air quality. Scroll down to see how &#x261F;.',
+        overview: 'The OpenDustMap project connects makers and electronics hackers with civic-minded citizens and journalists to create better data on air quality. Scroll down to see how &#x261F;.',
         tagline: 'Better data makes better policy.',
         description: 'When citizens create data about their environment, they are better equipped to advocate for more health-conscious emissions policies.',
 
