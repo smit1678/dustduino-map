@@ -45,7 +45,7 @@
           <a class="modal-close" href="#"></a>
         </div>
         <form action>
-          <p>Sign up to get your sensor processed or <a>click here</a> to purchase your sensor.</p>
+          <p>Sign up to get your sensor processed or <a href="http://dustduino.org/" target="_blank">click here</a> to purchase your sensor.</p>
           <div class="txt-fld">
             <label>Email</label>
             <input type="email" name="signup-email" id="signup-email" placeholder="Enter your email" />
@@ -59,31 +59,31 @@
         </form>
       </div>
 
-        <!-- build:js scripts/vendor.js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <script src="bower_components/underscore/underscore.js"></script>
-        <script src="bower_components/backbone/backbone.js"></script>
-        <script src="bower_components/d3/d3.js"></script>
-        <script src="bower_components/d3-tip/index.js"></script>
-        <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
-        <script src="scripts/responsive-nav.js"></script>
-        <script src="scripts/jquery.leanModal.min.js"></script>
-        <script src="scripts/utils.js"></script>
-        <!-- endbuild -->
+      <!-- build:js scripts/vendor.js -->
+      <script src="bower_components/jquery/dist/jquery.js"></script>
+      <script src="bower_components/underscore/underscore.js"></script>
+      <script src="bower_components/backbone/backbone.js"></script>
+      <script src="bower_components/d3/d3.js"></script>
+      <script src="bower_components/d3-tip/index.js"></script>
+      <script src="bower_components/spin/javascripts/jquery.spin.js"></script>
+      <script src="scripts/responsive-nav.js"></script>
+      <script src="scripts/jquery.leanModal.min.js"></script>
+      <script src="scripts/utils.js"></script>
+      <!-- endbuild -->
 
-        <script>
-          var $air = $('#air');
-          var nav = responsiveNav(".nav-collapse", {
-            label: "",
-            customToggle: "nav-toggle",
-            open:function(){
-              $air.addClass('expanded-menu');
-            },
-            close: function() {
-              $air.removeClass('expanded-menu');
-            },
-          });
-        </script>
+      <script>
+var $air = $('#air');
+var nav = responsiveNav(".nav-collapse", {
+  label: "",
+  customToggle: "nav-toggle",
+  open:function(){
+    $air.addClass('expanded-menu');
+  },
+  close: function() {
+    $air.removeClass('expanded-menu');
+  },
+});
+      </script>
 
       <script src="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js"></script>
 
