@@ -1,0 +1,37 @@
+<div class="container edit" id="<%= id %>">
+  <div class="row">
+    <div class="minimap col-sm-12 col-md-12 col-lg-6 map-padding">
+      <label class="main-label">Click on the map to add your location</label>
+      <div id="minimap" style="position:relative;top:0px;height:400px;" ></div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 form-padding">
+      <div class='notify' id="message-box">
+        <p id="notify-message"></p>
+      </div>
+      <label class="main-label">Manage your device </label>
+      <form>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input type="text" name="latitude" placeholder="0.0" id="latitude">
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input type="text" name="longitude" placeholder="0.0" id="longitude">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" name="description" placeholder="Enter a description of your device" id="description">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Enter your email here" />
+        </div>
+        <div class="form-group">
+          <label for="arduino">Arduino Token</label>
+          <input type="text" name="arduino" placeholder="Enter Arduino Token" id="arduino">
+        </div>
+        <input type="submit" class="edit-submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>

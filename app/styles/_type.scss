@@ -1,0 +1,128 @@
+/****************************************************/
+/************** Typography **************************/
+
+h1, h2 {
+    text-align: center;
+
+    @include large {
+        display: block;
+        float: left;
+        text-align: left;
+    }
+}
+
+h1 {
+    margin: 20px 0 0 0em;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    color: #988838;
+    line-height: 24px;
+
+    @include large {
+        margin: 21px 0 0 2.4em;
+    }
+
+}
+
+h2 {
+    margin: 5px 0 10px 0em;
+    font-size: 14px;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic;
+    color: #777;
+    line-height: 24px;
+
+    @include large {
+        margin: 24px 0 0 1em;
+        font-size: 16px;
+    }
+}
+
+h3 {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: normal;
+    @include medium { display: block; }
+    @include large { font-size: 14px; }
+}
+
+h4 {
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: normal;
+}
+
+a,
+a:link,
+a:hover,
+a:active,
+a:visited {
+    color: #4889B2;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    @include medium { margin-bottom: 8px; }
+    @include large { margin-bottom: 8px; }
+    display: block;
+}
+
+p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 12px 0;
+}
+
+button {
+    font-family: Arvo, Georgia, serif;
+    background: #988838;
+    border: none;
+    width: 100%;
+    overflow: visible;
+    font-size: 1em;
+    color: #fff;
+    padding: 7px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    font-weight: bold;
+}
+
+.close {
+    font-size: 24px;
+    line-height: 24px;
+    color: #222;
+}
+
+.close, .what {
+    position: absolute;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.orange             { color: #988838; }
+.gray               { color: #505050; }
+.black              { color: #000000; }
+
+.phosphorescent {
+    -webkit-transition: background-color 0.4s;
+    -moz-transition: background-color 0.4s;
+    transition: background-color 0.4s;
+}
+
+.sensor-number {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing:.05rem;
+}
+
+.sensor-location {
+  font-size: 16px;
+}
