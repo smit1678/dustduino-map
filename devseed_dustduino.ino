@@ -43,23 +43,12 @@ float countP2;
 WiFly wifly;
 void terminal();
 
-#define APIKEY     "cwiSJa0baotdyYSa8rsAX74MdxyX01uVndIoV3vjPkCCuRzO" // your cosm api key
-#define FEEDID     811174732 // your feed ID
-#define USERAGENT  "upstairs" // user agent is the project name
-#define WIFISSID   "Mapbox" //Wifi SSID
-#define PASSPHRASE "XXXXXX" //Wifi Pass Key
-
-const char server[] = "api.xively.com";
+const char ARDUINO_KEY[] = "YOUR ARDUINO KEY";
+const char server[] = "YOUR SERVER ADDRESS";
 
 void setup(){
   Serial.begin(9600);
   wifly.begin(&Serial, NULL);
-  
-  wifly.setSSID(WIFISSID);
-  wifly.setPassphrase(PASSPHRASE);
-  wifly.enableDHCP();
-  wifly.join();
-  
   pinMode(8, INPUT);
   wdt_enable(WDTO_8S);
   starttime = millis();
@@ -148,33 +137,31 @@ void loop(){
     // Modified to work with WiFly RN-XV and Xively.
 void sendData(int PM10Conc, int PM25Conc, int PM10count, int PM25count) {
     wifly.open(server, 80);
-    wifly.print("PUT /v2/feeds/");
-    wifly.print(FEEDID);
-    wifly.println(".csv HTTP/1.1");
-    wifly.println("Host: api.xively.com");
-    wifly.print("X-ApiKey: ");
-    wifly.println(APIKEY);
-    wifly.print("User-Agent: ");
-    wifly.println(USERAGENT);
+    wifly.println("POST /api/v1/readings/ HTTP/1.1");
+    wifly.print("Host: "); wifly.println(server);
+    wifly.print("Authorization: Token ");wifly.println(ARDUINO_KEY);
+    wifly.println("User-Agent: Arduino/1.0");
+    wifly.print("Accept: *");wifly.print("/");wifly.println("*");
+    wifly.println("Referer:");
     wifly.print("Content-Length: ");
 
     // Calculates the length of the sensor reading in bytes:
-    int thisLength = 35 + getLength(PM10Conc) + getLength(PM25Conc) + getLength(PM10count) + getLength(PM25count);
+    int thisLength = 33 + getLength(PM10Conc) + getLength(PM25Conc) + getLength(PM10count) + getLength(PM25count);
     wifly.println(thisLength);
 
-    // last pieces of the HTTP PUT request:
-    wifly.println("Content-Type: text/csv");
+    // last pieces of the HTTP POST request:
+    wifly.println("Content-Type: application/x-www-form-urlencoded");
     wifly.println("Connection: close");
     wifly.println();
 
-    // here's the actual content of the PUT request:
-    wifly.print("PM10,");
-    wifly.println(PM10Conc);
-    wifly.print("PM25,");
-    wifly.println(PM25Conc);
-    wifly.print("PM10count,");
-    wifly.println(PM10count);
-    wifly.print("PM25count,");
+    // here's the actual content of the POST request:
+    wifly.print("pm10=");
+    wifly.print(PM10Conc);
+    wifly.print("&pm25=");
+    wifly.print(PM25Conc);
+    wifly.print("&pm10count=");
+    wifly.print(PM10count);
+    wifly.print("&pm25count=");
     wifly.println(PM25count);
     wifly.close();
 }
@@ -184,7 +171,12 @@ void sendData(int PM10Conc, int PM25Conc, int PM10count, int PM25count) {
   // number of digits, which Xively needs
   // to post data correctly.
   int getLength(int someValue) {
+  
   int digits = 1;
+  if (someValue < 0) {
+    someValue = someValue * -1;
+    digits = 2;
+  }
   int dividend = someValue /10;
   while (dividend > 0) {
     dividend = dividend /10;
@@ -210,3 +202,4 @@ void terminal()
 	}
     }
 }
+  
