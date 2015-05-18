@@ -11,7 +11,7 @@ Air.Collections = Air.Collections || {};
         url:  Air.api + '/readings',
         initialize: function(options) {
             if (options.id) {
-                this.url += ('/?sensor=' + options.id);
+                this.url += ('/?sensor_id=' + options.id);
             }
         },
         parse: function(resp) {
